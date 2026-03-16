@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #06060A;
+  --surface-1: #0E0E14;
+  --surface-2: #16161F;
+  --border: #1E1E2E;
+  --text-primary: #E8E6E3;
+  --text-secondary: #8B8B9E;
+  --text-muted: #555566;
+  --accent-green: #4ADE80;
+  --accent-cyan: #22D3EE;
+  --accent-purple: #8B5CF6;
+  --accent-amber: #FBBF24;
+  --synapse-blue: #2E7DFF;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  scroll-behavior: auto;
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(74, 222, 128, 0.2);
+  color: var(--text-primary);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.glow-green {
+  text-shadow: 0 0 20px rgba(74, 222, 128, 0.3), 0 0 40px rgba(74, 222, 128, 0.1);
+}
+
+.glow-cyan {
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.1);
+}
+
+.glow-purple {
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
+}
+
+.glow-amber {
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.3), 0 0 40px rgba(251, 191, 36, 0.1);
+}

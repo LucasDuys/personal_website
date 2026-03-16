@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { jetbrainsMono, spaceGrotesk } from '@/styles/fonts';
 import { Providers } from '@/components/layout/Providers';
+import { CustomCursor } from '@/components/layout/CustomCursor';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -17,7 +18,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <CustomCursor />
+          {children}
+        </Providers>
       </body>
     </html>
   );

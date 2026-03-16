@@ -57,3 +57,8 @@ body {
 .glow-amber {
   text-shadow: 0 0 20px rgba(251, 191, 36, 0.3), 0 0 40px rgba(251, 191, 36, 0.1);
 }
+
+@media (hover: hover) {
+  html { cursor: none; }
+  a, button, [role="button"] { cursor: none; }
+}

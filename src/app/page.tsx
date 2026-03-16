@@ -1,6 +1,9 @@
+import { ParticleCanvas } from '@/components/canvas/ParticleCanvas';
+
 export default function Home() {
   return (
     <main className="bg-[var(--bg)]">
+      <ParticleCanvas />
       {[1, 2, 3, 4, 5].map((i) => (
         <section key={i} className="min-h-screen flex items-center justify-center">
           <p className="font-mono text-[var(--accent-green)] text-sm">

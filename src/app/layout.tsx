@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { jetbrainsMono, spaceGrotesk } from '@/styles/fonts';
 import { Providers } from '@/components/layout/Providers';
 import { CustomCursor } from '@/components/layout/CustomCursor';
+import { LayoutShell } from '@/components/layout/LayoutShell';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Providers>
           <CustomCursor />
-          {children}
+          <LayoutShell>{children}</LayoutShell>
         </Providers>
       </body>
     </html>

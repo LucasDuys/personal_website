@@ -57,6 +57,17 @@ body {
   100% { top: 100%; }
 }
 
+@keyframes scanRotate {
+  from { --scan-angle: 0deg; }
+  to { --scan-angle: 360deg; }
+}
+
+@property --scan-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .glow-green {
   text-shadow: 0 0 20px rgba(74, 222, 128, 0.3), 0 0 40px rgba(74, 222, 128, 0.1);
 }

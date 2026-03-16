@@ -43,36 +43,38 @@ function MetricsDashboard({
   metrics: { label: string; value: number; suffix: string }[];
 }) {
   return (
-    <div className="mt-4 font-mono text-xs">
-      <div className="text-[var(--text-muted)]">
-        {'┌─────────────────────────────────────┐'}
-      </div>
-      <div className="text-[var(--text-muted)]">
-        {'│'}{' '}
-        <span className="text-[var(--text-secondary)]">metrics dashboard</span>
-        {'                   │'}
-      </div>
-      <div className="text-[var(--text-muted)]">
-        {'├─────────────────────────────────────┤'}
-      </div>
-      {metrics.map((metric, i) => (
-        <div key={i} className="text-[var(--text-muted)]">
-          {'│'}{' '}
-          <span className="text-[var(--text-secondary)] inline-block min-w-[140px]">
-            {metric.label}
-          </span>
-          <span className="text-[var(--accent-green)] font-semibold">
-            <MetricCounter
-              target={metric.value}
-              prefix="+"
-              suffix={metric.suffix}
-            />
-          </span>
-          {'  │'}
+    <div className="mt-4 font-mono text-xs overflow-x-auto">
+      <div className="min-w-[320px]">
+        <div className="text-[var(--text-muted)]">
+          {'┌─────────────────────────────────────┐'}
         </div>
-      ))}
-      <div className="text-[var(--text-muted)]">
-        {'└─────────────────────────────────────┘'}
+        <div className="text-[var(--text-muted)]">
+          {'│'}{' '}
+          <span className="text-[var(--text-secondary)]">metrics dashboard</span>
+          {'                   │'}
+        </div>
+        <div className="text-[var(--text-muted)]">
+          {'├─────────────────────────────────────┤'}
+        </div>
+        {metrics.map((metric, i) => (
+          <div key={i} className="text-[var(--text-muted)]">
+            {'│'}{' '}
+            <span className="text-[var(--text-secondary)] inline-block min-w-[140px]">
+              {metric.label}
+            </span>
+            <span className="text-[var(--accent-green)] font-semibold">
+              <MetricCounter
+                target={metric.value}
+                prefix="+"
+                suffix={metric.suffix}
+              />
+            </span>
+            {'  │'}
+          </div>
+        ))}
+        <div className="text-[var(--text-muted)]">
+          {'└─────────────────────────────────────┘'}
+        </div>
       </div>
     </div>
   );

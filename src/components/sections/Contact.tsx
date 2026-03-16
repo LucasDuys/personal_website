@@ -147,17 +147,17 @@ export function Contact() {
 
             {/* Contact links */}
             <div ref={linksRef} className="mb-12 space-y-4">
-              <div className="contact-link flex items-center gap-4 font-mono text-sm">
+              <div className="contact-link flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-sm">
                 <span className="text-[var(--accent-green)]">&rarr;</span>
-                <span className="text-[var(--text-muted)] w-20">email</span>
-                <CipherText className="text-[var(--text-primary)] hover:text-[var(--accent-green)] transition-colors">
+                <span className="text-[var(--text-muted)] w-16 sm:w-20">email</span>
+                <CipherText className="text-[var(--text-primary)] hover:text-[var(--accent-green)] transition-colors break-all">
                   lucas.duys@gmail.com
                 </CipherText>
                 <CopyButton text="lucas.duys@gmail.com" />
               </div>
-              <div className="contact-link flex items-center gap-4 font-mono text-sm">
+              <div className="contact-link flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-sm">
                 <span className="text-[var(--accent-green)]">&rarr;</span>
-                <span className="text-[var(--text-muted)] w-20">linkedin</span>
+                <span className="text-[var(--text-muted)] w-16 sm:w-20">linkedin</span>
                 <a
                   href="https://linkedin.com/in/lucas-duys"
                   target="_blank"

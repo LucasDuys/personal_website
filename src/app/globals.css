@@ -52,6 +52,11 @@ body {
   to { transform: rotate(360deg); }
 }
 
+@keyframes scrollPulse {
+  0% { top: -12px; }
+  100% { top: 100%; }
+}
+
 .glow-green {
   text-shadow: 0 0 20px rgba(74, 222, 128, 0.3), 0 0 40px rgba(74, 222, 128, 0.1);
 }

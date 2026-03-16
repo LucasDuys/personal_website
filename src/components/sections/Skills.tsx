@@ -433,14 +433,14 @@ export function Skills() {
             transition={{ duration: 0.4 }}
             className="space-y-2"
           >
-            <div className="flex items-center gap-2 font-mono text-sm bg-[var(--surface-1)] border border-[var(--border)] rounded px-4 py-2.5">
-              <span className="text-[var(--accent-green)] shrink-0">
+            <div className="flex items-center gap-2 font-mono text-sm bg-[var(--surface-1)] border border-[var(--border)] rounded px-3 sm:px-4 py-2.5">
+              <span className="text-[var(--accent-green)] shrink-0 hidden sm:inline">
                 <span className="text-[var(--accent-green)]">visitor</span>
                 <span className="text-[var(--text-muted)]">@</span>
                 <span className="text-[var(--accent-cyan)]">lucas.dev</span>
                 <span className="text-[var(--text-muted)]">:~$ </span>
               </span>
-              <span className="text-[var(--text-muted)] shrink-0">query skills --similarity &quot;</span>
+              <span className="text-[var(--text-muted)] shrink-0"><span className="hidden sm:inline">query skills --similarity </span>&quot;</span>
               <input
                 ref={inputRef}
                 type="text"

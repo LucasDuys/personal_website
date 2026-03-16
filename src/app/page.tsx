@@ -1,19 +1,34 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { ParticleCanvas } from '@/components/canvas/ParticleCanvas';
+import dynamic from 'next/dynamic';
 import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
 import { Experience } from '@/components/sections/Experience';
 import { Contact } from '@/components/sections/Contact';
-import { Skills } from '@/components/sections/Skills';
-import { Projects } from '@/components/sections/Projects';
 import { SynapseBridge } from '@/components/ui/SynapseBridge';
-import { SecretTerminal } from '@/components/ui/SecretTerminal';
 import { NavBar } from '@/components/layout/NavBar';
 import { CommandPalette } from '@/components/layout/CommandPalette';
 import { SideIndicator } from '@/components/layout/SideIndicator';
 import { MobileMenu } from '@/components/layout/MobileMenu';
+
+// Lazy-load heavy client components to avoid blocking initial render
+const ParticleCanvas = dynamic(
+  () => import('@/components/canvas/ParticleCanvas').then(m => ({ default: m.ParticleCanvas })),
+  { ssr: false }
+);
+const Skills = dynamic(
+  () => import('@/components/sections/Skills').then(m => ({ default: m.Skills })),
+  { ssr: false, loading: () => <div className="min-h-screen" /> }
+);
+const Projects = dynamic(
+  () => import('@/components/sections/Projects').then(m => ({ default: m.Projects })),
+  { ssr: false, loading: () => <div className="min-h-screen" /> }
+);
+const SecretTerminal = dynamic(
+  () => import('@/components/ui/SecretTerminal').then(m => ({ default: m.SecretTerminal })),
+  { ssr: false }
+);
 
 const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
 

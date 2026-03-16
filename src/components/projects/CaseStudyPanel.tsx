@@ -176,10 +176,10 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[var(--surface-1,#0E0E14)]/95 backdrop-blur-sm">
-                <div className="flex items-center gap-4">
+              <div className="sticky top-0 z-10 flex items-start justify-between gap-3 px-4 sm:px-6 py-4 border-b border-[var(--border)] bg-[var(--surface-1,#0E0E14)]/95 backdrop-blur-sm">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 min-w-0">
                   <h2
-                    className="font-sans text-xl font-bold"
+                    className="font-sans text-lg sm:text-xl font-bold truncate"
                     style={{ color: project.accentColor }}
                   >
                     {project.title}
@@ -194,7 +194,7 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                     </span>
                   )}
                   {project.links.length > 0 && (
-                    <div className="flex gap-3">
+                    <div className="hidden sm:flex gap-3">
                       {project.links.map((link) => (
                         <a
                           key={link.label}
@@ -223,7 +223,7 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
               </div>
 
               {/* Content */}
-              <div className="p-6 md:p-8">
+              <div className="p-4 sm:p-6 md:p-8">
                 {/* Problem */}
                 <CLISection command="cat PROBLEM.md" accentColor={project.accentColor}>
                   <p className="text-[var(--text-secondary)] text-sm leading-relaxed">

@@ -42,12 +42,12 @@ export function Projects() {
           <span className="text-[var(--text-muted)]">:~$ </span>
           <span className="text-[var(--text-primary)]">ls -la ~/projects/</span>
         </div>
-        <div className="ml-0 space-y-0.5 text-xs">
+        <div className="ml-0 space-y-0.5 text-xs overflow-x-auto">
           <div className="text-[var(--text-muted)]">total 4</div>
           {projects.map((p) => (
-            <div key={p.slug} className="flex gap-4">
-              <span className="text-[var(--text-muted)]">drwxr-xr-x</span>
-              <span className="text-[var(--text-muted)]">lucas</span>
+            <div key={p.slug} className="flex gap-2 sm:gap-4 whitespace-nowrap">
+              <span className="text-[var(--text-muted)] hidden sm:inline">drwxr-xr-x</span>
+              <span className="text-[var(--text-muted)] hidden sm:inline">lucas</span>
               <span style={{ color: p.accentColor }}>{p.slug}/</span>
             </div>
           ))}

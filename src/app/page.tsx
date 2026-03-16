@@ -7,6 +7,7 @@ import { About } from '@/components/sections/About';
 import { Experience } from '@/components/sections/Experience';
 import { Contact } from '@/components/sections/Contact';
 import { Skills } from '@/components/sections/Skills';
+import { Projects } from '@/components/sections/Projects';
 import { SynapseBridge } from '@/components/ui/SynapseBridge';
 import { SecretTerminal } from '@/components/ui/SecretTerminal';
 import { NavBar } from '@/components/layout/NavBar';
@@ -87,8 +88,8 @@ export default function Home() {
       {/* Bridge: about → projects */}
       <SynapseBridge annotation="> cd ~/projects" />
 
-      {/* 3. Projects (placeholder) */}
-      <div id="projects" className="min-h-screen" />
+      {/* 3. Projects */}
+      <Projects />
 
       {/* Bridge: projects → skills */}
       <SynapseBridge annotation="> cat skills.json" />

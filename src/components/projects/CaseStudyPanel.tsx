@@ -160,14 +160,14 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
 
           {/* Panel */}
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 pointer-events-none"
+            className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-8 pointer-events-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
               layoutId={`project-card-${project.slug}`}
-              className="relative w-full max-w-[900px] max-h-[85vh] overflow-y-auto rounded-xl border border-[var(--border)] pointer-events-auto"
+              className="relative w-full max-w-full md:max-w-[900px] h-full md:h-auto max-h-full md:max-h-[85vh] overflow-y-auto rounded-none md:rounded-xl border-0 md:border border-[var(--border)] pointer-events-auto"
               style={{ background: 'var(--surface-1, #0E0E14)' }}
               initial={{ scale: 0.92, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}

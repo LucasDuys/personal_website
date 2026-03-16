@@ -3,6 +3,7 @@
 import { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Project } from '@/types';
+import { RAGPipeline } from './RAGPipeline';
 
 /* ---------- Per-project case study content ---------- */
 
@@ -236,6 +237,13 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                     {content.approach}
                   </p>
                 </CLISection>
+
+                {/* RAG Pipeline Visualization (Stacklink only) */}
+                {project.slug === 'stacklink' && (
+                  <CLISection command="cat PIPELINE.svg" accentColor={project.accentColor}>
+                    <RAGPipeline />
+                  </CLISection>
+                )}
 
                 {/* Solution */}
                 <CLISection command="cat SOLUTION.md" accentColor={project.accentColor}>

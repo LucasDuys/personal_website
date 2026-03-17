@@ -22,14 +22,14 @@ export const skillQueries: Record<string, Record<string, number>> = {
     'LLM Integration': 0.75, 'Python': 0.70, 'Machine Learning': 0.65,
   },
   'leadership': {
-    'Operations': 0.95, 'Scrum': 0.80, 'Workshop Facilitation': 0.75,
+    'Operations': 0.95, 'Agile': 0.80, 'Workshop Facilitation': 0.75,
     'LLM Integration': 0.30, 'AI Agents': 0.25,
   },
   'management': {
-    'Operations': 0.92, 'Scrum': 0.85, 'Workshop Facilitation': 0.70,
+    'Operations': 0.92, 'Agile': 0.85, 'Workshop Facilitation': 0.70,
   },
   'scrum': {
-    'Scrum': 0.95, 'Operations': 0.60, 'Git': 0.40,
+    'Agile': 0.95, 'Operations': 0.60, 'Git': 0.40,
   },
   'workshop': {
     'Workshop Facilitation': 0.95, 'LLM Integration': 0.65, 'Prompt Engineering': 0.55,

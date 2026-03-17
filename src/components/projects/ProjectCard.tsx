@@ -14,20 +14,11 @@ function PitchrBadge() {
   return (
     <div className="absolute top-3 right-3 z-10">
       <div className="relative">
-        {/* Pulsing glow ring */}
-        <div
-          className="absolute inset-0 rounded-md opacity-60"
-          style={{
-            background: 'linear-gradient(135deg, #ff5941, #ff8c42)',
-            filter: 'blur(8px)',
-            animation: 'pulse 2s ease-in-out infinite',
-          }}
-        />
         <div
           className="relative px-2.5 py-1 rounded-md font-mono text-[10px] font-bold tracking-wider text-white"
           style={{ background: 'linear-gradient(135deg, #ff5941, #ff8c42)' }}
         >
-          1ST PLACE
+          HACKATHON PROJECT
         </div>
       </div>
     </div>
@@ -154,7 +145,7 @@ export function ProjectCard({ project, onClick }: Props) {
 
       {/* Visual Area */}
       <div
-        className="relative h-32 md:h-36"
+        className="relative h-32 md:h-36 overflow-hidden"
         style={{
           background: `linear-gradient(135deg, ${project.accentColor}08 0%, ${project.accentColor}15 50%, ${project.accentColor}05 100%)`,
         }}
@@ -163,14 +154,58 @@ export function ProjectCard({ project, onClick }: Props) {
         {isCape && <CapeInProgressBadge />}
         {isWorkshops && <WorkshopScanlines />}
 
-        {/* Decorative grid dots */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `radial-gradient(${project.accentColor} 1px, transparent 1px)`,
-            backgroundSize: '20px 20px',
-          }}
-        />
+        {/* Pitchr: embedded demo video */}
+        {isPitchr && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+            src="/videos/pitchr-demo.mov"
+          />
+        )}
+
+        {/* Stacklink: landing page style mockup */}
+        {isStacklink && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
+            {/* Stylized search bar */}
+            <div className="w-full max-w-[220px] flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#06b6d4]/30 bg-[#06b6d4]/5 mb-2">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#06b6d4" strokeWidth="1.5" strokeLinecap="round">
+                <circle cx="5" cy="5" r="3.5" />
+                <path d="M8 8l2.5 2.5" />
+              </svg>
+              <span className="font-mono text-[9px] text-[#06b6d4]/60">Search your knowledge...</span>
+            </div>
+            {/* Tagline */}
+            <p className="text-center font-sans text-[11px] font-medium text-[#06b6d4]/70 leading-tight">
+              Unify your knowledge.
+              <br />
+              Power better decisions.
+            </p>
+            {/* Mini document icons row */}
+            <div className="flex gap-2 mt-2 opacity-40">
+              {['PDF', 'DOC', 'XLS'].map((ext) => (
+                <div key={ext} className="flex flex-col items-center gap-0.5">
+                  <div className="w-5 h-6 rounded-sm border border-[#06b6d4]/40 bg-[#06b6d4]/10 flex items-center justify-center">
+                    <span className="font-mono text-[5px] text-[#06b6d4]">{ext}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Decorative grid dots (non-Pitchr, non-Stacklink) */}
+        {!isPitchr && !isStacklink && (
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `radial-gradient(${project.accentColor} 1px, transparent 1px)`,
+              backgroundSize: '20px 20px',
+            }}
+          />
+        )}
       </div>
 
       {/* Content Area */}
@@ -211,8 +246,6 @@ export function ProjectCard({ project, onClick }: Props) {
               <a
                 key={link.label}
                 href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
                 className="inline-flex items-center gap-1.5 font-mono text-[11px] transition-colors"
                 style={{ color: project.accentColor }}

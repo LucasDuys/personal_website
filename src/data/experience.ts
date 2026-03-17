@@ -3,7 +3,7 @@ import type { ExperienceEntry } from '@/types';
 export const EXPERIENCE: ExperienceEntry[] = [
   {
     hash: 'a3f7c1d',
-    dateRange: 'Sep 2025 — Present',
+    dateRange: 'Sep 2025 - Present',
     title: 'AI Intern',
     company: 'cape.io',
     companyColor: 'var(--accent-green)',
@@ -17,14 +17,14 @@ export const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     hash: 'e9b2f4a',
-    dateRange: 'Feb 2025 — Jun 2025',
+    dateRange: 'Feb 2025 - Jun 2025',
     title: 'Operations Lead',
     company: 'Amplifirm',
     companyColor: 'var(--accent-purple)',
     description: [
       'Led operations at a London-based startup, driving measurable business outcomes',
       'Built internal dashboards and automated workflows that scaled team output',
-      'Moved real metrics — not vanity numbers',
+      'Moved real metrics - not vanity numbers',
     ],
     tags: ['Operations', 'Automation', 'Dashboards'],
     metrics: [
@@ -36,13 +36,13 @@ export const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     hash: 'c8d1e5f',
-    dateRange: 'Sep 2024 — Present',
+    dateRange: 'Sep 2024 - Present',
     title: 'CS & Engineering Student',
     company: 'TU Eindhoven',
     companyColor: 'var(--accent-cyan)',
     description: [
       'Studying Computer Science & Engineering with a focus on AI and systems',
-      'Created and led LLM workshops — turning "AI is magic" into practical skills',
+      'Created and led LLM workshops - turning "AI is magic" into practical skills',
       'Building projects that ship, not just assignments that pass',
     ],
     tags: ['CS', 'AI', 'Systems', 'Education'],
@@ -51,12 +51,12 @@ export const EXPERIENCE: ExperienceEntry[] = [
   {
     hash: 'f2a9b3c',
     dateRange: 'Nov 2024',
-    title: 'Hackathon Winner',
+    title: 'Hackathon Project',
     company: 'HEC Paris x Station F',
     companyColor: 'var(--accent-amber)',
     description: [
-      'Won a 24-hour hackathon in Paris, building a live product from scratch',
-      'Pitched to judges and walked away with the top prize',
+      'Built a live product from scratch in 24 hours at HackEurope Paris',
+      'Pitched to judges and demonstrated a working prototype',
       'Proved that speed + quality is not a tradeoff when you care enough',
     ],
     tags: ['Hackathon', 'Product', 'Pitch'],
@@ -64,13 +64,13 @@ export const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     hash: 'd7e4f8a',
-    dateRange: 'Jun 2024 — Aug 2024',
-    title: 'RAG Systems Developer',
-    company: 'Freelance',
+    dateRange: 'Jun 2024 - Aug 2024',
+    title: 'Project: Stacklink',
+    company: 'Personal Project',
     companyColor: 'var(--text-secondary)',
     description: [
-      'Built retrieval-augmented generation systems for real-world use cases',
-      'Focused on precision — systems that actually retrieve the right answer',
+      'Built a retrieval-augmented generation system for internal knowledge retrieval',
+      'Focused on precision - systems that actually retrieve the right answer',
       'Designed embedding pipelines and evaluation frameworks from scratch',
     ],
     tags: ['RAG', 'Embeddings', 'LLM', 'Python'],

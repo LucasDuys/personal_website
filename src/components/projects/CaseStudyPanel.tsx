@@ -24,7 +24,7 @@ const caseStudies: Record<string, CaseStudyContent> = {
       'AI-generated script rewrite with tracked improvements',
       'Mock investor Q&A powered by Claude + ElevenLabs voice synthesis',
     ],
-    outcome: 'Won 1st place at HackEurope Paris. Built in 30 hours.',
+    outcome: 'Built at HackEurope Paris in 30 hours.',
   },
   stacklink: {
     problem: 'Knowledge scattered across Google Drive folders. Finding info takes 20+ minutes.',
@@ -48,11 +48,11 @@ const caseStudies: Record<string, CaseStudyContent> = {
     problem: "Businesses know AI matters but don't know where to start.",
     approach: "Personalized workshops using each client's own data and challenges.",
     solution: [
-      'Module 1: Market Research Automation \u2014 using LLMs to analyze competitive landscapes',
-      'Module 2: Project Scoping \u2014 AI-assisted requirements gathering and estimation',
-      'Module 3: Sentiment Analysis \u2014 extracting insights from customer feedback at scale',
+      'Module 1: Market Research Automation - using LLMs to analyze competitive landscapes',
+      'Module 2: Project Scoping - AI-assisted requirements gathering and estimation',
+      'Module 3: Sentiment Analysis - extracting insights from customer feedback at scale',
     ],
-    outcome: 'Delivered 12 workshops.',
+    outcome: 'Delivered 3 workshops.',
   },
 };
 
@@ -199,8 +199,6 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                         <a
                           key={link.label}
                           href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 font-mono text-[11px] transition-colors hover:opacity-80"
                           style={{ color: project.accentColor }}
                         >
@@ -221,6 +219,21 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                   </svg>
                 </button>
               </div>
+
+              {/* Hero Video (Pitchr) */}
+              {project.slug === 'pitchr' && (
+                <div className="relative w-full aspect-video bg-black/50">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    className="w-full h-full object-contain"
+                    src="/videos/pitchr-demo.mov"
+                  />
+                </div>
+              )}
 
               {/* Content */}
               <div className="p-4 sm:p-6 md:p-8">

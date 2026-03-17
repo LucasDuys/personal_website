@@ -70,10 +70,10 @@ function Highlight({
 
 const BODY_PARAGRAPHS = [
   <>
-    I&apos;m a builder at the intersection of AI and product &mdash; the kind
+    I&apos;m a builder at the intersection of AI and product - the kind
     of person who enters a{' '}
     <Highlight color="amber">24-hour hackathon</Highlight> in Paris and walks
-    out with both the win and a live product.
+    out with a live product.
   </>,
   <>
     I study Computer Science &amp; Engineering at TU Eindhoven, but most of my
@@ -91,8 +91,8 @@ const BODY_PARAGRAPHS = [
     documentation. That&apos;s where I&apos;m happiest.
   </>,
   <>
-    I&apos;m Dutch, which means I&apos;ll be direct: I care about things that
-    work. Clean code, clear communication, and products that solve real problems.
+    I&apos;ll be direct: I care about things that
+    work. Clear communication and products that solve real problems.
     Not portfolio filler &mdash; actual outcomes.
   </>,
 ];

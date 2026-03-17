@@ -6,13 +6,13 @@ import { LayoutShell } from '@/components/layout/LayoutShell';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Lucas Duys — CS & AI Developer',
-  description: 'CS & Engineering student at TU Eindhoven building AI tools. Creator of Pitchr.live (HackEurope winner) and Stacklink.nl (RAG system). AI Intern at cape.io.',
+  title: 'Lucas Duys - CS & AI Developer',
+  description: 'CS & Engineering student at TU Eindhoven building AI tools. Creator of Pitchr.live (Built at HackEurope Paris) and Stacklink.nl (RAG system). AI Intern at cape.io.',
   keywords: ['Lucas Duys', 'developer', 'AI', 'RAG', 'portfolio', 'TU Eindhoven', 'Next.js', 'TypeScript'],
   authors: [{ name: 'Lucas Duys' }],
   creator: 'Lucas Duys',
   openGraph: {
-    title: 'Lucas Duys — CS & AI Developer',
+    title: 'Lucas Duys - CS & AI Developer',
     description: 'Building at the intersection of engineering and AI.',
     type: 'website',
     locale: 'en_US',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lucas Duys — CS & AI Developer',
+    title: 'Lucas Duys - CS & AI Developer',
     description: 'Building at the intersection of engineering and AI.',
   },
   robots: {

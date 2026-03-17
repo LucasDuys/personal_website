@@ -226,30 +226,30 @@ export function Hero() {
     const ctx = gsap.context(() => {
       if (!sectionRef.current) return;
 
-      const trigger = {
+      const trigger: ScrollTrigger.Vars = {
         trigger: sectionRef.current,
         start: 'top top',
-        end: 'bottom top',
-        scrub: 0.5,
+        end: '60% top',
+        scrub: 0.8,
       };
 
       if (nameRef.current) {
-        gsap.to(nameRef.current, { y: -80, opacity: 0, scrollTrigger: trigger });
+        gsap.to(nameRef.current, { y: -60, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (greetRef.current) {
-        gsap.to(greetRef.current, { y: -40, opacity: 0, scrollTrigger: trigger });
+        gsap.to(greetRef.current, { y: -30, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (roleRef.current) {
-        gsap.to(roleRef.current, { y: -60, opacity: 0, scrollTrigger: trigger });
+        gsap.to(roleRef.current, { y: -40, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (ctaRef.current) {
-        gsap.to(ctaRef.current, { y: 30, opacity: 0, scrollTrigger: trigger });
+        gsap.to(ctaRef.current, { y: 20, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (cornersRef.current) {
-        gsap.to(cornersRef.current, { opacity: 0, scrollTrigger: trigger });
+        gsap.to(cornersRef.current, { opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (scrollIndRef.current) {
-        gsap.to(scrollIndRef.current, { y: 20, opacity: 0, scrollTrigger: { ...trigger, end: '30% top' } });
+        gsap.to(scrollIndRef.current, { y: 15, opacity: 0, ease: 'none', scrollTrigger: { ...trigger, end: '25% top' } });
       }
     }, sectionRef);
 
@@ -259,7 +259,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center"
     >
       {/* HUD corners */}
       <div ref={cornersRef} className="absolute inset-0 pointer-events-none">

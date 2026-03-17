@@ -141,20 +141,27 @@ export function Skills() {
     if (!graphRef.current || !graphReady) return;
 
     const clusterPositions: Record<string, { x: number; y: number }> = {
-      frontend: { x: -150, y: -100 },
-      backend: { x: 150, y: -100 },
-      ai: { x: -150, y: 100 },
-      soft: { x: 150, y: 100 },
+      frontend: { x: -80, y: -70 },
+      backend: { x: 80, y: -70 },
+      ai: { x: -80, y: 70 },
+      soft: { x: 80, y: 70 },
     };
 
     graphRef.current.d3Force('x',
-      forceX<GraphNode>((node: GraphNode) => clusterPositions[node.cluster]?.x || 0).strength(0.35)
+      forceX<GraphNode>((node: GraphNode) => clusterPositions[node.cluster]?.x || 0).strength(0.5)
     );
     graphRef.current.d3Force('y',
-      forceY<GraphNode>((node: GraphNode) => clusterPositions[node.cluster]?.y || 0).strength(0.35)
+      forceY<GraphNode>((node: GraphNode) => clusterPositions[node.cluster]?.y || 0).strength(0.5)
     );
-    graphRef.current.d3Force('charge')?.strength(-60);
-    graphRef.current.d3Force('collide', forceCollide(25));
+    graphRef.current.d3Force('charge')?.strength(-40);
+    graphRef.current.d3Force('collide', forceCollide(22));
+
+    // Zoom to fit all nodes after simulation settles
+    setTimeout(() => {
+      if (graphRef.current) {
+        graphRef.current.zoomToFit(800, 40);
+      }
+    }, 1500);
   }, [graphReady]);
 
   // Search debounce

@@ -23,9 +23,9 @@ export const skills: Skill[] = [
   { name: 'Machine Learning', cluster: 'ai', x: 45, y: 68, size: 10, connections: ['Python', 'LLM Integration'] },
 
   // Leadership & Strategy (green #4ADE80)
-  { name: 'Operations', cluster: 'soft', x: 68, y: 60, size: 12, connections: ['Agile'] },
-  { name: 'Agile', cluster: 'soft', x: 75, y: 55, size: 11, connections: ['Operations'] },
-  { name: 'Workshop Facilitation', cluster: 'soft', x: 82, y: 65, size: 10, connections: ['Operations'] },
+  { name: 'Operations', cluster: 'soft', x: 68, y: 60, size: 12, connections: ['Agile', 'REST APIs'] },
+  { name: 'Agile', cluster: 'soft', x: 75, y: 55, size: 11, connections: ['Operations', 'Git'] },
+  { name: 'Workshop Facilitation', cluster: 'soft', x: 82, y: 65, size: 10, connections: ['Operations', 'LLM Integration'] },
 ];
 
 export const CLUSTER_COLORS: Record<string, string> = {

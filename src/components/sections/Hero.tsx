@@ -327,22 +327,38 @@ export function Hero() {
         {/* CTAs */}
         <div ref={ctaRef} className="flex flex-col items-center gap-4" style={{ opacity: 0 }}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#projects"
+            <button
+              onClick={() => {
+                const lenis = (window as any).__lenis;
+                if (lenis) lenis.scrollTo('#projects', { duration: 1.5 });
+                else document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm bg-[var(--accent-green)] text-[var(--bg)] font-semibold transition-all duration-200 hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] hover:scale-[1.02]"
             >
               $ cd ./projects <span className="opacity-70 group-hover:opacity-100 transition-opacity">&crarr;</span>
-            </a>
-            <a
-              href="#contact"
+            </button>
+            <button
+              onClick={() => {
+                const lenis = (window as any).__lenis;
+                if (lenis) lenis.scrollTo('#contact', { duration: 2.0 });
+                else document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm border border-[var(--border)] text-[var(--text-secondary)] transition-all duration-200 hover:border-[var(--accent-green)] hover:text-[var(--text-primary)]"
             >
               $ contact --open <span className="opacity-70 group-hover:opacity-100 transition-opacity">&crarr;</span>
-            </a>
+            </button>
           </div>
-          <span className="font-mono text-[10px] text-[var(--text-muted)] opacity-50 mt-2">
-            press <kbd className="px-1.5 py-0.5 border border-[var(--border)] rounded text-[var(--text-secondary)]">{'\u2318'}K</kbd> to navigate
-          </span>
+          <button
+            onClick={() => {
+              const event = new KeyboardEvent('keydown', { key: 'k', metaKey: true });
+              document.dispatchEvent(event);
+              const event2 = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true });
+              document.dispatchEvent(event2);
+            }}
+            className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs border border-[var(--border)] text-[var(--text-muted)] transition-all duration-200 hover:border-[var(--accent-green)]/30 hover:text-[var(--text-secondary)] mt-1"
+          >
+            $ search --all <kbd className="px-1.5 py-0.5 border border-[var(--border)] rounded text-[var(--text-secondary)] ml-1 text-[10px]">{'\u2318'}K</kbd>
+          </button>
         </div>
       </div>
     </section>

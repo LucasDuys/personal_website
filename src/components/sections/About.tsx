@@ -90,11 +90,6 @@ const BODY_PARAGRAPHS = [
     - the kind of work where the problem space changes faster than the
     documentation. That&apos;s where I&apos;m happiest.
   </>,
-  <>
-    I&apos;ll be direct: I care about things that
-    work. Clear communication and products that solve real problems.
-    Not portfolio filler - actual outcomes.
-  </>,
 ];
 
 const CTA_LINE =

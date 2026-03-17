@@ -24,9 +24,16 @@ export function NavBar({ onOpenCommandPalette, onOpenMobileMenu, activeSection }
   const [pastThreshold, setPastThreshold] = useState(false);
   const lastScrollY = useRef(0);
   const [isMac, setIsMac] = useState(false);
+  const [showPulse, setShowPulse] = useState(true);
 
   useEffect(() => {
     setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0);
+  }, []);
+
+  // Remove pulse after 6 seconds (3 plays x 2s each)
+  useEffect(() => {
+    const timer = setTimeout(() => setShowPulse(false), 6000);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -118,6 +125,9 @@ export function NavBar({ onOpenCommandPalette, onOpenMobileMenu, activeSection }
             <button
               onClick={onOpenCommandPalette}
               className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-[var(--border)] font-mono text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] hover:border-[var(--text-muted)] transition-colors"
+              style={showPulse ? {
+                animation: 'subtlePulse 2s ease-in-out 3',
+              } : undefined}
             >
               {isMac ? '\u2318K' : 'Ctrl K'}
             </button>

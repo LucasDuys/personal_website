@@ -324,19 +324,24 @@ export function Hero() {
         </div>
 
         {/* CTAs */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
-          <a
-            href="#projects"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm bg-[var(--accent-green)] text-[var(--bg)] font-semibold transition-all duration-200 hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] hover:scale-[1.02]"
-          >
-            $ cd ./projects <span className="opacity-70 group-hover:opacity-100 transition-opacity">&crarr;</span>
-          </a>
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm border border-[var(--border)] text-[var(--text-secondary)] transition-all duration-200 hover:border-[var(--accent-green)] hover:text-[var(--text-primary)]"
-          >
-            $ contact --open <span className="opacity-70 group-hover:opacity-100 transition-opacity">&crarr;</span>
-          </a>
+        <div ref={ctaRef} className="flex flex-col items-center gap-4 opacity-0">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm bg-[var(--accent-green)] text-[var(--bg)] font-semibold transition-all duration-200 hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] hover:scale-[1.02]"
+            >
+              $ cd ./projects <span className="opacity-70 group-hover:opacity-100 transition-opacity">&crarr;</span>
+            </a>
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm border border-[var(--border)] text-[var(--text-secondary)] transition-all duration-200 hover:border-[var(--accent-green)] hover:text-[var(--text-primary)]"
+            >
+              $ contact --open <span className="opacity-70 group-hover:opacity-100 transition-opacity">&crarr;</span>
+            </a>
+          </div>
+          <span className="font-mono text-[10px] text-[var(--text-muted)] opacity-50 mt-2">
+            press <kbd className="px-1.5 py-0.5 border border-[var(--border)] rounded text-[var(--text-secondary)]">{'\u2318'}K</kbd> to navigate
+          </span>
         </div>
       </div>
     </section>

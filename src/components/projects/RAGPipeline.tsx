@@ -202,7 +202,7 @@ export function RAGPipeline() {
   const halfNode = nodeSize / 2;
 
   // SVG viewBox
-  const viewBox = isMobile ? '0 0 200 580' : '0 0 1000 350';
+  const viewBox = isMobile ? '0 0 200 580' : '0 0 1000 400';
 
   // Build connection paths
   const getConnectionPath = useCallback(
@@ -280,7 +280,7 @@ export function RAGPipeline() {
       <svg
         viewBox={viewBox}
         className="w-full h-auto"
-        style={{ maxHeight: isMobile ? '580px' : '350px' }}
+        style={{ maxHeight: isMobile ? '580px' : '400px' }}
       >
         {/* Connection lines */}
         {connections.map((conn, i) => {
@@ -407,7 +407,7 @@ export function RAGPipeline() {
                 fontSize={isMobile ? 10 : 11}
                 fontFamily="monospace"
                 fontWeight="600"
-                style={{ transition: 'fill 300ms' }}
+                style={{ transition: 'fill 300ms', textShadow: '0 0 8px #06060A, 0 0 16px #06060A' }}
               >
                 {stage.label}
               </text>
@@ -415,11 +415,12 @@ export function RAGPipeline() {
               {/* Sublabel */}
               <text
                 x={pos.x}
-                y={pos.y + halfNode + 28}
+                y={pos.y + halfNode + 30}
                 textAnchor="middle"
                 fill="#555566"
                 fontSize={isMobile ? 8 : 9}
                 fontFamily="monospace"
+                style={{ textShadow: '0 0 8px #06060A, 0 0 16px #06060A' }}
               >
                 {stage.sublabel}
               </text>
@@ -430,12 +431,12 @@ export function RAGPipeline() {
 
       {/* HTML Tooltip overlays */}
       {!isMobile && (
-        <div className="absolute inset-0 pointer-events-none" style={{ maxHeight: '350px' }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ maxHeight: '400px' }}>
           {stages.map((stage, i) => {
             const pos = getNodePosition(i);
             // Convert SVG coords to percentage positions
             const leftPct = (pos.x / 1000) * 100;
-            const topPct = ((pos.y - halfNode) / 350) * 100;
+            const topPct = ((pos.y - halfNode) / 400) * 100;
 
             return (
               <div

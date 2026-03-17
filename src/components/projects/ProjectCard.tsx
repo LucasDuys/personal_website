@@ -168,28 +168,39 @@ export function ProjectCard({ project, onClick }: Props) {
 
         {/* Stacklink: landing page style mockup */}
         {isStacklink && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
-            {/* Stylized search bar */}
-            <div className="w-full max-w-[220px] flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#06b6d4]/30 bg-[#06b6d4]/5 mb-2">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#06b6d4" strokeWidth="1.5" strokeLinecap="round">
-                <circle cx="5" cy="5" r="3.5" />
-                <path d="M8 8l2.5 2.5" />
-              </svg>
-              <span className="font-mono text-[9px] text-[#06b6d4]/60">Search your knowledge...</span>
-            </div>
-            {/* Tagline */}
-            <p className="text-center font-sans text-[11px] font-medium text-[#06b6d4]/70 leading-tight">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-2">
+            {/* Headline */}
+            <p className="text-center font-sans text-[11px] font-semibold text-[#E8E6E3]/90 leading-tight mb-2">
               Unify your knowledge.
               <br />
-              Power better decisions.
+              <span className="text-[#06b6d4]">Power better decisions.</span>
             </p>
-            {/* Mini document icons row */}
-            <div className="flex gap-2 mt-2 opacity-40">
-              {['PDF', 'DOC', 'XLS'].map((ext) => (
-                <div key={ext} className="flex flex-col items-center gap-0.5">
-                  <div className="w-5 h-6 rounded-sm border border-[#06b6d4]/40 bg-[#06b6d4]/10 flex items-center justify-center">
-                    <span className="font-mono text-[5px] text-[#06b6d4]">{ext}</span>
-                  </div>
+            {/* Metric badges */}
+            <div className="flex flex-wrap justify-center gap-1.5 mb-2">
+              {[
+                { value: '<15min', label: 'Setup' },
+                { value: '99%+', label: 'Accuracy' },
+                { value: '6+', label: 'Integrations' },
+                { value: '<1s', label: 'Response' },
+              ].map((m) => (
+                <div
+                  key={m.label}
+                  className="flex flex-col items-center px-2 py-1 rounded border border-[#06b6d4]/20 bg-[#06b6d4]/5"
+                >
+                  <span className="font-mono text-[9px] font-bold text-[#06b6d4]">{m.value}</span>
+                  <span className="font-mono text-[6px] text-[#06b6d4]/50 uppercase">{m.label}</span>
+                </div>
+              ))}
+            </div>
+            {/* Integration icons row */}
+            <div className="flex items-center gap-2 opacity-50">
+              {['Drive', 'Slack', 'Notion', 'GitHub', 'Jira', 'Linear'].map((name) => (
+                <div
+                  key={name}
+                  className="w-5 h-5 rounded-sm border border-[#06b6d4]/25 bg-[#06b6d4]/8 flex items-center justify-center"
+                  title={name}
+                >
+                  <span className="font-mono text-[5px] text-[#06b6d4]/80">{name.slice(0, 2).toUpperCase()}</span>
                 </div>
               ))}
             </div>

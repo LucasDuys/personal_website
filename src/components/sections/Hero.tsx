@@ -234,22 +234,22 @@ export function Hero() {
       };
 
       if (nameRef.current) {
-        gsap.to(nameRef.current, { y: -60, opacity: 0, ease: 'none', scrollTrigger: trigger });
+        gsap.fromTo(nameRef.current, { y: 0, opacity: 1 }, { y: -60, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (greetRef.current) {
-        gsap.to(greetRef.current, { y: -30, opacity: 0, ease: 'none', scrollTrigger: trigger });
+        gsap.fromTo(greetRef.current, { y: 0, opacity: 1 }, { y: -30, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (roleRef.current) {
-        gsap.to(roleRef.current, { y: -40, opacity: 0, ease: 'none', scrollTrigger: trigger });
+        gsap.fromTo(roleRef.current, { y: 0, opacity: 1 }, { y: -40, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (ctaRef.current) {
-        gsap.to(ctaRef.current, { y: 20, opacity: 0, ease: 'none', scrollTrigger: trigger });
+        gsap.fromTo(ctaRef.current, { y: 0, opacity: 1 }, { y: 20, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (cornersRef.current) {
-        gsap.to(cornersRef.current, { opacity: 0, ease: 'none', scrollTrigger: trigger });
+        gsap.fromTo(cornersRef.current, { opacity: 1 }, { opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (scrollIndRef.current) {
-        gsap.to(scrollIndRef.current, { y: 15, opacity: 0, ease: 'none', scrollTrigger: { ...trigger, end: '40% top' } });
+        gsap.fromTo(scrollIndRef.current, { y: 0, opacity: 1 }, { y: 15, opacity: 0, ease: 'none', scrollTrigger: { ...trigger, end: '40% top' } });
       }
     }, sectionRef);
 
@@ -264,7 +264,7 @@ export function Hero() {
       {/* HUD corners */}
       <div ref={cornersRef} className="absolute inset-0 pointer-events-none">
         {/* Top-left: location */}
-        <div className="hud-corner absolute top-6 left-6 md:top-10 md:left-10 opacity-0">
+        <div className="hud-corner absolute top-6 left-6 md:top-10 md:left-10" style={{ opacity: 0 }}>
           <div className="flex items-center gap-2 font-mono text-xs text-[var(--text-muted)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-green)] opacity-75" />
@@ -278,17 +278,17 @@ export function Hero() {
         </div>
 
         {/* Top-right: clock */}
-        <div className="hud-corner absolute top-6 right-6 md:top-10 md:right-10 opacity-0">
+        <div className="hud-corner absolute top-6 right-6 md:top-10 md:right-10" style={{ opacity: 0 }}>
           <LiveClock />
         </div>
 
         {/* Bottom-left: section index */}
-        <div className="hud-corner absolute bottom-6 left-6 md:bottom-10 md:left-10 font-mono text-xs text-[var(--text-muted)] opacity-0">
+        <div className="hud-corner absolute bottom-6 left-6 md:bottom-10 md:left-10 font-mono text-xs text-[var(--text-muted)]" style={{ opacity: 0 }}>
           <span className="text-[var(--accent-green)]">// </span>001 - hero
         </div>
 
         {/* Bottom-right: scroll indicator */}
-        <div ref={scrollIndRef} className="hud-corner absolute bottom-6 right-6 md:bottom-10 md:right-10 opacity-0">
+        <div ref={scrollIndRef} className="hud-corner absolute bottom-6 right-6 md:bottom-10 md:right-10" style={{ opacity: 0 }}>
           <ScrollIndicator />
         </div>
       </div>
@@ -296,7 +296,7 @@ export function Hero() {
       {/* Main content */}
       <div ref={contentRef} className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         {/* Greeting */}
-        <div ref={greetRef} className="font-mono text-sm mb-4 opacity-0">
+        <div ref={greetRef} className="font-mono text-sm mb-4" style={{ opacity: 0 }}>
           <span className="text-[var(--accent-green)]">&gt; </span>
           <span className="text-[var(--text-secondary)]">Hello, I&apos;m</span>
         </div>
@@ -304,8 +304,9 @@ export function Hero() {
         {/* Name */}
         <h1
           ref={nameRef}
-          className="font-sans font-bold mb-6 opacity-0"
+          className="font-sans font-bold mb-6"
           style={{
+            opacity: 0,
             fontSize: 'clamp(56px, 8vw, 120px)',
             lineHeight: 1.05,
             background: 'linear-gradient(135deg, var(--text-primary) 60%, var(--accent-cyan) 100%)',
@@ -318,13 +319,13 @@ export function Hero() {
         </h1>
 
         {/* Role cycler */}
-        <div ref={roleRef} className="font-mono text-sm md:text-base mb-10 opacity-0">
+        <div ref={roleRef} className="font-mono text-sm md:text-base mb-10" style={{ opacity: 0 }}>
           <span className="text-[var(--text-muted)]">$ title: </span>
           <RoleCycler startDelay={1800} />
         </div>
 
         {/* CTAs */}
-        <div ref={ctaRef} className="flex flex-col items-center gap-4 opacity-0">
+        <div ref={ctaRef} className="flex flex-col items-center gap-4" style={{ opacity: 0 }}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#projects"

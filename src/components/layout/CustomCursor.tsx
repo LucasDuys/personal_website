@@ -90,15 +90,15 @@ export function CustomCursor() {
 
     // GSAP ticker for smooth position updates
     const tickerCallback = () => {
-      // Dot follows quickly (25% lerp)
-      dotPos.current.x += (mouse.current.x - dotPos.current.x) * 0.25;
-      dotPos.current.y += (mouse.current.y - dotPos.current.y) * 0.25;
-      // Ring follows slower (12% lerp) - trailing effect
-      ringPos.current.x += (mouse.current.x - ringPos.current.x) * 0.12;
-      ringPos.current.y += (mouse.current.y - ringPos.current.y) * 0.12;
-      // Glow follows slowest (8% lerp)
-      glowPos.current.x += (mouse.current.x - glowPos.current.x) * 0.08;
-      glowPos.current.y += (mouse.current.y - glowPos.current.y) * 0.08;
+      // Dot follows instantly (1:1 with real cursor)
+      dotPos.current.x = mouse.current.x;
+      dotPos.current.y = mouse.current.y;
+      // Ring follows with slight trail (30% lerp - fast but smooth)
+      ringPos.current.x += (mouse.current.x - ringPos.current.x) * 0.3;
+      ringPos.current.y += (mouse.current.y - ringPos.current.y) * 0.3;
+      // Glow follows with gentle trail
+      glowPos.current.x += (mouse.current.x - glowPos.current.x) * 0.15;
+      glowPos.current.y += (mouse.current.y - glowPos.current.y) * 0.15;
 
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${dotPos.current.x - 4}px, ${dotPos.current.y - 4}px, 0)`;

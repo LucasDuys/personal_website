@@ -102,7 +102,7 @@ export function ParticleCanvas() {
       // Init cursor tracking
       cleanupCursor = initCursorTracking();
 
-      // Visibility change — pause when tab hidden
+      // Visibility change - pause when tab hidden
       const handleVisibility = () => {
         if (document.hidden) {
           gsap.ticker.sleep();

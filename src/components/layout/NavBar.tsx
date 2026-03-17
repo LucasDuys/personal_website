@@ -123,8 +123,6 @@ export function NavBar({ onOpenCommandPalette, onOpenMobileMenu, activeSection }
             </button>
             <a
               href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
               className="hidden sm:inline-flex font-mono text-xs text-[var(--text-muted)] hover:text-[var(--accent-green)] transition-colors"
             >
               r&eacute;sum&eacute; &nearr;

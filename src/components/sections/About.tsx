@@ -87,13 +87,13 @@ const BODY_PARAGRAPHS = [
   <>
     Right now I&apos;m at{' '}
     <Highlight color="green">cape.io</Highlight>, building AI agent integrations
-    &mdash; the kind of work where the problem space changes faster than the
+    - the kind of work where the problem space changes faster than the
     documentation. That&apos;s where I&apos;m happiest.
   </>,
   <>
     I&apos;ll be direct: I care about things that
     work. Clear communication and products that solve real problems.
-    Not portfolio filler &mdash; actual outcomes.
+    Not portfolio filler - actual outcomes.
   </>,
 ];
 

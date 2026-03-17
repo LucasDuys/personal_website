@@ -284,7 +284,7 @@ export function Hero() {
 
         {/* Bottom-left: section index */}
         <div className="hud-corner absolute bottom-6 left-6 md:bottom-10 md:left-10 font-mono text-xs text-[var(--text-muted)] opacity-0">
-          <span className="text-[var(--accent-green)]">// </span>001 &mdash; hero
+          <span className="text-[var(--accent-green)]">// </span>001 - hero
         </div>
 
         {/* Bottom-right: scroll indicator */}

@@ -160,16 +160,12 @@ export function Contact() {
                 <span className="text-[var(--text-muted)] w-16 sm:w-20">linkedin</span>
                 <a
                   href="https://linkedin.com/in/lucas-duys"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-[var(--text-primary)] hover:text-[var(--accent-green)] transition-colors"
                 >
                   /in/lucas-duys
                 </a>
                 <a
                   href="https://linkedin.com/in/lucas-duys"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="font-mono text-[10px] px-2 py-0.5 rounded border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--accent-green)] hover:border-[var(--accent-green)] transition-colors"
                 >
                   open

@@ -13,7 +13,7 @@ export function CustomCursor() {
   const [label, setLabel] = useState('');
   const [isText, setIsText] = useState(false);
 
-  // Position state (mutable refs for perf — no React re-renders)
+  // Position state (mutable refs for perf - no React re-renders)
   const mouse = useRef({ x: 0, y: 0 });
   const dotPos = useRef({ x: 0, y: 0 });
   const ringPos = useRef({ x: 0, y: 0 });
@@ -93,7 +93,7 @@ export function CustomCursor() {
       // Dot follows quickly (25% lerp)
       dotPos.current.x += (mouse.current.x - dotPos.current.x) * 0.25;
       dotPos.current.y += (mouse.current.y - dotPos.current.y) * 0.25;
-      // Ring follows slower (12% lerp) — trailing effect
+      // Ring follows slower (12% lerp) - trailing effect
       ringPos.current.x += (mouse.current.x - ringPos.current.x) * 0.12;
       ringPos.current.y += (mouse.current.y - ringPos.current.y) * 0.12;
       // Glow follows slowest (8% lerp)

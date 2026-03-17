@@ -95,7 +95,7 @@ export function SecretTerminal() {
         output = HELP_TEXT;
         break;
       case 'whoami':
-        output = 'visitor — curious enough to find this. I like that.';
+        output = 'visitor - curious enough to find this. I like that.';
         break;
       case 'neofetch':
         output = NEOFETCH_ART;

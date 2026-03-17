@@ -19,9 +19,9 @@ export function createCommands(scrollTo: (target: string) => void): CommandItem[
     { id: 'nav-contact', group: 'Navigation', groupColor: '#4ADE80', icon: '\u2709', label: 'Go to Contact', description: 'Get in touch', action: () => scrollTo('#contact') },
     { id: 'nav-top', group: 'Navigation', groupColor: '#4ADE80', icon: '\u2191', label: 'Back to Top', description: 'Return to hero', action: () => scrollTo('#hero') },
     // Actions
-    { id: 'act-resume', group: 'Actions', groupColor: '#22D3EE', icon: '\uD83D\uDCC4', label: 'Download Resume', description: 'Get PDF resume', action: () => window.open('/resume.pdf', '_blank') },
+    { id: 'act-resume', group: 'Actions', groupColor: '#22D3EE', icon: '\uD83D\uDCC4', label: 'Download Resume', description: 'Get PDF resume', action: () => { window.location.href = '/resume.pdf'; } },
     { id: 'act-email', group: 'Actions', groupColor: '#22D3EE', icon: '\u2709', label: 'Send Email', description: 'Open mail client', action: () => { window.location.href = 'mailto:lucas.duys@gmail.com'; } },
-    { id: 'act-linkedin', group: 'Actions', groupColor: '#22D3EE', icon: '\uD83D\uDCBC', label: 'View LinkedIn', description: 'Open LinkedIn', action: () => window.open('https://linkedin.com/in/lucas-duys', '_blank') },
+    { id: 'act-linkedin', group: 'Actions', groupColor: '#22D3EE', icon: '\uD83D\uDCBC', label: 'View LinkedIn', description: 'Open LinkedIn', action: () => { window.location.href = 'https://linkedin.com/in/lucas-duys'; } },
     { id: 'act-copy', group: 'Actions', groupColor: '#22D3EE', icon: '\uD83D\uDD17', label: 'Copy Link', description: 'Copy page URL', action: () => { navigator.clipboard.writeText(window.location.href); } },
   ];
 }

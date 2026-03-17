@@ -100,10 +100,10 @@ export class ParticleSystem {
   private connPosBuffer: WebGLBuffer | null = null;
   private connOpacityBuffer: WebGLBuffer | null = null;
 
-  // Uniform locations — particles
+  // Uniform locations - particles
   private pResolutionLoc: WebGLUniformLocation | null = null;
   private pPixelRatioLoc: WebGLUniformLocation | null = null;
-  // Uniform locations — connections
+  // Uniform locations - connections
   private cResolutionLoc: WebGLUniformLocation | null = null;
 
   // Struct-of-arrays particle data
@@ -213,7 +213,7 @@ export class ParticleSystem {
     this.connOpacityData = new Float32Array(this.maxConnVertices);
   }
 
-  // ── initParticles — stratified random sampling ─────────────────────
+  // ── initParticles - stratified random sampling ─────────────────────
   private initParticles(n: number) {
     const w = this.canvas?.width ?? 1920;
     // Stratified grid
@@ -307,7 +307,7 @@ export class ParticleSystem {
 
     gl.bindVertexArray(null);
 
-    // Uniform locations — particles
+    // Uniform locations - particles
     this.pResolutionLoc = gl.getUniformLocation(pp, 'u_resolution');
     this.pPixelRatioLoc = gl.getUniformLocation(pp, 'u_pixelRatio');
 
@@ -333,7 +333,7 @@ export class ParticleSystem {
 
     gl.bindVertexArray(null);
 
-    // Uniform locations — connections
+    // Uniform locations - connections
     this.cResolutionLoc = gl.getUniformLocation(cp, 'u_resolution');
 
     return true;

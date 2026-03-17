@@ -121,8 +121,6 @@ export function MobileMenu({ open, onClose, activeSection, onOpenCommandPalette 
             >
               <a
                 href="https://linkedin.com/in/lucas-duys"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="font-mono text-xs text-[var(--text-muted)] hover:text-[var(--accent-green)] transition-colors"
               >
                 LinkedIn

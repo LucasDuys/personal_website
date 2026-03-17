@@ -17,7 +17,7 @@ export function SectionWrapper({ config, children, className = '' }: Props) {
     >
       <div className="absolute top-8 left-6 md:left-12 font-mono text-xs text-[var(--text-muted)]">
         <span className="text-[var(--text-secondary)]">// {config.index}</span>
-        {' — '}
+        {' - '}
         <span className="text-[var(--accent-green)]">{config.label}</span>
       </div>
       <div className="max-w-[1200px] mx-auto">

@@ -10,7 +10,7 @@ import { getRelevanceScores } from '@/data/skillQueries';
 const VIEWBOX_W = 1000;
 const VIEWBOX_H = 600;
 const GRID_SPACING = 80;
-const AUTO_QUERIES = ['AI', 'full-stack', 'data pipeline', 'leadership'];
+const AUTO_QUERIES = ['AI', 'full-stack', 'frontend', 'backend', 'data pipeline'];
 
 function scaleX(pct: number) { return (pct / 100) * VIEWBOX_W; }
 function scaleY(pct: number) { return (pct / 100) * VIEWBOX_H; }
@@ -308,7 +308,7 @@ export function Skills() {
   }
 
   // Cluster order for staggered node entrance
-  const clusterOrder = ['frontend', 'backend', 'ai', 'soft'];
+  const clusterOrder = ['frontend', 'backend', 'ai'];
 
   function getClusterDelay(cluster: string) {
     const idx = clusterOrder.indexOf(cluster);
@@ -369,7 +369,7 @@ export function Skills() {
               className="font-mono text-sm text-[var(--text-secondary)]"
             >
               <span className="text-[var(--accent-green)]">{'\u2192'}</span>{' '}
-              Loading skill vectors... <span className="text-[var(--text-primary)]">23 skills</span> mapped to 2D via t-SNE
+              Loading skill vectors... <span className="text-[var(--text-primary)]">15 skills</span> mapped to 2D via t-SNE
             </motion.div>
           )}
         </AnimatePresence>

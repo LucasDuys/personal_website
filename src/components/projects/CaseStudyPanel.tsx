@@ -178,13 +178,14 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
           >
             <motion.div
               layoutId={`project-card-${project.slug}`}
-              className="relative w-full max-w-full md:max-w-[900px] h-full md:h-auto max-h-full md:max-h-[85vh] overflow-y-auto rounded-none md:rounded-xl border-0 md:border border-[var(--border)] pointer-events-auto"
-              style={{ background: 'var(--surface-1, #0E0E14)' }}
+              className="relative w-full max-w-full md:max-w-[900px] h-full md:h-auto max-h-full md:max-h-[85vh] overflow-y-auto overscroll-contain rounded-none md:rounded-xl border-0 md:border border-[var(--border)] pointer-events-auto"
+              style={{ background: 'var(--surface-1, #0E0E14)', WebkitOverflowScrolling: 'touch' }}
               initial={{ scale: 0.92, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 30 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
+              onWheel={(e) => e.stopPropagation()}
             >
               {/* Header */}
               <div className="sticky top-0 z-10 flex items-start justify-between gap-3 px-4 sm:px-6 py-4 border-b border-[var(--border)] bg-[var(--surface-1,#0E0E14)]/95 backdrop-blur-sm">

@@ -229,7 +229,7 @@ export function Hero() {
       const trigger: ScrollTrigger.Vars = {
         trigger: sectionRef.current,
         start: 'top top',
-        end: '60% top',
+        end: 'bottom top',
         scrub: 0.8,
       };
 
@@ -249,7 +249,7 @@ export function Hero() {
         gsap.to(cornersRef.current, { opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (scrollIndRef.current) {
-        gsap.to(scrollIndRef.current, { y: 15, opacity: 0, ease: 'none', scrollTrigger: { ...trigger, end: '25% top' } });
+        gsap.to(scrollIndRef.current, { y: 15, opacity: 0, ease: 'none', scrollTrigger: { ...trigger, end: '40% top' } });
       }
     }, sectionRef);
 

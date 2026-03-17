@@ -127,10 +127,18 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
   useEffect(() => {
     if (isOpen && project) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      // Stop Lenis smooth scroll so background doesn't scroll
+      const lenis = (window as any).__lenis;
+      if (lenis) lenis.stop();
       window.addEventListener('keydown', handleKeyDown);
       window.history.replaceState(null, '', `#project/${project.slug}`);
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      // Restart Lenis smooth scroll
+      const lenis = (window as any).__lenis;
+      if (lenis) lenis.start();
       // Only clean hash if we had a project hash
       if (window.location.hash.startsWith('#project/')) {
         window.history.replaceState(null, '', window.location.pathname);
@@ -138,6 +146,9 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
     }
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      const lenis = (window as any).__lenis;
+      if (lenis) lenis.start();
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, project, handleKeyDown]);

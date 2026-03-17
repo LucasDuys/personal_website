@@ -246,6 +246,37 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                 </div>
               )}
 
+              {/* Hero Screenshots (Stacklink) */}
+              {project.slug === 'stacklink' && (
+                <div className="relative w-full bg-black/30 p-4 sm:p-6">
+                  {/* Landing page screenshot */}
+                  <img
+                    src="/images/projects/stacklink-hero.png"
+                    alt="Stacklink landing page"
+                    className="w-full rounded-lg border border-[var(--border)] mb-4"
+                  />
+                  {/* Product screenshots grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <p className="font-mono text-[10px] text-[var(--accent-cyan)] mb-1.5 uppercase tracking-wider">AI Chat</p>
+                      <img
+                        src="/images/projects/stacklink-aichat.png"
+                        alt="Stacklink AI chat interface"
+                        className="w-full rounded-lg border border-[var(--border)]"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-mono text-[10px] text-[var(--accent-cyan)] mb-1.5 uppercase tracking-wider">Dashboard</p>
+                      <img
+                        src="/images/projects/stacklink-dashboard.png"
+                        alt="Stacklink dashboard"
+                        className="w-full rounded-lg border border-[var(--border)]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Content */}
               <div className="p-4 sm:p-6 md:p-8">
                 {/* Problem */}

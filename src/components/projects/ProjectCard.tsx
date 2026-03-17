@@ -166,45 +166,13 @@ export function ProjectCard({ project, onClick }: Props) {
           />
         )}
 
-        {/* Stacklink: landing page style mockup */}
+        {/* Stacklink: actual landing page screenshot */}
         {isStacklink && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-2">
-            {/* Headline */}
-            <p className="text-center font-sans text-[11px] font-semibold text-[#E8E6E3]/90 leading-tight mb-2">
-              Unify your knowledge.
-              <br />
-              <span className="text-[#06b6d4]">Power better decisions.</span>
-            </p>
-            {/* Metric badges */}
-            <div className="flex flex-wrap justify-center gap-1.5 mb-2">
-              {[
-                { value: '<15min', label: 'Setup' },
-                { value: '99%+', label: 'Accuracy' },
-                { value: '6+', label: 'Integrations' },
-                { value: '<1s', label: 'Response' },
-              ].map((m) => (
-                <div
-                  key={m.label}
-                  className="flex flex-col items-center px-2 py-1 rounded border border-[#06b6d4]/20 bg-[#06b6d4]/5"
-                >
-                  <span className="font-mono text-[9px] font-bold text-[#06b6d4]">{m.value}</span>
-                  <span className="font-mono text-[6px] text-[#06b6d4]/50 uppercase">{m.label}</span>
-                </div>
-              ))}
-            </div>
-            {/* Integration icons row */}
-            <div className="flex items-center gap-2 opacity-50">
-              {['Drive', 'Slack', 'Notion', 'GitHub', 'Jira', 'Linear'].map((name) => (
-                <div
-                  key={name}
-                  className="w-5 h-5 rounded-sm border border-[#06b6d4]/25 bg-[#06b6d4]/8 flex items-center justify-center"
-                  title={name}
-                >
-                  <span className="font-mono text-[5px] text-[#06b6d4]/80">{name.slice(0, 2).toUpperCase()}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <img
+            src="/images/projects/stacklink-hero.png"
+            alt="Stacklink landing page"
+            className="absolute inset-0 w-full h-full object-cover object-top opacity-80"
+          />
         )}
 
         {/* Decorative grid dots (non-Pitchr, non-Stacklink) */}

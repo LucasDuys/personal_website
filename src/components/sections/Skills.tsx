@@ -141,20 +141,20 @@ export function Skills() {
     if (!graphRef.current || !graphReady) return;
 
     const clusterPositions: Record<string, { x: number; y: number }> = {
-      frontend: { x: -120, y: -80 },
-      backend: { x: 120, y: -80 },
-      ai: { x: -120, y: 80 },
-      soft: { x: 120, y: 80 },
+      frontend: { x: -150, y: -100 },
+      backend: { x: 150, y: -100 },
+      ai: { x: -150, y: 100 },
+      soft: { x: 150, y: 100 },
     };
 
     graphRef.current.d3Force('x',
-      forceX<GraphNode>((node: GraphNode) => clusterPositions[node.cluster]?.x || 0).strength(0.15)
+      forceX<GraphNode>((node: GraphNode) => clusterPositions[node.cluster]?.x || 0).strength(0.35)
     );
     graphRef.current.d3Force('y',
-      forceY<GraphNode>((node: GraphNode) => clusterPositions[node.cluster]?.y || 0).strength(0.15)
+      forceY<GraphNode>((node: GraphNode) => clusterPositions[node.cluster]?.y || 0).strength(0.35)
     );
-    graphRef.current.d3Force('charge')?.strength(-80);
-    graphRef.current.d3Force('collide', forceCollide(20));
+    graphRef.current.d3Force('charge')?.strength(-60);
+    graphRef.current.d3Force('collide', forceCollide(25));
   }, [graphReady]);
 
   // Search debounce
@@ -263,7 +263,7 @@ export function Skills() {
     };
   }, [graphReady]);
 
-  const graphHeight = isMobile ? 400 : 500;
+  const graphHeight = isMobile ? 350 : 500;
 
   return (
     <SectionWrapper config={{ id: 'skills', index: '004', label: 'skills' }}>
@@ -301,7 +301,7 @@ export function Skills() {
           >
             <div
               ref={containerRef}
-              className="relative w-full rounded-lg overflow-hidden"
+              className="relative w-full rounded-lg overflow-hidden border border-[var(--border)]"
               style={{
                 height: graphHeight,
                 background: `
@@ -325,6 +325,11 @@ export function Skills() {
                   cooldownTicks={100}
                   d3AlphaDecay={0.02}
                   d3VelocityDecay={0.3}
+
+                  // Disable scroll-wheel zoom entirely (prevents hijacking page scroll)
+                  // Users can still zoom via click-to-focus and double-click
+                  enableZoomInteraction={false}
+                  enablePanInteraction={false}
 
                   // Links
                   linkCurvature={0.2}
@@ -428,9 +433,20 @@ export function Skills() {
               )}
             </div>
 
-            {/* Tooltip for mobile (shown on hover/tap) */}
+            {/* Interaction hint */}
+            {!hoveredNode && graphReady && (
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[var(--surface-1)]/80 backdrop-blur-sm border border-[var(--border)] rounded-full px-4 py-1.5 font-mono text-[10px] text-[var(--text-muted)] z-10 pointer-events-none">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2" className="opacity-50">
+                  <circle cx="7" cy="5" r="3" />
+                  <path d="M4 10c0-1.5 1.3-3 3-3s3 1.5 3 3" />
+                </svg>
+                {isMobile ? 'tap nodes to explore' : 'hover & drag nodes to explore'}
+              </div>
+            )}
+
+            {/* Tooltip (shown on hover/tap) */}
             {hoveredNode && (
-              <div className="md:hidden absolute top-2 left-1/2 -translate-x-1/2 bg-[var(--surface-1)] border border-[var(--border)] rounded px-3 py-1.5 font-mono text-xs text-[var(--text-primary)] z-10">
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-[var(--surface-1)] border border-[var(--border)] rounded px-3 py-1.5 font-mono text-xs text-[var(--text-primary)] z-10">
                 <span
                   className="inline-block w-2 h-2 rounded-full mr-2"
                   style={{ backgroundColor: CLUSTER_COLORS[skills.find(s => s.name === hoveredNode)?.cluster ?? 'frontend'] }}

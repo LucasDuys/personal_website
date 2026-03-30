@@ -54,20 +54,16 @@ function CapeInProgressBadge() {
   );
 }
 
-function WorkshopScanlines() {
+function HackawayBadge() {
   return (
-    <div
-      className="absolute inset-0 pointer-events-none rounded-t-xl overflow-hidden"
-      style={{
-        background: `repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(251, 191, 36, 0.04) 2px,
-          rgba(251, 191, 36, 0.04) 4px
-        )`,
-      }}
-    />
+    <div className="absolute top-3 right-3 z-10">
+      <div
+        className="px-2.5 py-1 rounded-md font-mono text-[10px] font-bold tracking-wider text-white"
+        style={{ background: 'linear-gradient(135deg, #e1423d, #ff6b5a)' }}
+      >
+        HACKATHON PROJECT
+      </div>
+    </div>
   );
 }
 
@@ -106,7 +102,7 @@ export function ProjectCard({ project, onClick }: Props) {
   const isPitchr = project.slug === 'pitchr';
   const isStacklink = project.slug === 'stacklink';
   const isCape = project.slug === 'cape';
-  const isWorkshops = project.slug === 'workshops';
+  const isHackaway = project.slug === 'hackaway';
 
   return (
     <motion.article
@@ -152,7 +148,7 @@ export function ProjectCard({ project, onClick }: Props) {
       >
         {isPitchr && <PitchrBadge />}
         {isCape && <CapeInProgressBadge />}
-        {isWorkshops && <WorkshopScanlines />}
+        {isHackaway && <HackawayBadge />}
 
         {/* Pitchr: embedded demo video */}
         {isPitchr && (
@@ -166,6 +162,18 @@ export function ProjectCard({ project, onClick }: Props) {
           />
         )}
 
+        {/* Hackaway: embedded launch video */}
+        {isHackaway && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+            src="/videos/hackaway-demo.mp4"
+          />
+        )}
+
         {/* Stacklink: actual landing page screenshot */}
         {isStacklink && (
           <img
@@ -175,8 +183,8 @@ export function ProjectCard({ project, onClick }: Props) {
           />
         )}
 
-        {/* Decorative grid dots (non-Pitchr, non-Stacklink) */}
-        {!isPitchr && !isStacklink && (
+        {/* Decorative grid dots (non-media projects) */}
+        {!isPitchr && !isStacklink && !isHackaway && (
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{

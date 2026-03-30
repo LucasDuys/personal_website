@@ -80,9 +80,9 @@ const BODY_PARAGRAPHS = [
     learning happens by shipping. I&apos;ve built{' '}
     <Highlight color="cyan">RAG systems</Highlight> that actually retrieve the
     right answer, led operations at a London startup where I moved{' '}
-    <Highlight color="purple">real business metrics</Highlight>, and created LLM
-    workshops that turn &ldquo;AI is magic&rdquo; into &ldquo;AI is a tool I can
-    use.&rdquo;
+    <Highlight color="purple">real business metrics</Highlight>, and built a{' '}
+    <Highlight color="amber">multi-agent grocery system</Highlight> in 6 hours
+    at a hackathon where five AI agents negotiate to fill your shopping cart.
   </>,
   <>
     Right now I&apos;m at{' '}

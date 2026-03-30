@@ -44,15 +44,17 @@ const caseStudies: Record<string, CaseStudyContent> = {
     approach: "Integrating AI agents into Cape's platform architecture.",
     solution: '__IN_PROGRESS__',
   },
-  workshops: {
-    problem: "Businesses know AI matters but don't know where to start.",
-    approach: "Personalized workshops using each client's own data and challenges.",
+  hackaway: {
+    problem: 'Weekly grocery shopping wastes 30+ minutes. You forget staples, struggle to plan meals, go over budget, and realize too late your friend is vegan and coming for dinner Saturday.',
+    approach: 'Built a multi-agent DAG system solo in 6 hours at the Hackaway hackathon (80 builders, AI House Amsterdam). Five specialized agents that negotiate and disagree rather than just sequencing API calls.',
     solution: [
-      'Module 1: Market Research Automation - using LLMs to analyze competitive landscapes',
-      'Module 2: Project Scoping - AI-assisted requirements gathering and estimation',
-      'Module 3: Sentiment Analysis - extracting insights from customer feedback at scale',
+      'Auto-replenishment mode detects when you are due for a shop and builds a cart from purchase history',
+      'Meal planning takes natural language ("lasagna Wednesday, friends Saturday, under 80 euro") and maps to real Picnic recipes with verified prices',
+      'Budget Optimizer rejects over-budget plans and negotiates cheaper ingredient substitutions',
+      'Dietary intelligence swaps ingredients for vegan/halal/gluten-free guests on specific days without affecting other meals',
+      'System learns across runs: brand preferences, spending patterns, dietary needs. Run 1 is good, run 23 is personal',
     ],
-    outcome: 'Delivered 3 workshops.',
+    outcome: 'Selected to pitch to judges. Every price grounded in real Picnic product catalog data, never hallucinated.',
   },
 };
 
@@ -231,6 +233,21 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                   </svg>
                 </button>
               </div>
+
+              {/* Hero Video (Hackaway) */}
+              {project.slug === 'hackaway' && (
+                <div className="relative w-full aspect-video bg-black/50">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    className="w-full h-full object-contain"
+                    src="/videos/hackaway-demo.mp4"
+                  />
+                </div>
+              )}
 
               {/* Hero Video (Pitchr) */}
               {project.slug === 'pitchr' && (

@@ -39,12 +39,15 @@ export const projects: Project[] = [
     status: 'in-progress',
   },
   {
-    slug: 'workshops',
-    title: 'LLM Workshops',
-    description: 'Personalized workshops for businesses on leveraging large language models. Covering market research automation, project scoping, and sentiment analysis.',
-    command: 'ls llm-workshops/modules/',
-    accentColor: '#FBBF24',
-    tags: ['GPT-4', 'Claude', 'Prompt Engineering', 'Python', 'Business Strategy'],
-    links: [],
+    slug: 'hackaway',
+    title: 'Weekly Shop Agent',
+    description: 'Multi-agent grocery orchestration for Picnic. Five AI agents collaborate through a DAG to turn one sentence into a complete weekly grocery order with meal planning, budget negotiation, and dietary intelligence.',
+    command: 'cd hackaway && node orchestrate.ts --persona family',
+    accentColor: '#e1423d',
+    tags: ['Next.js', 'OpenAI', 'Multi-Agent', 'Framer Motion', 'Picnic API', 'DAG'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/LucasDuys/hackaway-grocery-agent', icon: 'github' },
+    ],
+    status: 'live',
   },
 ];

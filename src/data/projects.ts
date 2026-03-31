@@ -29,10 +29,10 @@ export const projects: Project[] = [
   {
     slug: 'cape',
     title: 'Cape.io',
-    description: 'AI agent integration and development. Exploring how autonomous agents can enhance enterprise software platforms.',
+    description: 'Building and optimizing agentic systems at an enterprise AI company. Cut token usage by 99%, scaled pipelines from 20 to 10k inputs, shipped Claude Code plugins and LangSmith tracing.',
     command: 'cd cape.io && git log --oneline -1',
     accentColor: '#8B5CF6',
-    tags: ['AI Agents', 'TypeScript', 'Python'],
+    tags: ['AI Agents', 'TypeScript', 'Python', 'LangChain', 'LangSmith', 'Claude Code'],
     links: [
       { label: 'Cape.io', url: 'https://cape.io', icon: 'external' },
     ],

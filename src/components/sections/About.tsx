@@ -70,30 +70,31 @@ function Highlight({
 
 const BODY_PARAGRAPHS = [
   <>
-    I&apos;m a builder at the intersection of AI and product - the kind
-    of person who enters a{' '}
-    <Highlight color="amber">24-hour hackathon</Highlight> in Paris and walks
-    out with a live product.
+    I got into AI before university. Used GPT-3 in a high school entrepreneurship
+    competition to run sentiment analysis and pick a product. We won, and the
+    company&apos;s marketing team had spent{' '}
+    <Highlight color="amber">6 months</Highlight> arriving at the same choice.
+    That&apos;s when I knew I wanted to build this stuff, not just use it.
   </>,
   <>
-    I study Computer Science &amp; Engineering at TU Eindhoven, but most of my
-    learning happens by shipping. I&apos;ve built{' '}
-    <Highlight color="cyan">RAG systems</Highlight> that actually retrieve the
-    right answer, led operations at a London startup where I moved{' '}
-    <Highlight color="purple">real business metrics</Highlight>, and built a{' '}
-    <Highlight color="amber">multi-agent grocery system</Highlight> in 6 hours
-    at a hackathon where five AI agents negotiate to fill your shopping cart.
+    I study CS &amp; Engineering at TU Eindhoven, but most of what I know comes
+    from shipping. I&apos;ve built{' '}
+    <Highlight color="cyan">RAG systems</Highlight> with hybrid retrieval,
+    a <Highlight color="amber">multi-agent grocery system</Highlight> in 6 hours
+    at a hackathon, and went to Paris for HackEurope where I built{' '}
+    <Highlight color="purple">Pitchr.live</Highlight> from scratch in 24h.
   </>,
   <>
-    Right now I&apos;m at{' '}
-    <Highlight color="green">cape.io</Highlight>, building AI agent integrations
-    - the kind of work where the problem space changes faster than the
-    documentation. That&apos;s where I&apos;m happiest.
+    Right now I&apos;m interning at{' '}
+    <Highlight color="green">cape.io</Highlight> on top of full-time studies,
+    optimizing agentic systems. Cut token usage by 99%, scaled a pipeline from
+    20 inputs to 10k at 98% accuracy. Also shipping Claude Code plugins and
+    using LangSmith for tracing across the stack.
   </>,
 ];
 
 const CTA_LINE =
-  "If you're building something ambitious with AI, I want to hear about it.";
+  "If you're building something with AI that actually matters, I want to hear about it.";
 
 export function About() {
   const [cliDone, setCliDone] = useState(false);

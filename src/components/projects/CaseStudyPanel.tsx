@@ -40,9 +40,16 @@ const caseStudies: Record<string, CaseStudyContent> = {
     outcome: 'Average query time: 2.3s. Reduced lookup from 20 minutes to seconds.',
   },
   cape: {
-    problem: 'Enterprise software needs intelligent automation beyond simple rules.',
-    approach: "Integrating AI agents into Cape's platform architecture.",
-    solution: '__IN_PROGRESS__',
+    problem: 'Enterprise agentic systems were slow, expensive, and inaccurate. The existing pipeline handled 20 inputs in 55s with under 50% accuracy, burning through 190k tokens per run.',
+    approach: 'Reworked how prompts are structured and chained. Rebuilt the pipeline architecture for scale and accuracy. Added observability and real-time feedback.',
+    solution: [
+      'Cut agent token usage from 190k to 1.2k per run by restructuring prompt pipelines, saving 99%+ on API costs',
+      'Scaled from 20 inputs in 55s to 10k inputs in ~8s at 98% accuracy',
+      'Built real-time UI that shows each element as the agent processes it',
+      'Set up LangSmith for tracing and evaluation across runs',
+      'Shipped Claude Code plugins and internal developer skills',
+    ],
+    outcome: 'Working in sprints across a large Python + TypeScript codebase. Ongoing.',
   },
   hackaway: {
     problem: 'Weekly grocery shopping wastes 30+ minutes. You forget staples, struggle to plan meals, go over budget, and realize too late your friend is vegan and coming for dinner Saturday.',

@@ -141,7 +141,7 @@ export function Contact() {
                 </div>
               </div>
               <div className="mt-3 text-xs text-[var(--accent-amber)]">
-                X-Powered-By: coffee-and-curiosity
+                X-Powered-By: deadlines-and-curiosity
               </div>
             </div>
 

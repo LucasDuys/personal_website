@@ -32,7 +32,7 @@ const NEOFETCH_ART = `
   Theme:  dark [always]
   Stack:  Next.js / React / TS
   AI:     LLMs / RAG / Agents
-  Fuel:   coffee-and-curiosity
+  Fuel:   deadlines-and-curiosity
   Uptime: since 2003
 `;
 

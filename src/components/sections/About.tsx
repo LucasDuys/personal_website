@@ -217,7 +217,7 @@ export function About() {
             </div>
 
             {/* Comment line */}
-            <div ref={commentRef} className="font-mono text-xs italic mb-10 opacity-30">
+            <div ref={commentRef} className="font-mono text-xs italic mb-10">
               <span className="text-[var(--text-muted)]">
                 {'<!-- profile_photo: redacted \u2014 you\'ll have to meet me in person -->'}
               </span>

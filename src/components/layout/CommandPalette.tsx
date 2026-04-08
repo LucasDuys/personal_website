@@ -27,12 +27,17 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
     return map;
   }, [commands]);
 
-  // Keyboard shortcut to open
+  // Keyboard shortcuts: Cmd/Ctrl+K to toggle, Esc to close
+  // (Esc has to be a global listener -- the <Command> onKeyDown only fires
+  // when focus is inside the palette, which it isn't after a click outside.)
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         onOpenChange(!open);
+      } else if (e.key === 'Escape' && open) {
+        e.preventDefault();
+        onOpenChange(false);
       }
     };
     window.addEventListener('keydown', handler);
@@ -66,13 +71,16 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
             onClick={() => onOpenChange(false)}
           />
 
-          {/* Modal */}
+          {/* Modal -- click on the empty area around the palette closes it */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-[101] flex items-start justify-center pt-[20vh]"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) onOpenChange(false);
+            }}
           >
             <Command
               className="w-full max-w-[640px] mx-4 rounded-xl border border-[var(--border)] overflow-hidden"

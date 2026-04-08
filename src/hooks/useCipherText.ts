@@ -1,14 +1,21 @@
 'use client';
 import { useState, useCallback, useRef } from 'react';
+import { useReducedMotion } from './useReducedMotion';
 
 export function useCipherText(originalText: string) {
   const [text, setText] = useState(originalText);
   const animating = useRef(false);
+  const reducedMotion = useReducedMotion();
   const chars =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@._-!#$%';
 
   const scramble = useCallback(() => {
     if (animating.current) return;
+    if (reducedMotion) {
+      // Skip the scramble flourish entirely; the text is already correct.
+      setText(originalText);
+      return;
+    }
     animating.current = true;
     let resolved = 0;
 
@@ -33,7 +40,7 @@ export function useCipherText(originalText: string) {
         animating.current = false;
       }
     }, 35);
-  }, [originalText, chars]);
+  }, [originalText, chars, reducedMotion]);
 
   return { text, scramble };
 }

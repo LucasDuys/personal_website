@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef, useCallback } from 'react';
+import { useReducedMotion } from './useReducedMotion';
 
 interface TypewriterOptions {
   speed?: number;
@@ -13,11 +14,22 @@ export function useTypewriter(text: string, options: TypewriterOptions = {}) {
   const [isComplete, setIsComplete] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const indexRef = useRef(0);
+  const reducedMotion = useReducedMotion();
 
   const start = useCallback(() => {
     indexRef.current = 0;
     setDisplayText('');
     setIsComplete(false);
+
+    // With reduced motion, jump straight to the final text and skip
+    // the per-character animation. The information is conveyed; the
+    // typewriter flourish is not.
+    if (reducedMotion) {
+      setDisplayText(text);
+      setIsComplete(true);
+      onComplete?.();
+      return () => {};
+    }
 
     const typeNext = () => {
       if (indexRef.current >= text.length) {
@@ -36,7 +48,7 @@ export function useTypewriter(text: string, options: TypewriterOptions = {}) {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [text, speed, jitter, onComplete]);
+  }, [text, speed, jitter, onComplete, reducedMotion]);
 
   return { displayText, isComplete, start };
 }

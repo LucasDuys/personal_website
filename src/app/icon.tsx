@@ -15,12 +15,13 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           background: '#06060A',
-          color: '#4ADE80',
+          color: '#E8E6E3',
           fontSize: 20,
-          fontWeight: 700,
+          fontWeight: 600,
           fontFamily: 'monospace',
           letterSpacing: '-1px',
           borderRadius: 6,
+          border: '1px solid #1F1F26',
         }}
       >
         LD

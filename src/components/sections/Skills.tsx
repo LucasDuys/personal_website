@@ -100,6 +100,7 @@ export function Skills() {
   const topMatch = hasSearch
     ? Object.entries(relevanceScores).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null
     : null;
+  const noMatches = searchValue.trim().length > 0 && !hasSearch;
 
   // Container resize observer
   useEffect(() => {
@@ -475,7 +476,16 @@ export function Skills() {
             transition={{ duration: 0.4 }}
             className="space-y-2"
           >
-            <div className="flex items-center gap-2 font-mono text-sm bg-[var(--surface-1)] border border-[var(--border)] rounded px-3 sm:px-4 py-2.5">
+            <label
+              htmlFor="skills-search"
+              className="block font-sans text-sm text-[var(--text-secondary)]"
+            >
+              Search skills{' '}
+              <span className="text-[var(--text-muted)]">
+                — try &ldquo;AI&rdquo;, &ldquo;backend&rdquo;, or &ldquo;leadership&rdquo;
+              </span>
+            </label>
+            <div className="flex items-center gap-2 font-mono text-sm bg-[var(--surface-1)] border border-[var(--border)] rounded px-3 sm:px-4 py-2.5 focus-within:border-[var(--accent-cyan)] transition-colors">
               <span className="text-[var(--accent-green)] shrink-0 hidden sm:inline">
                 <span className="text-[var(--accent-green)]">visitor</span>
                 <span className="text-[var(--text-muted)]">@</span>
@@ -484,12 +494,14 @@ export function Skills() {
               </span>
               <span className="text-[var(--text-muted)] shrink-0"><span className="hidden sm:inline">query skills --similarity </span>&quot;</span>
               <input
+                id="skills-search"
                 ref={inputRef}
                 type="text"
                 value={searchValue}
                 onChange={e => handleSearchChange(e.target.value)}
                 onFocus={() => setInteracted(true)}
-                placeholder="type a query..."
+                placeholder="type a topic..."
+                aria-label="Search skills by topic"
                 className="flex-1 min-w-0 bg-transparent text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none font-mono text-sm"
                 spellCheck={false}
                 autoComplete="off"
@@ -514,7 +526,50 @@ export function Skills() {
                 </span>
               </motion.div>
             )}
+
+            {/* Empty / no-results state */}
+            {noMatches && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="font-mono text-xs text-[var(--text-muted)] pl-4"
+              >
+                <span className="text-[var(--accent-amber)]">!</span>{' '}
+                no close matches for &ldquo;{searchValue}&rdquo; — try a broader topic
+                like &ldquo;AI&rdquo; or &ldquo;frontend&rdquo;.
+              </motion.div>
+            )}
           </motion.div>
+        )}
+
+        {/* Plain skills list fallback (always visible — accessible alternative
+            to the graph for screen readers and non-technical visitors) */}
+        {bigBangDone && (
+          <details className="mt-4 font-sans text-sm">
+            <summary className="cursor-pointer text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors select-none">
+              View as a plain list
+            </summary>
+            <div className="mt-3 space-y-3 pl-2">
+              {Object.entries(CLUSTER_LABELS).map(([clusterKey, clusterLabel]) => {
+                const clusterSkills = skills.filter(s => s.cluster === clusterKey);
+                if (clusterSkills.length === 0) return null;
+                return (
+                  <div key={clusterKey}>
+                    <div className="flex items-center gap-2 text-[var(--text-secondary)] text-xs uppercase tracking-wider mb-1">
+                      <span
+                        className="inline-block w-2 h-2 rounded-full"
+                        style={{ backgroundColor: CLUSTER_COLORS[clusterKey] }}
+                      />
+                      {clusterLabel}
+                    </div>
+                    <div className="text-[var(--text-primary)]">
+                      {clusterSkills.map(s => s.name).join(', ')}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </details>
         )}
 
         {/* Cluster Legend */}

@@ -137,10 +137,10 @@ export function NavBar({ onOpenCommandPalette, onOpenMobileMenu, activeSection }
             >
               r&eacute;sum&eacute; &nearr;
             </a>
-            {/* Mobile hamburger */}
+            {/* Mobile hamburger — 44x44 tap target per WCAG 2.5.5 */}
             <button
               onClick={onOpenMobileMenu}
-              className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
+              className="md:hidden flex flex-col justify-center items-center w-11 h-11 gap-1.5"
               aria-label="Open menu"
             >
               <span className="block w-5 h-px bg-[var(--text-secondary)]" />

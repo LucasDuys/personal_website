@@ -91,7 +91,7 @@ export default function Home() {
 
       {/* 1. Hero */}
       <div id="hero">
-        <Hero />
+        <Hero onOpenCommandPalette={handleOpenCommandPalette} />
       </div>
 
       {/* Bridge: hero → about */}

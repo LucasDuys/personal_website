@@ -142,7 +142,11 @@ function ScrollIndicator() {
 }
 
 // ---------- Hero ----------
-export function Hero() {
+interface HeroProps {
+  onOpenCommandPalette?: () => void;
+}
+
+export function Hero({ onOpenCommandPalette }: HeroProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const cornersRef = useRef<HTMLDivElement>(null);
@@ -349,12 +353,7 @@ export function Hero() {
             </button>
           </div>
           <button
-            onClick={() => {
-              const event = new KeyboardEvent('keydown', { key: 'k', metaKey: true });
-              document.dispatchEvent(event);
-              const event2 = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true });
-              document.dispatchEvent(event2);
-            }}
+            onClick={() => onOpenCommandPalette?.()}
             className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs border border-[var(--border)] text-[var(--text-muted)] transition-all duration-200 hover:border-[var(--accent-green)]/30 hover:text-[var(--text-secondary)] mt-1"
           >
             $ search --all <kbd className="px-1.5 py-0.5 border border-[var(--border)] rounded text-[var(--text-secondary)] ml-1 text-[10px]">{'\u2318'}K</kbd>

@@ -36,13 +36,18 @@ const NEOFETCH_ART = `
   Uptime: since 2003
 `;
 
+const SECTIONS = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
+
 const HELP_TEXT = `Available commands:
-  help      - Show this message
-  whoami    - Who are you?
-  neofetch  - System info
-  clear     - Clear terminal
-  exit      - Close terminal
-  sudo rm -rf /  - Nice try`;
+  help              - Show this message
+  whoami            - Who are you?
+  neofetch          - System info
+  ls                - List page sections
+  goto <section>    - Jump to a section (e.g. goto projects)
+  cd <section>      - Alias for goto
+  clear             - Clear terminal
+  exit              - Close terminal
+  sudo rm -rf /     - Nice try`;
 
 export function SecretTerminal() {
   const [open, setOpen] = useState(false);
@@ -86,9 +91,33 @@ export function SecretTerminal() {
     }
   }, [history]);
 
+  const navigateTo = useCallback((section: string) => {
+    const el = document.getElementById(section);
+    if (!el) return false;
+    const lenis = (window as unknown as { __lenis?: { scrollTo: (t: string, o?: object) => void } }).__lenis;
+    if (lenis) lenis.scrollTo(`#${section}`, { duration: 1.5 });
+    else el.scrollIntoView({ behavior: 'smooth' });
+    return true;
+  }, []);
+
   const handleCommand = useCallback((cmd: string) => {
     const trimmed = cmd.trim().toLowerCase();
     let output = '';
+
+    // Navigation commands (goto / cd <section>)
+    const navMatch = trimmed.match(/^(goto|cd)\s+(\S+)$/);
+    if (navMatch) {
+      const target = navMatch[2].replace(/^[/~]+|\/$/g, '');
+      if (SECTIONS.includes(target)) {
+        const ok = navigateTo(target);
+        output = ok ? `navigating to /${target}...` : `error: section /${target} not mounted yet.`;
+        if (ok) setTimeout(() => setOpen(false), 600);
+      } else {
+        output = `no such section: ${target}. try "ls" to list sections.`;
+      }
+      setHistory((prev) => [...prev, { input: cmd, output }]);
+      return;
+    }
 
     switch (trimmed) {
       case 'help':
@@ -99,6 +128,9 @@ export function SecretTerminal() {
         break;
       case 'neofetch':
         output = NEOFETCH_ART;
+        break;
+      case 'ls':
+        output = SECTIONS.map((s) => `  /${s}`).join('\n');
         break;
       case 'sudo rm -rf /':
         output =
@@ -117,7 +149,7 @@ export function SecretTerminal() {
     }
 
     setHistory((prev) => [...prev, { input: cmd, output }]);
-  }, []);
+  }, [navigateTo]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {

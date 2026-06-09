@@ -14,46 +14,39 @@ interface Stage {
 
 const stages: Stage[] = [
   {
-    id: 'ingest',
-    label: 'INGEST',
-    sublabel: 'Connector sync',
-    color: '#4ADE80',
-    tooltip: 'Connector sync (Drive / Slack / Notion / GitHub) / incremental / ACL-aware',
-  },
-  {
-    id: 'chunk',
-    label: 'CHUNK',
-    sublabel: 'Semantic + Overlap',
-    color: '#FBBF24',
-    tooltip: 'Dual strategy: semantic + overlap / Chunk size: 512 tokens / Overlap: 50 tokens',
-  },
-  {
-    id: 'embed',
-    label: 'EMBED',
-    sublabel: 'pgvector / halfvec',
-    color: '#8B5CF6',
-    tooltip: 'Batched embeddings / stored in Postgres pgvector (HNSW) / retries + backoff',
-  },
-  {
-    id: 'retrieve',
-    label: 'RETRIEVE',
-    sublabel: 'Vector + BM25',
-    color: '#2E7DFF',
-    tooltip: 'Hybrid search / pgvector RPC + BM25 / Top-K: 20 each / 40 candidates',
-  },
-  {
-    id: 'fuse',
-    label: 'FUSE',
-    sublabel: 'Reciprocal Rank Fusion',
+    id: 'agent',
+    label: 'AGENT',
+    sublabel: 'governed identity',
     color: '#22D3EE',
-    tooltip: 'Weighted RRF / k=60 / w_vector=0.6, w_bm25=0.4 / Output: top 5 chunks',
+    tooltip: 'A governed AI agent / acts under its own identity / never above the user',
   },
   {
-    id: 'generate',
-    label: 'GENERATE',
-    sublabel: 'LLM + Sources',
+    id: 'permissions',
+    label: 'PERMISSIONS',
+    sublabel: 'same as a person',
+    color: '#8B5CF6',
+    tooltip: 'Inherits a role / same permissions + consent as a human / least privilege',
+  },
+  {
+    id: 'connectors',
+    label: 'CONNECTORS',
+    sublabel: 'mounted, ACL-aware',
+    color: '#FBBF24',
+    tooltip: 'Drive / Slack / Notion / GitHub / Gmail / Postgres / ACL pre-filter + post-check',
+  },
+  {
+    id: 'gate',
+    label: 'GATE',
+    sublabel: 'autonomy spectrum',
+    color: '#4ADE80',
+    tooltip: 'task · decision · autonomous / per-run guardrails / wall-clock + token budgets',
+  },
+  {
+    id: 'act',
+    label: 'ACT',
+    sublabel: 'read / write',
     color: '#E8E6E3',
-    tooltip: 'LLM answer generation / source citations / streamed / model-agnostic',
+    tooltip: 'Connector read + governed write / every action written to the audit chain',
   },
 ];
 
@@ -64,57 +57,46 @@ function StageIcon({ stageId, color, active }: { stageId: string; color: string;
   const stroke = active ? color : '#777788';
 
   switch (stageId) {
-    case 'ingest':
-      // Document icon
+    case 'agent':
+      // Chip / processor icon
       return (
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M8 3h8l6 6v16H8V3z" stroke={stroke} strokeWidth="1.5" fill="none" />
-          <path d="M16 3v6h6" stroke={stroke} strokeWidth="1.5" fill="none" />
-          <line x1="11" y1="14" x2="20" y2="14" stroke={fill} strokeWidth="1.2" />
-          <line x1="11" y1="18" x2="18" y2="18" stroke={fill} strokeWidth="1.2" />
-        </svg>
-      );
-    case 'chunk':
-      // Grid / blocks icon
-      return (
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <rect x="4" y="4" width="9" height="9" rx="1.5" stroke={stroke} strokeWidth="1.5" />
-          <rect x="15" y="4" width="9" height="9" rx="1.5" stroke={stroke} strokeWidth="1.5" />
-          <rect x="4" y="15" width="9" height="9" rx="1.5" stroke={stroke} strokeWidth="1.5" />
-          <rect x="15" y="15" width="9" height="9" rx="1.5" stroke={fill} strokeWidth="1.5" fill={active ? `${color}22` : 'none'} />
-        </svg>
-      );
-    case 'embed':
-      // Vector/dimension icon
-      return (
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="9" stroke={stroke} strokeWidth="1.5" />
-          <circle cx="14" cy="14" r="3" fill={fill} />
-          <line x1="14" y1="5" x2="14" y2="11" stroke={stroke} strokeWidth="1.2" />
-          <line x1="14" y1="17" x2="14" y2="23" stroke={stroke} strokeWidth="1.2" />
-          <line x1="5" y1="14" x2="11" y2="14" stroke={stroke} strokeWidth="1.2" />
-          <line x1="17" y1="14" x2="23" y2="14" stroke={stroke} strokeWidth="1.2" />
-        </svg>
-      );
-    case 'retrieve':
-      // Search/magnifier icon
-      return (
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <circle cx="12" cy="12" r="7" stroke={stroke} strokeWidth="1.5" />
-          <line x1="17" y1="17" x2="24" y2="24" stroke={stroke} strokeWidth="2" strokeLinecap="round" />
-          <circle cx="12" cy="12" r="2" fill={fill} />
-        </svg>
-      );
-    case 'fuse':
-      // Merge arrows icon
-      return (
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M6 8 L14 14 L6 20" stroke={stroke} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M22 8 L14 14 L22 20" stroke={stroke} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <rect x="8" y="8" width="12" height="12" rx="2" stroke={stroke} strokeWidth="1.5" fill={active ? `${color}22` : 'none'} />
           <circle cx="14" cy="14" r="2.5" fill={fill} />
+          <line x1="14" y1="4" x2="14" y2="8" stroke={stroke} strokeWidth="1.2" />
+          <line x1="14" y1="20" x2="14" y2="24" stroke={stroke} strokeWidth="1.2" />
+          <line x1="4" y1="14" x2="8" y2="14" stroke={stroke} strokeWidth="1.2" />
+          <line x1="20" y1="14" x2="24" y2="14" stroke={stroke} strokeWidth="1.2" />
         </svg>
       );
-    case 'generate':
+    case 'permissions':
+      // Key icon
+      return (
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <circle cx="9" cy="11" r="5" stroke={stroke} strokeWidth="1.5" fill="none" />
+          <circle cx="9" cy="11" r="1.6" fill={fill} />
+          <path d="M13 14 L22 23" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+          <line x1="18" y1="19" x2="21" y2="16" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      );
+    case 'connectors':
+      // Plug / link icon
+      return (
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M10 18 L7 21 a3.5 3.5 0 0 1-5-5 L5 13" stroke={stroke} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M18 10 L21 7 a3.5 3.5 0 0 0-5-5 L13 5" stroke={stroke} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <line x1="10" y1="18" x2="18" y2="10" stroke={fill} strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      );
+    case 'gate':
+      // Shield with check
+      return (
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M14 3 L23 7 V14 C23 19 19 23 14 25 C9 23 5 19 5 14 V7 Z" stroke={stroke} strokeWidth="1.5" fill={active ? `${color}22` : 'none'} strokeLinejoin="round" />
+          <path d="M10 14 L13 17 L18 11" stroke={fill} strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'act':
       // Lightning / spark icon
       return (
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -157,7 +139,7 @@ function Tooltip({ stage, visible }: { stage: Stage; visible: boolean }) {
 
 /* ---------- Main Component ---------- */
 
-export function RAGPipeline() {
+export function AgentRuntimeFlow() {
   const [activeStage, setActiveStage] = useState<number>(-1);
   const [hoveredStage, setHoveredStage] = useState<number>(-1);
   const [isMobile, setIsMobile] = useState(false);
@@ -190,116 +172,68 @@ export function RAGPipeline() {
         const y = 40 + index * 90;
         return { x, y };
       }
-      // Horizontal layout: 6 nodes evenly spaced in 1000px width
+      // Horizontal layout: 5 nodes evenly spaced in 1000px width
       const padding = 80;
-      const spacing = (1000 - padding * 2) / 5;
-      return { x: padding + index * spacing, y: 175 };
+      const spacing = (1000 - padding * 2) / (stages.length - 1);
+      return { x: padding + index * spacing, y: 150 };
     },
     [isMobile]
   );
 
   const nodeSize = 80;
   const halfNode = nodeSize / 2;
+  const auditY = 290; // y of the hash-chained audit rail (desktop)
 
   // SVG viewBox
-  const viewBox = isMobile ? '0 0 200 580' : '0 0 1000 400';
+  const viewBox = isMobile ? '0 0 200 500' : '0 0 1000 380';
 
   // Build connection paths
   const getConnectionPath = useCallback(
-    (fromIdx: number, toIdx: number, variant?: 'upper' | 'lower'): string => {
+    (fromIdx: number, toIdx: number): string => {
       const from = getNodePosition(fromIdx);
       const to = getNodePosition(toIdx);
 
       if (isMobile) {
-        // Vertical connections
         const startY = from.y + halfNode;
         const endY = to.y - halfNode;
         const midY = (startY + endY) / 2;
         return `M ${from.x} ${startY} C ${from.x} ${midY}, ${to.x} ${midY}, ${to.x} ${endY}`;
       }
 
-      // Horizontal connections
       const startX = from.x + halfNode;
       const endX = to.x - halfNode;
-
-      // Special: Embed -> Retrieve fork
-      if (fromIdx === 2 && toIdx === 3 && variant) {
-        const midX = (startX + endX) / 2;
-        const offset = variant === 'upper' ? -20 : 20;
-        return `M ${startX} ${from.y} C ${midX} ${from.y + offset}, ${midX} ${to.y + offset}, ${endX} ${to.y}`;
-      }
-
-      // Regular curved connection
       const midX = (startX + endX) / 2;
       return `M ${startX} ${from.y} C ${midX} ${from.y}, ${midX} ${to.y}, ${endX} ${to.y}`;
     },
     [getNodePosition, isMobile, halfNode]
   );
 
-  // Connection segments
-  const connections = isMobile
-    ? [
-        { from: 0, to: 1 },
-        { from: 1, to: 2 },
-        { from: 2, to: 3 },
-        { from: 3, to: 4 },
-        { from: 4, to: 5 },
-      ]
-    : [
-        { from: 0, to: 1 },
-        { from: 1, to: 2 },
-        // Embed -> Retrieve has two paths
-        { from: 2, to: 3, variant: 'upper' as const },
-        { from: 2, to: 3, variant: 'lower' as const },
-        { from: 3, to: 4 },
-        { from: 4, to: 5 },
-      ];
+  const connections = stages.slice(0, -1).map((_, i) => ({ from: i, to: i + 1 }));
 
-  // Determine if a connection is "active" based on current flowing stage
-  const isConnectionActive = (fromIdx: number): boolean => {
-    return activeStage === fromIdx;
-  };
+  const isConnectionActive = (fromIdx: number): boolean => activeStage === fromIdx;
 
   return (
     <div ref={containerRef} className="w-full max-w-[1000px] mx-auto relative">
       {/* CSS Animations */}
       <style>{`
-        @keyframes dashFlow {
-          to { stroke-dashoffset: -40; }
-        }
-        @keyframes pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-        }
-        @keyframes dotGlow {
-          0%, 100% { opacity: 0.6; }
-          50% { opacity: 1; }
-        }
+        @keyframes arfDashFlow { to { stroke-dashoffset: -40; } }
+        @keyframes arfPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
       `}</style>
 
       <svg
         viewBox={viewBox}
         className="w-full h-auto"
-        style={{ maxHeight: isMobile ? '580px' : '400px' }}
+        style={{ maxHeight: isMobile ? '500px' : '380px' }}
       >
         {/* Connection lines */}
         {connections.map((conn, i) => {
-          const path = getConnectionPath(conn.from, conn.to, conn.variant);
+          const path = getConnectionPath(conn.from, conn.to);
           const active = isConnectionActive(conn.from);
           const fromColor = stages[conn.from].color;
 
           return (
             <g key={`conn-${i}`}>
-              {/* Background dashed line */}
-              <path
-                d={path}
-                fill="none"
-                stroke="#555566"
-                strokeOpacity={0.2}
-                strokeWidth={1.5}
-                strokeDasharray="6 4"
-              />
-              {/* Active solid line */}
+              <path d={path} fill="none" stroke="#555566" strokeOpacity={0.2} strokeWidth={1.5} strokeDasharray="6 4" />
               <path
                 d={path}
                 fill="none"
@@ -309,36 +243,82 @@ export function RAGPipeline() {
                 style={{
                   opacity: active ? 0.8 : 0,
                   transition: 'opacity 300ms',
-                  animation: active ? 'dashFlow 0.8s linear infinite' : 'none',
+                  animation: active ? 'arfDashFlow 0.8s linear infinite' : 'none',
                 }}
               />
-              {/* Fork labels for Embed -> Retrieve */}
-              {!isMobile && conn.from === 2 && conn.to === 3 && conn.variant && (
-                <text
-                  x={(getNodePosition(2).x + halfNode + getNodePosition(3).x - halfNode) / 2}
-                  y={conn.variant === 'upper' ? 148 : 206}
-                  textAnchor="middle"
-                  fill="#777788"
-                  fontSize="9"
-                  fontFamily="monospace"
-                >
-                  {conn.variant === 'upper' ? 'vector' : 'BM25'}
-                </text>
-              )}
-              {/* Traveling dot */}
               {active && (
                 <circle r="5" fill={fromColor} opacity={0.9}>
                   <animateMotion dur="1.6s" repeatCount="1" fill="freeze">
-                    <mpath href={`#motionPath-${i}`} />
+                    <mpath href={`#arfMotionPath-${i}`} />
                   </animateMotion>
                   <animate attributeName="opacity" values="0.9;1;0.9" dur="0.5s" repeatCount="indefinite" />
                 </circle>
               )}
-              {/* Hidden path for animateMotion */}
-              <path id={`motionPath-${i}`} d={path} fill="none" stroke="none" />
+              <path id={`arfMotionPath-${i}`} d={path} fill="none" stroke="none" />
             </g>
           );
         })}
+
+        {/* Hash-chained audit rail (desktop only) */}
+        {!isMobile && (
+          <g>
+            {/* rail line */}
+            <line
+              x1={getNodePosition(0).x}
+              y1={auditY}
+              x2={getNodePosition(stages.length - 1).x}
+              y2={auditY}
+              stroke="#555566"
+              strokeOpacity={0.25}
+              strokeWidth={1.5}
+              strokeDasharray="2 4"
+            />
+            {/* chain blocks, one under each node */}
+            {stages.map((stage, i) => {
+              const pos = getNodePosition(i);
+              const isActive = activeStage === i;
+              return (
+                <g key={`audit-${i}`}>
+                  {/* drop line from node to rail */}
+                  <line
+                    x1={pos.x}
+                    y1={pos.y + halfNode}
+                    x2={pos.x}
+                    y2={auditY - 7}
+                    stroke={isActive ? stage.color : '#555566'}
+                    strokeOpacity={isActive ? 0.5 : 0.12}
+                    strokeWidth={1}
+                    style={{ transition: 'stroke-opacity 300ms' }}
+                  />
+                  <rect
+                    x={pos.x - 8}
+                    y={auditY - 6}
+                    width={16}
+                    height={12}
+                    rx={2}
+                    fill="#0E0E14"
+                    stroke={isActive ? stage.color : '#555566'}
+                    strokeOpacity={isActive ? 1 : 0.4}
+                    strokeWidth={1}
+                    style={{
+                      transition: 'stroke 300ms, stroke-opacity 300ms',
+                      filter: isActive ? `drop-shadow(0 0 6px ${stage.color})` : 'none',
+                    }}
+                  />
+                </g>
+              );
+            })}
+            <text
+              x={getNodePosition(0).x}
+              y={auditY + 26}
+              fill="#777788"
+              fontSize="9"
+              fontFamily="monospace"
+            >
+              hash-chained, tamper-evident audit
+            </text>
+          </g>
+        )}
 
         {/* Stage nodes */}
         {stages.map((stage, i) => {
@@ -353,7 +333,6 @@ export function RAGPipeline() {
               onMouseLeave={() => setHoveredStage(-1)}
               style={{ cursor: 'pointer' }}
             >
-              {/* Glow effect */}
               {isActive && (
                 <rect
                   x={pos.x - halfNode}
@@ -369,7 +348,6 @@ export function RAGPipeline() {
                 />
               )}
 
-              {/* Node background */}
               <rect
                 x={pos.x - halfNode}
                 y={pos.y - halfNode}
@@ -382,23 +360,16 @@ export function RAGPipeline() {
                 strokeWidth={isActive ? 1.5 : 1}
                 style={{
                   transition: 'stroke 300ms, stroke-opacity 300ms',
-                  animation: isActive ? 'pulse 600ms ease-in-out' : 'none',
+                  animation: isActive ? 'arfPulse 600ms ease-in-out' : 'none',
                 }}
               />
 
-              {/* Icon (positioned via foreignObject) */}
-              <foreignObject
-                x={pos.x - 14}
-                y={pos.y - 20}
-                width={28}
-                height={28}
-              >
+              <foreignObject x={pos.x - 14} y={pos.y - 20} width={28} height={28}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <StageIcon stageId={stage.id} color={stage.color} active={isActive || isHovered} />
                 </div>
               </foreignObject>
 
-              {/* Label */}
               <text
                 x={pos.x}
                 y={pos.y + halfNode + 16}
@@ -412,7 +383,6 @@ export function RAGPipeline() {
                 {stage.label}
               </text>
 
-              {/* Sublabel */}
               <text
                 x={pos.x}
                 y={pos.y + halfNode + 30}
@@ -431,12 +401,11 @@ export function RAGPipeline() {
 
       {/* HTML Tooltip overlays */}
       {!isMobile && (
-        <div className="absolute inset-0 pointer-events-none" style={{ maxHeight: '400px' }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ maxHeight: '380px' }}>
           {stages.map((stage, i) => {
             const pos = getNodePosition(i);
-            // Convert SVG coords to percentage positions
             const leftPct = (pos.x / 1000) * 100;
-            const topPct = ((pos.y - halfNode) / 400) * 100;
+            const topPct = ((pos.y - halfNode) / 380) * 100;
 
             return (
               <div

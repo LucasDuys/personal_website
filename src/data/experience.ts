@@ -4,12 +4,13 @@ export const EXPERIENCE: ExperienceEntry[] = [
   {
     hash: 'a3f7c1d',
     dateRange: 'Mar 2026 - Present',
-    title: 'AI Intern',
+    title: 'AI Engineering Intern',
     company: 'cape.io',
     companyColor: 'var(--accent-green)',
     description: [
       'Cut agent token usage from 190k to 1.2k per run by reworking how prompts are structured and chained, saving 99%+ on API costs',
       'The system originally handled 20 inputs in 55s with under 50% accuracy. Rebuilt the pipeline so it now processes 10k inputs in ~8s at 98%',
+      'Built a permission-aware tool layer that authorizes every agent action per call, so agents can only touch what the calling user is allowed to',
       'Added real-time UI that shows each element as the agent processes it. Set up LangSmith for tracing and evaluation across runs',
       'Built and shipped Claude Code plugins and internal developer skills. Working in sprints across a large Python + TypeScript codebase',
     ],
@@ -61,15 +62,21 @@ export const EXPERIENCE: ExperienceEntry[] = [
   {
     hash: 'd7e4f8a',
     dateRange: 'Oct 2025 - Present',
-    title: 'Project: Stacklink',
-    company: 'Personal Project',
-    companyColor: 'var(--text-secondary)',
+    title: 'Co-founder — Stacklink',
+    company: 'Stacklink',
+    companyColor: 'var(--accent-cyan)',
     description: [
-      'RAG system that ingests docs from Google Drive, chunks them, embeds via OpenRouter, and stores in Supabase pgvector',
-      'Hybrid search combining vector similarity with BM25 lexical matching, ranked using Reciprocal Rank Fusion',
-      'LRU cache for query embeddings, context windowing, and a second LLM pass when the answer hedges',
+      'Co-founding an EU-sovereign agentic runtime: a permission-aware knowledge layer that lets governed AI agents act on company data, deployable on the customer’s own GPUs or fully air-gapped',
+      'Architected as a 60+-package TypeScript monorepo with 8 deployable services (TS / Go / Python), where Cloud vs Sovereign is a config swap, not a code fork — every backend (model, embedding, sandbox, connector, audit) sits behind a versioned adapter',
+      'Built the hybrid-retrieval RAG substrate on Postgres/pgvector: BM25 + HNSW vector + reciprocal-rank fusion with ACL pre-filter and post-check, plus reranking',
+      'Mounted 7 connectors (Drive, Slack, Notion, GitHub, Gmail, Calendar, Postgres) as an ACL-aware tool surface, with a hash-chained, tamper-evident audit log and EU AI Act documentation',
     ],
-    tags: ['RAG', 'Embeddings', 'LLM', 'Supabase', 'TypeScript'],
+    metrics: [
+      { label: 'monorepo packages', value: 60, suffix: '' },
+      { label: 'deployable services', value: 8, suffix: '' },
+      { label: 'connectors integrated', value: 7, suffix: '' },
+    ],
+    tags: ['Agentic Runtime', 'EU-Sovereign', 'Knowledge Graph', 'Multi-tenant / ACL', 'TypeScript', 'Go', 'Postgres'],
     status: 'active',
   },
 ];

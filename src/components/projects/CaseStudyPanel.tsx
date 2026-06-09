@@ -4,6 +4,7 @@ import { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Project } from '@/types';
 import { RAGPipeline } from './RAGPipeline';
+import { AgentRuntimeFlow } from './AgentRuntimeFlow';
 
 /* ---------- Per-project case study content ---------- */
 
@@ -27,17 +28,17 @@ const caseStudies: Record<string, CaseStudyContent> = {
     outcome: 'Built at HackEurope Paris in 30 hours.',
   },
   stacklink: {
-    problem: 'Knowledge scattered across Google Drive folders. Finding info takes 20+ minutes.',
-    approach: 'RAG pipeline with dual chunking, hybrid retrieval, Reciprocal Rank Fusion.',
+    problem: 'European companies want to put AI on their internal knowledge — but not by piping their data through US-jurisdiction clouds. And a chatbot that only answers questions leaves the real cost untouched: the same work gets done by hand over and over, and tribal knowledge stays locked in people’s heads.',
+    approach: 'Build the sovereign substrate first: mount a company’s connectors as a permission-aware layer, let governed AI agents act on that data under the same permissions a person would have, and log every action to a tamper-evident audit trail — deployable on the customer’s own infrastructure.',
     solution: [
-      'Google Drive ingest with incremental sync',
-      'Semantic chunking with overlap for context preservation',
-      'pgvector embeddings for vector similarity search',
-      'BM25 keyword search for exact term matching',
-      'Reciprocal Rank Fusion (RRF) re-ranking',
-      'LLM-generated answers with source citations',
+      'EU-sovereign by construction: runs on the customer’s own GPUs or fully air-gapped — Cloud vs Sovereign is a config swap, not a code fork',
+      'Connectors mounted as an ACL-aware layer (Drive, Slack, Notion, GitHub, Gmail, Calendar, Postgres), with reads and writes gated by the calling principal’s permissions',
+      'Governed AI agents with a configurable autonomy spectrum and per-run guardrails — designed so “sales cannot see HR” on shared infrastructure',
+      'Hybrid-retrieval RAG substrate: BM25 + pgvector HNSW + reciprocal-rank fusion with ACL pre-filter and post-check (the retrieval layer, not the product)',
+      'Hash-chained, tamper-evident audit log and EU AI Act documentation built in',
+      'Built as a 60+-package TypeScript monorepo across 8 deployable services (TS / Go / Python)',
     ],
-    outcome: 'Average query time: 2.3s. Reduced lookup from 20 minutes to seconds.',
+    outcome: 'Pre-pilot. Co-founded with Julius Brussee, targeting the European mid-market that wants AI without routing data through US jurisdiction.',
   },
   cape: {
     problem: 'Enterprise agentic systems were slow, expensive, and inaccurate. The existing pipeline handled 20 inputs in 55s with under 50% accuracy, burning through 190k tokens per run.',
@@ -318,11 +319,19 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                   </p>
                 </CLISection>
 
-                {/* RAG Pipeline Visualization (Stacklink only) */}
+                {/* Architecture + retrieval visualizations (Stacklink only) */}
                 {project.slug === 'stacklink' && (
-                  <CLISection command="cat PIPELINE.svg" accentColor={project.accentColor}>
-                    <RAGPipeline />
-                  </CLISection>
+                  <>
+                    <CLISection command="cat RUNTIME.svg" accentColor={project.accentColor}>
+                      <AgentRuntimeFlow />
+                    </CLISection>
+                    <CLISection command="cat RETRIEVAL_SUBSTRATE.svg" accentColor={project.accentColor}>
+                      <p className="font-mono text-[10px] text-[var(--text-muted)] mb-3">
+                        Hybrid retrieval is the substrate beneath the agent runtime, not the product.
+                      </p>
+                      <RAGPipeline />
+                    </CLISection>
+                  </>
                 )}
 
                 {/* Solution */}

@@ -14,13 +14,18 @@ export const skills: Skill[] = [
   { name: 'REST APIs', cluster: 'backend', x: 60, y: 30, size: 10, connections: ['Node.js'] },
   { name: 'Python', cluster: 'backend', x: 75, y: 35, size: 10, connections: ['Node.js', 'Machine Learning'] },
   { name: 'Git', cluster: 'backend', x: 85, y: 30, size: 10, connections: [] },
+  { name: 'Go', cluster: 'backend', x: 88, y: 42, size: 10, connections: ['Multi-tenant / ACL'] },
+  { name: 'Multi-tenant / ACL', cluster: 'backend', x: 86, y: 14, size: 11, connections: ['PostgreSQL', 'Go'] },
+  { name: 'Monorepo / Turborepo', cluster: 'backend', x: 58, y: 42, size: 10, connections: ['TypeScript', 'Node.js'] },
 
   // AI / ML (amber #FBBF24)
   { name: 'LLM Integration', cluster: 'ai', x: 22, y: 62, size: 14, connections: ['RAG Pipelines', 'Prompt Engineering', 'AI Agents'] },
-  { name: 'RAG Pipelines', cluster: 'ai', x: 35, y: 55, size: 12, connections: ['LLM Integration', 'PostgreSQL'] },
+  { name: 'RAG Pipelines', cluster: 'ai', x: 35, y: 55, size: 12, connections: ['LLM Integration', 'PostgreSQL', 'Knowledge Graphs'] },
   { name: 'Prompt Engineering', cluster: 'ai', x: 15, y: 72, size: 11, connections: ['LLM Integration'] },
-  { name: 'AI Agents', cluster: 'ai', x: 32, y: 75, size: 11, connections: ['LLM Integration'] },
+  { name: 'AI Agents', cluster: 'ai', x: 32, y: 75, size: 11, connections: ['LLM Integration', 'Agentic Runtimes'] },
   { name: 'Machine Learning', cluster: 'ai', x: 45, y: 68, size: 10, connections: ['Python', 'LLM Integration'] },
+  { name: 'Agentic Runtimes', cluster: 'ai', x: 26, y: 88, size: 13, connections: ['AI Agents', 'LLM Integration', 'Knowledge Graphs'] },
+  { name: 'Knowledge Graphs', cluster: 'ai', x: 45, y: 84, size: 11, connections: ['RAG Pipelines', 'Agentic Runtimes'] },
 
   // Leadership & Strategy (green #4ADE80)
   { name: 'Operations', cluster: 'soft', x: 68, y: 60, size: 12, connections: ['Agile', 'REST APIs'] },

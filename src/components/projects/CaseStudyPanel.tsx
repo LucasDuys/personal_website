@@ -272,33 +272,39 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                 </div>
               )}
 
-              {/* Hero Screenshots (Stacklink) */}
+              {/* Real UI screenshots (Stacklink — captured from stacklink.nl) */}
               {project.slug === 'stacklink' && (
                 <div className="relative w-full bg-black/30 p-4 sm:p-6">
-                  {/* Landing page screenshot */}
-                  <img
-                    src="/images/projects/stacklink-hero.png"
-                    alt="Stacklink landing page"
-                    className="w-full rounded-lg border border-[var(--border)] mb-4"
-                  />
-                  {/* Product screenshots grid */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <p className="font-mono text-[10px] text-[var(--accent-cyan)] mb-1.5 uppercase tracking-wider">AI Chat</p>
-                      <img
-                        src="/images/projects/stacklink-aichat.png"
-                        alt="Stacklink AI chat interface"
-                        className="w-full rounded-lg border border-[var(--border)]"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-mono text-[10px] text-[var(--accent-cyan)] mb-1.5 uppercase tracking-wider">Dashboard</p>
-                      <img
-                        src="/images/projects/stacklink-dashboard.png"
-                        alt="Stacklink dashboard"
-                        className="w-full rounded-lg border border-[var(--border)]"
-                      />
-                    </div>
+                  {/* Landing hero */}
+                  <a href="https://stacklink.nl" target="_blank" rel="noopener noreferrer" className="block group">
+                    <img
+                      src="/images/projects/sl-hero.png"
+                      alt="Stacklink landing page — Unify your knowledge"
+                      className="w-full rounded-lg border border-[var(--border)] mb-2 transition-opacity group-hover:opacity-90"
+                    />
+                    <p className="font-mono text-[10px] text-[var(--text-muted)] mb-4">
+                      &gt; live at <span className="text-[var(--accent-cyan)]">stacklink.nl</span>
+                    </p>
+                  </a>
+                  {/* Real product UI grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      { src: 'sl-cited.png', cap: 'Ask once. One cited answer.' },
+                      { src: 'sl-file.png', cap: 'Real analysis on the real file.' },
+                      { src: 'sl-sql.png', cap: 'Live SQL. Every row audited.' },
+                      { src: 'sl-watch.png', cap: 'Watchers ping Slack when it’s green.' },
+                    ].map((shot) => (
+                      <div key={shot.src}>
+                        <p className="font-mono text-[10px] text-[var(--accent-cyan)] mb-1.5 uppercase tracking-wider">
+                          {shot.cap}
+                        </p>
+                        <img
+                          src={`/images/projects/${shot.src}`}
+                          alt={`Stacklink — ${shot.cap}`}
+                          className="w-full rounded-lg border border-[var(--border)]"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}

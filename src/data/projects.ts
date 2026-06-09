@@ -2,6 +2,18 @@ import type { Project } from '@/types';
 
 export const projects: Project[] = [
   {
+    slug: 'stacklink',
+    title: 'Stacklink',
+    description: 'EU-sovereign agentic runtime: a permission-aware knowledge layer that sits beneath a company’s apps and above any model. Mounts connectors (Drive, Slack, Notion, GitHub) so governed AI agents can act on company data — on the customer’s own GPUs or fully air-gapped, with a hash-chained audit log and EU AI Act docs built in. In pilot with the second-largest company in the Netherlands, with 60+ companies in the pipeline.',
+    command: './stacklink/runtime --sovereign --audit',
+    accentColor: '#22D3EE',
+    tags: ['Agentic Runtime', 'EU-Sovereign', 'Knowledge Graph', 'Multi-tenant / ACL', 'TypeScript', 'Go', 'Postgres / pgvector', 'Monorepo (60+ pkgs)'],
+    links: [
+      { label: 'stacklink.nl', url: 'https://stacklink.nl', icon: 'external' },
+    ],
+    status: 'in-progress',
+  },
+  {
     slug: 'pitchr',
     title: 'Pitchr.live',
     description: 'AI pitch coach for founders. Record your pitch, get rubric-scored feedback across 5 dimensions, receive a rewritten script, then face a mock Q&A with an AI investor.',
@@ -13,18 +25,6 @@ export const projects: Project[] = [
       { label: 'Demo Video', url: '#', icon: 'video' },
     ],
     status: 'live',
-  },
-  {
-    slug: 'stacklink',
-    title: 'Stacklink',
-    description: 'EU-sovereign agentic runtime: a permission-aware knowledge layer that sits beneath a company’s apps and above any model. Mounts connectors (Drive, Slack, Notion, GitHub) so governed AI agents can act on company data — on the customer’s own GPUs or fully air-gapped, with a hash-chained audit log and EU AI Act docs built in. Hybrid RAG is the retrieval substrate, not the product.',
-    command: './stacklink/runtime --sovereign --audit',
-    accentColor: '#22D3EE',
-    tags: ['Agentic Runtime', 'EU-Sovereign', 'Knowledge Graph', 'Multi-tenant / ACL', 'TypeScript', 'Go', 'Postgres / pgvector', 'Monorepo (60+ pkgs)'],
-    links: [
-      { label: 'stacklink.nl', url: 'https://stacklink.nl', icon: 'external' },
-    ],
-    status: 'in-progress',
   },
   {
     slug: 'cape',

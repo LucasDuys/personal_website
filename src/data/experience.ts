@@ -18,6 +18,27 @@ export const EXPERIENCE: ExperienceEntry[] = [
     status: 'active',
   },
   {
+    hash: 'd7e4f8a',
+    dateRange: 'Mar 2026 - Present',
+    title: 'Co-founder — Stacklink',
+    company: 'Stacklink',
+    companyColor: 'var(--accent-cyan)',
+    description: [
+      'In pilot with the second-largest company in the Netherlands, with 60+ companies in the sales pipeline',
+      'Co-founding an EU-sovereign agentic runtime: a permission-aware knowledge layer that lets governed AI agents act on company data, deployable on the customer’s own GPUs or fully air-gapped',
+      'Architected as a 60+-package TypeScript monorepo with 8 deployable services (TS / Go / Python), where Cloud vs Sovereign is a config swap, not a code fork — every backend (model, embedding, sandbox, connector, audit) sits behind a versioned adapter',
+      'Built the hybrid-retrieval RAG substrate on Postgres/pgvector: BM25 + HNSW vector + reciprocal-rank fusion with ACL pre-filter and post-check, plus reranking',
+      'Mounted 7 connectors (Drive, Slack, Notion, GitHub, Gmail, Calendar, Postgres) as an ACL-aware tool surface, with a hash-chained, tamper-evident audit log and EU AI Act documentation',
+    ],
+    metrics: [
+      { label: 'companies in pipeline', value: 60, suffix: '' },
+      { label: 'monorepo packages', value: 60, suffix: '' },
+      { label: 'deployable services', value: 8, suffix: '' },
+    ],
+    tags: ['Agentic Runtime', 'EU-Sovereign', 'Knowledge Graph', 'Multi-tenant / ACL', 'TypeScript', 'Go', 'Postgres'],
+    status: 'active',
+  },
+  {
     hash: 'c8d1e5f',
     dateRange: 'Sep 2024 - Present',
     title: 'CS & Engineering Student',
@@ -58,25 +79,5 @@ export const EXPERIENCE: ExperienceEntry[] = [
     ],
     tags: ['Hackathon', 'Claude', 'ElevenLabs', 'Next.js'],
     status: 'completed',
-  },
-  {
-    hash: 'd7e4f8a',
-    dateRange: 'Oct 2025 - Present',
-    title: 'Co-founder — Stacklink',
-    company: 'Stacklink',
-    companyColor: 'var(--accent-cyan)',
-    description: [
-      'Co-founding an EU-sovereign agentic runtime: a permission-aware knowledge layer that lets governed AI agents act on company data, deployable on the customer’s own GPUs or fully air-gapped',
-      'Architected as a 60+-package TypeScript monorepo with 8 deployable services (TS / Go / Python), where Cloud vs Sovereign is a config swap, not a code fork — every backend (model, embedding, sandbox, connector, audit) sits behind a versioned adapter',
-      'Built the hybrid-retrieval RAG substrate on Postgres/pgvector: BM25 + HNSW vector + reciprocal-rank fusion with ACL pre-filter and post-check, plus reranking',
-      'Mounted 7 connectors (Drive, Slack, Notion, GitHub, Gmail, Calendar, Postgres) as an ACL-aware tool surface, with a hash-chained, tamper-evident audit log and EU AI Act documentation',
-    ],
-    metrics: [
-      { label: 'monorepo packages', value: 60, suffix: '' },
-      { label: 'deployable services', value: 8, suffix: '' },
-      { label: 'connectors integrated', value: 7, suffix: '' },
-    ],
-    tags: ['Agentic Runtime', 'EU-Sovereign', 'Knowledge Graph', 'Multi-tenant / ACL', 'TypeScript', 'Go', 'Postgres'],
-    status: 'active',
   },
 ];

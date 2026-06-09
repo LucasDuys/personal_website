@@ -38,7 +38,7 @@ const caseStudies: Record<string, CaseStudyContent> = {
       'Hash-chained, tamper-evident audit log and EU AI Act documentation built in',
       'Built as a 60+-package TypeScript monorepo across 8 deployable services (TS / Go / Python)',
     ],
-    outcome: 'Pre-pilot. Co-founded with Julius Brussee, targeting the European mid-market that wants AI without routing data through US jurisdiction.',
+    outcome: 'In pilot with the second-largest company in the Netherlands, with 60+ companies in the pipeline. Co-founded with Julius Brussee, targeting the European mid-market that wants AI without routing data through US jurisdiction.',
   },
   cape: {
     problem: 'Enterprise agentic systems were slow, expensive, and inaccurate. The existing pipeline handled 20 inputs in 55s with under 50% accuracy, burning through 190k tokens per run.',

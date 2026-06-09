@@ -177,7 +177,7 @@ export function ProjectCard({ project, onClick }: Props) {
         {/* Stacklink: actual landing page screenshot */}
         {isStacklink && (
           <img
-            src="/images/projects/stacklink-hero.png"
+            src="/images/projects/sl-hero.png"
             alt="Stacklink landing page"
             className="absolute inset-0 w-full h-full object-cover object-top opacity-80"
           />

@@ -394,16 +394,21 @@ export default function Home() {
             </div>
           </div>
           <div className="max-w-[60ch]">
-            <p className="text-[20px] leading-[1.55] sm:text-[23px]">
-              I&apos;m a co-founder building AI infrastructure for companies that can&apos;t send their
-              data away — and a CS &amp; Engineering student at TU Eindhoven, graduating May 2028.
+            <p className="text-[22px] font-medium leading-[1.3] tracking-[-0.01em] sm:text-[26px]">
+              I build AI systems that make it to production — and get used.
             </p>
-            <p className="mt-5 text-[16px] leading-[1.7]" style={{ color: MUTED }}>
-              Most of my time goes to Stacklink, where I work on the agentic runtime, retrieval, and
-              the governance layer that makes it usable inside regulated enterprises. Alongside that I
-              intern at cape.io on agent efficiency and permission-aware tooling, and I build things at
-              hackathons when I can. I care about systems that are correct, fast, and trustworthy —
-              not demos that fall over the moment real data shows up.
+            <p className="mt-6 text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
+              At Stacklink, I&apos;m a co-founder building an enterprise knowledge platform that turns a
+              company&apos;s scattered documents, chat, and code into one searchable, citation-grounded
+              source of truth — RAG and pgvector, multi-tenant from the ground up.
+            </p>
+            <p className="mt-4 text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
+              At cape.io, I work on agentic infrastructure: scaling AI agent systems and making
+              agent-driven workflows reliable enough for real production — where architecture and
+              observability matter as much as the model.
+            </p>
+            <p className="mt-6 font-[family-name:var(--font-mono)] text-[12.5px]" style={{ color: MUTED }}>
+              CS &amp; Engineering @ TU Eindhoven · TypeScript, Next.js, Postgres · GPT / Gemini / Claude
             </p>
           </div>
         </div>

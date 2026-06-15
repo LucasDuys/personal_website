@@ -136,9 +136,9 @@ export default function Home() {
             >
               Lucas Duys
             </motion.h1>
-            <p className="mt-4 max-w-[32ch] text-[20px] leading-[1.45] sm:text-[22px]" style={{ color: MUTED }}>
-              I build AI infrastructure that lets European companies put their own data to work —
-              securely, on their own servers, or fully air-gapped.
+            <p className="mt-4 max-w-[34ch] text-[20px] leading-[1.45] sm:text-[22px]" style={{ color: MUTED }}>
+              I&apos;m building self-learning agentic infrastructure that finds any piece of company
+              knowledge instantly, spots the repetitive work, and deploys agents to do it.
             </p>
 
             {OPEN_TO_WORK && (
@@ -221,33 +221,32 @@ export default function Home() {
             </div>
 
             <h2 className="mt-6 text-[34px] font-semibold leading-[1.08] tracking-[-0.02em] sm:text-[42px]">
-              An EU-sovereign runtime for AI on company data.
+              Self-learning agentic infrastructure for company knowledge.
             </h2>
 
             <div className="mt-8 space-y-7">
               <div>
                 <h3 className="font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.16em]" style={{ color: MUTED }}>The problem</h3>
                 <p className="mt-2 text-[16.5px] leading-[1.6]" style={{ color: INK }}>
-                  European companies sit on years of internal knowledge but can&apos;t hand it to a
-                  foreign cloud model — for legal, security, and sovereignty reasons. So most of that
-                  data never reaches AI at all.
+                  Teams waste hours digging through more than five tools to find a single answer — then
+                  repeat the same manual work over and over. Most of a company&apos;s knowledge never
+                  reaches AI at all.
                 </p>
               </div>
               <div>
                 <h3 className="font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.16em]" style={{ color: MUTED }}>What it is</h3>
                 <p className="mt-2 text-[16.5px] leading-[1.6]" style={{ color: INK }}>
-                  A permission-aware knowledge layer that sits beneath a company&apos;s apps and above
-                  any model. It mounts connectors — Drive, Slack, Notion, GitHub, Gmail, Postgres — so
-                  governed agents can act on company data on the customer&apos;s own GPUs, or fully
-                  air-gapped, with a hash-chained, tamper-evident audit log and EU AI Act documentation.
+                  Stacklink connects to the tools a company already uses and learns how they work. It
+                  finds any piece of knowledge instantly, spots the repetitive workflows, and deploys
+                  agents to handle them — so people can stop searching and start deciding.
                 </p>
               </div>
               <div>
-                <h3 className="font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.16em]" style={{ color: MUTED }}>Under the hood</h3>
+                <h3 className="font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.16em]" style={{ color: MUTED }}>On your terms</h3>
                 <p className="mt-2 text-[16.5px] leading-[1.6]" style={{ color: MUTED }}>
-                  A 60+ package TypeScript monorepo, 8 deployable services (TS/Go/Python),
-                  hybrid-retrieval RAG on Postgres/pgvector — BM25 + HNSW + reciprocal-rank fusion,
-                  ACL pre-filter and post-check, with reranking.
+                  Runs on the company&apos;s own servers, or fully air-gapped, with a tamper-evident
+                  trail of every agent action — so even regulated, sensitive knowledge can finally
+                  reach AI.
                 </p>
               </div>
             </div>
@@ -313,7 +312,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1180px] px-6 pt-24 lg:px-10">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {[
-            ['/images/me/cofounders.jpg', 'The founding team', 'Lucas (right) & Julius Brussee', 'Lucas with Stacklink co-founder Julius Brussee at the TU/e Contest'],
+            ['/images/me/cofounders.jpg', 'The founding team', 'Lucas (right) with his co-founder', 'Lucas with his Stacklink co-founder at the TU/e Contest'],
             ['/images/me/award.jpg', 'First Runner-Up', 'TU/e Contest 2026 finals', 'First Runner-Up at the TU/e Contest 2026 finals'],
           ].map(([src, title, sub, alt]) => (
             <figure key={src} className="group relative overflow-hidden rounded-[14px]" style={{ border: `1px solid ${LINE}` }}>
@@ -378,7 +377,7 @@ export default function Home() {
         </div>
 
         <div className="mt-10 flex flex-wrap gap-2.5">
-          {['TypeScript', 'Python', 'Go', 'React / Next.js', 'RAG & hybrid retrieval', 'Multi-agent systems', 'Postgres / pgvector', 'LLM & agent engineering', 'LangSmith / LangChain'].map((s) => (
+          {['TypeScript', 'Python', 'Go', 'React / Next.js', 'PostgreSQL', 'Multi-agent systems', 'LLM & agent engineering', 'GPT / Gemini / Claude', 'LangSmith'].map((s) => (
             <span key={s} className="rounded-full px-3.5 py-1.5 text-[13px]" style={{ border: `1px solid ${LINE}`, backgroundColor: '#fff', color: MUTED }}>{s}</span>
           ))}
         </div>
@@ -394,15 +393,12 @@ export default function Home() {
             </div>
           </div>
           <div className="max-w-[60ch]">
-            <p className="text-[22px] font-medium leading-[1.3] tracking-[-0.01em] sm:text-[26px]">
-              I build AI systems that make it to production — and get used.
+            <p className="text-[20px] leading-[1.5] sm:text-[23px]">
+              At Stacklink, I&apos;m a co-founder building self-learning agentic infrastructure that
+              finds any piece of company knowledge instantly, spots the repetitive work, and deploys
+              agents to do it.
             </p>
-            <p className="mt-6 text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
-              At Stacklink, my co-founder Julius Brussee and I are building self-learning agentic
-              infrastructure that finds any piece of company knowledge instantly, spots the repetitive
-              work, and deploys agents to do it.
-            </p>
-            <p className="mt-4 text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
+            <p className="mt-5 text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
               At cape.io, I scale and harden AI agent systems — making agent-driven workflows reliable
               enough for real production, where architecture and observability matter as much as the
               model.
@@ -418,8 +414,8 @@ export default function Home() {
       <section id="contact" className="mx-auto mt-28 max-w-[1180px] px-6 lg:px-10">
         <div className="rounded-[20px] px-8 py-14 text-center lg:px-16 lg:py-20" style={{ backgroundColor: INK, color: '#fff' }}>
           <p className="font-[family-name:var(--font-mono)] text-[12px] uppercase tracking-[0.2em]" style={{ color: '#8C8C96' }}>Let&apos;s talk</p>
-          <h2 className="mx-auto mt-4 max-w-[18ch] text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] sm:text-[44px]">
-            Building, buying, or just curious about sovereign AI?
+          <h2 className="mx-auto mt-4 max-w-[20ch] text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] sm:text-[44px]">
+            Building, buying, or just curious about agentic AI for your company?
           </h2>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href="mailto:lucas.duys@gmail.com" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[14.5px] font-medium transition-transform hover:-translate-y-px" style={{ backgroundColor: '#fff', color: INK }}>

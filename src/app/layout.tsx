@@ -6,15 +6,15 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://lucasduys.com'),
   title: 'Lucas Duys — Co-founder, Stacklink',
   description:
-    'Lucas Duys — co-founder of Stacklink, building EU-sovereign AI infrastructure that lets European companies put their own data to work with AI. AI Engineering Intern at cape.io. CS & Engineering at TU Eindhoven.',
+    'Lucas Duys — co-founder of Stacklink, building self-learning agentic infrastructure that finds any piece of company knowledge instantly and automates the repetitive work. AI Engineering Intern at cape.io. CS & Engineering at TU Eindhoven.',
   keywords: [
     'Lucas Duys',
     'Stacklink',
     'co-founder',
-    'EU-sovereign AI',
+    'agentic infrastructure',
+    'AI agents',
+    'knowledge management',
     'AI infrastructure',
-    'agentic runtime',
-    'RAG',
     'TU Eindhoven',
     'AI engineer',
   ],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Lucas Duys — Co-founder, Stacklink',
     description:
-      'Building EU-sovereign AI infrastructure for European companies. In pilot with the second-largest company in the Netherlands.',
+      'Self-learning agentic infrastructure that finds any company knowledge instantly and automates the repetitive work. In pilot with the second-largest company in the Netherlands.',
     url: 'https://lucasduys.com',
     type: 'website',
     locale: 'en_US',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Lucas Duys — Co-founder, Stacklink',
-    description: 'Building EU-sovereign AI infrastructure for European companies.',
+    description: 'Self-learning agentic infrastructure for company knowledge — find anything instantly, automate the repetitive work.',
     images: ['/images/me/stage-pitch.jpg'],
   },
   robots: { index: true, follow: true },

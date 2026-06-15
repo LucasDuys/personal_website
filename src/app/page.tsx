@@ -313,7 +313,7 @@ export default function Home() {
       <section className="mx-auto max-w-[1180px] px-6 pt-24 lg:px-10">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {[
-            ['/images/me/cofounders.jpg', 'The founding team', 'Lucas (right) & co-founder', 'Lucas with his Stacklink co-founder at the TU/e Contest'],
+            ['/images/me/cofounders.jpg', 'The founding team', 'Lucas (right) & Julius Brussee', 'Lucas with Stacklink co-founder Julius Brussee at the TU/e Contest'],
             ['/images/me/award.jpg', 'First Runner-Up', 'TU/e Contest 2026 finals', 'First Runner-Up at the TU/e Contest 2026 finals'],
           ].map(([src, title, sub, alt]) => (
             <figure key={src} className="group relative overflow-hidden rounded-[14px]" style={{ border: `1px solid ${LINE}` }}>
@@ -398,14 +398,14 @@ export default function Home() {
               I build AI systems that make it to production — and get used.
             </p>
             <p className="mt-6 text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
-              At Stacklink, I&apos;m a co-founder building an enterprise knowledge platform that turns a
-              company&apos;s scattered documents, chat, and code into one searchable, citation-grounded
-              source of truth — RAG and pgvector, multi-tenant from the ground up.
+              At Stacklink, my co-founder Julius Brussee and I are building self-learning agentic
+              infrastructure that finds any piece of company knowledge instantly, spots the repetitive
+              work, and deploys agents to do it.
             </p>
             <p className="mt-4 text-[16.5px] leading-[1.7]" style={{ color: MUTED }}>
-              At cape.io, I work on agentic infrastructure: scaling AI agent systems and making
-              agent-driven workflows reliable enough for real production — where architecture and
-              observability matter as much as the model.
+              At cape.io, I scale and harden AI agent systems — making agent-driven workflows reliable
+              enough for real production, where architecture and observability matter as much as the
+              model.
             </p>
             <p className="mt-6 font-[family-name:var(--font-mono)] text-[12.5px]" style={{ color: MUTED }}>
               CS &amp; Engineering @ TU Eindhoven · TypeScript, Next.js, Postgres · GPT / Gemini / Claude

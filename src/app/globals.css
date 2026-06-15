@@ -21,20 +21,21 @@
 }
 
 html {
-  scroll-behavior: auto;
-  background: var(--bg);
-  color: var(--text-primary);
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+  background: #FBFBFD;
+  color: #0E0E14;
 }
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
-  background: var(--bg);
+  background: #FBFBFD;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(74, 222, 128, 0.2);
-  color: var(--text-primary);
+  background: rgba(47, 98, 220, 0.16);
+  color: #0E0E14;
 }
 
 @keyframes blink {

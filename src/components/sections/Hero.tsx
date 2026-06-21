@@ -8,7 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 const ROLES = [
   'CS & Engineering @ TU Eindhoven',
   'AI Intern @ cape.io',
-  'Building Pitchr.live',
   'Full-Stack Developer',
 ];
 
@@ -153,7 +152,7 @@ export function Hero({ onOpenCommandPalette }: HeroProps = {}) {
   const greetRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const roleRef = useRef<HTMLDivElement>(null);
-  const photoRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollIndRef = useRef<HTMLDivElement>(null);
 
@@ -342,20 +341,18 @@ export function Hero({ onOpenCommandPalette }: HeroProps = {}) {
           <RoleCycler startDelay={1800} />
         </div>
 
-        {/* On-stage photo */}
-        <div ref={photoRef} className="mx-auto mb-10 w-full max-w-[420px]" style={{ opacity: 0 }}>
-          <div className="overflow-hidden rounded-lg border border-[var(--border)] shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-            <img
-              src="/images/me/stage-pitch.jpg"
-              alt="Lucas presenting Stacklink on stage at the TU/e Contest finals"
-              className="block w-full aspect-[16/9] object-cover"
-            />
-          </div>
-          <p className="font-mono text-[11px] text-[var(--text-muted)] mt-2 text-left">
-            <span className="text-[var(--accent-green)]">&gt; </span>
-            on stage &mdash; First Runner-Up, TU/e Contest 2026
-          </p>
-        </div>
+        {/* On-stage photo — framed as a file-viewer card in the site's design system */}
+        <figure ref={photoRef} className="mx-auto mb-10 w-full max-w-[440px] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface-1)]" style={{ opacity: 0 }}>
+          <img
+            src="/images/me/stage-pitch.jpg"
+            alt="Lucas presenting Stacklink on stage at the TU/e Contest finals"
+            className="block w-full"
+          />
+          <figcaption className="flex items-center gap-2 px-3 py-2 border-t border-[var(--border)] font-mono text-[11px] text-[var(--text-muted)] text-left">
+            <span className="text-[var(--accent-green)]">&gt;</span>
+            <span>on stage &mdash; First Runner-Up, TU/e Contest 2026</span>
+          </figcaption>
+        </figure>
 
         {/* CTAs */}
         <div ref={ctaRef} className="flex flex-col items-center gap-4" style={{ opacity: 0 }}>

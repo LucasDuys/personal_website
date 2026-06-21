@@ -24,6 +24,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     company: 'Stacklink',
     companyColor: 'var(--accent-cyan)',
     description: [
+      'First Runner-Up at the TU/e Contest 2026 finals, pitching Stacklink on stage to the jury',
       'In pilot with the second-largest company in the Netherlands, with 60+ companies in the sales pipeline',
       'Co-founding an EU-sovereign agentic runtime: a permission-aware knowledge layer that lets governed AI agents act on company data, deployable on the customer’s own GPUs or fully air-gapped',
       'Architected as a 60+-package TypeScript monorepo with 8 deployable services (TS / Go / Python), where Cloud vs Sovereign is a config swap, not a code fork — every backend (model, embedding, sandbox, connector, audit) sits behind a versioned adapter',

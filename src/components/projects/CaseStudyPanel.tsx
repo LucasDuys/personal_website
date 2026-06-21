@@ -38,7 +38,7 @@ const caseStudies: Record<string, CaseStudyContent> = {
       'Hash-chained, tamper-evident audit log and EU AI Act documentation built in',
       'Built as a 60+-package TypeScript monorepo across 8 deployable services (TS / Go / Python)',
     ],
-    outcome: 'In pilot with the second-largest company in the Netherlands, with 60+ companies in the pipeline. Co-founded with Julius Brussee, targeting the European mid-market that wants AI without routing data through US jurisdiction.',
+    outcome: 'First Runner-Up at the TU/e Contest 2026 finals. In pilot with the second-largest company in the Netherlands, with 60+ companies in the pipeline. Co-founded with Julius Brussee, targeting the European mid-market that wants AI without routing data through US jurisdiction.',
   },
   cape: {
     problem: 'Enterprise agentic systems were slow, expensive, and inaccurate. The existing pipeline handled 20 inputs in 55s with under 50% accuracy, burning through 190k tokens per run.',
@@ -361,6 +361,53 @@ export function CaseStudyPanel({ project, onClose }: CaseStudyPanelProps) {
                     </p>
                   )}
                 </CLISection>
+
+                {/* Recognition — TU/e Contest (Stacklink only) */}
+                {project.slug === 'stacklink' && (
+                  <CLISection command="cat RECOGNITION.md" accentColor={project.accentColor}>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1.5">
+                      <span className="font-sans text-sm font-bold text-[var(--accent-amber)]">
+                        First Runner-Up
+                      </span>
+                      <span className="font-mono text-[11px] text-[var(--text-muted)]">&middot;</span>
+                      <span className="font-mono text-[11px] text-[var(--text-secondary)]">
+                        TU/e Contest 2026 &mdash; finals
+                      </span>
+                    </div>
+                    <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-4">
+                      Pitched Stacklink on stage at the TU/e Contest finals and placed first runner-up.
+                    </p>
+                    <figure className="mb-3">
+                      <img
+                        src="/images/me/stage-pitch.jpg"
+                        alt="Lucas presenting Stacklink on stage at the TU/e Contest finals"
+                        loading="lazy"
+                        className="w-full rounded-lg border border-[var(--border)]"
+                      />
+                      <figcaption className="font-mono text-[10px] text-[var(--text-muted)] mt-1.5">
+                        &gt; pitching Stacklink &mdash; TU/e Contest finals
+                      </figcaption>
+                    </figure>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {[
+                        { src: 'award.jpg', cap: 'First Runner-Up — TU/e Contest 2026', alt: 'First Runner-Up award at the TU/e Contest 2026 finals' },
+                        { src: 'cofounders.jpg', cap: 'With co-founder Julius Brussee', alt: 'Lucas with his Stacklink co-founder at the TU/e Contest' },
+                      ].map((ph) => (
+                        <figure key={ph.src}>
+                          <img
+                            src={`/images/me/${ph.src}`}
+                            alt={ph.alt}
+                            loading="lazy"
+                            className="w-full rounded-lg border border-[var(--border)] aspect-[16/10] object-cover"
+                          />
+                          <figcaption className="font-mono text-[10px] text-[var(--text-muted)] mt-1.5">
+                            &gt; {ph.cap}
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  </CLISection>
+                )}
 
                 {/* Outcome */}
                 {content.outcome && (

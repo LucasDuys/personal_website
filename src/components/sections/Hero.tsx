@@ -153,6 +153,7 @@ export function Hero({ onOpenCommandPalette }: HeroProps = {}) {
   const greetRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const roleRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollIndRef = useRef<HTMLDivElement>(null);
 
@@ -201,6 +202,16 @@ export function Hero({ onOpenCommandPalette }: HeroProps = {}) {
         );
       }
 
+      // On-stage photo
+      if (photoRef.current) {
+        tl.fromTo(
+          photoRef.current,
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+          '-=0.1'
+        );
+      }
+
       // CTAs
       if (ctaRef.current) {
         tl.fromTo(
@@ -245,6 +256,9 @@ export function Hero({ onOpenCommandPalette }: HeroProps = {}) {
       }
       if (roleRef.current) {
         gsap.fromTo(roleRef.current, { y: 0, opacity: 1 }, { y: -40, opacity: 0, ease: 'none', scrollTrigger: trigger });
+      }
+      if (photoRef.current) {
+        gsap.fromTo(photoRef.current, { y: 0, opacity: 1 }, { y: -50, opacity: 0, ease: 'none', scrollTrigger: trigger });
       }
       if (ctaRef.current) {
         gsap.fromTo(ctaRef.current, { y: 0, opacity: 1 }, { y: 20, opacity: 0, ease: 'none', scrollTrigger: trigger });
@@ -323,9 +337,24 @@ export function Hero({ onOpenCommandPalette }: HeroProps = {}) {
         </h1>
 
         {/* Role cycler */}
-        <div ref={roleRef} className="font-mono text-sm md:text-base mb-10" style={{ opacity: 0 }}>
+        <div ref={roleRef} className="font-mono text-sm md:text-base mb-8" style={{ opacity: 0 }}>
           <span className="text-[var(--text-muted)]">$ title: </span>
           <RoleCycler startDelay={1800} />
+        </div>
+
+        {/* On-stage photo */}
+        <div ref={photoRef} className="mx-auto mb-10 w-full max-w-[420px]" style={{ opacity: 0 }}>
+          <div className="overflow-hidden rounded-lg border border-[var(--border)] shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+            <img
+              src="/images/me/stage-pitch.jpg"
+              alt="Lucas presenting Stacklink on stage at the TU/e Contest finals"
+              className="block w-full aspect-[16/9] object-cover"
+            />
+          </div>
+          <p className="font-mono text-[11px] text-[var(--text-muted)] mt-2 text-left">
+            <span className="text-[var(--accent-green)]">&gt; </span>
+            on stage &mdash; First Runner-Up, TU/e Contest 2026
+          </p>
         </div>
 
         {/* CTAs */}

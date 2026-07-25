@@ -1,133 +1,91 @@
 @import "tailwindcss";
 
+/*
+  Daylight tokens. Light-first, monochrome chrome, one functional blue.
+  Shape rule: buttons/chips/inputs 8px, content cards 16px. Numbers are mono.
+  Dashed border = in flight. Solid border + 2px left accent = shipped/cited.
+*/
 :root {
-  --bg: #06060A;
-  --surface-1: #0E0E14;
-  --surface-2: #16161F;
-  --border: #1E1E2E;
-  --text-primary: #E8E6E3;
-  --text-secondary: #A8A8B8;
-  --text-muted: #80808F;
-  --accent-green: #4ADE80;
-  --accent-cyan: #22D3EE;
-  --accent-purple: #A78BFA;
-  --accent-amber: #FBBF24;
-  --synapse-blue: #2E7DFF;
+  --canvas: hsl(40 14% 96%);
+  --sheet: hsl(0 0% 100%);
+  --sheet-2: hsl(40 20% 99%);
+  --hairline: hsl(40 8% 87%);
+  --hairline-strong: hsl(40 6% 78%);
+  --text-1: hsl(240 6% 10%);
+  --text-2: hsl(240 4% 32%);
+  --text-3: hsl(240 3% 44%);
+  --ink: hsl(240 6% 12%);
+  --on-ink: hsl(40 20% 97%);
+  --accent: hsl(211 92% 42%);
+  --ambient: hsl(203 90% 62%);
+  --shadow-rest: 0 1px 2px hsl(240 6% 10% / 0.04), 0 4px 16px hsl(240 6% 10% / 0.05);
+  --shadow-raised: 0 2px 4px hsl(240 6% 10% / 0.05), 0 12px 32px hsl(240 6% 10% / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: hsl(240 6% 7%);
+    --sheet: hsl(240 5% 10%);
+    --sheet-2: hsl(240 5% 12%);
+    --hairline: hsl(240 5% 18%);
+    --hairline-strong: hsl(240 5% 26%);
+    --text-1: hsl(40 10% 93%);
+    --text-2: hsl(240 5% 72%);
+    --text-3: hsl(240 4% 58%);
+    --ink: hsl(40 15% 93%);
+    --on-ink: hsl(240 6% 10%);
+    --accent: hsl(211 95% 64%);
+    --ambient: hsl(211 90% 55%);
+    --shadow-rest: 0 1px 2px hsl(0 0% 0% / 0.3), 0 4px 16px hsl(0 0% 0% / 0.25);
+    --shadow-raised: 0 2px 4px hsl(0 0% 0% / 0.35), 0 12px 32px hsl(0 0% 0% / 0.35);
+  }
 }
 
 @theme inline {
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
 }
 
 html {
-  scroll-behavior: auto;
-  background: var(--bg);
-  color: var(--text-primary);
+  background: var(--canvas);
+  color: var(--text-1);
 }
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
-  background: var(--bg);
+  background: var(--canvas);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: rgba(74, 222, 128, 0.2);
-  color: var(--text-primary);
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes scrollPulse {
-  0% { top: -12px; }
-  100% { top: 100%; }
-}
-
-@keyframes scanRotate {
-  from { --scan-angle: 0deg; }
-  to { --scan-angle: 360deg; }
-}
-
-@keyframes subtlePulse {
-  0%, 100% { box-shadow: none; }
-  50% { box-shadow: 0 0 8px rgba(74, 222, 128, 0.3); }
-}
-
-@property --scan-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.glow-green {
-  text-shadow: 0 0 20px rgba(74, 222, 128, 0.3), 0 0 40px rgba(74, 222, 128, 0.1);
-}
-
-.glow-cyan {
-  text-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.1);
-}
-
-.glow-purple {
-  text-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
-}
-
-.glow-amber {
-  text-shadow: 0 0 20px rgba(251, 191, 36, 0.3), 0 0 40px rgba(251, 191, 36, 0.1);
-}
-
-/* Skill labels: hidden on mobile, visible on md+ */
-.skill-label { display: none; }
-@media (min-width: 768px) { .skill-label { display: block; } }
-
-/* Mobile reading: ensure no body text drops below 14px on small screens. */
-@media (max-width: 480px) {
-  p, li { font-size: max(14px, 1em); }
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--text-1);
 }
 
 a, button, [role="button"] { cursor: pointer; }
 
-/* Visible keyboard focus rings on every interactive element.
-   Uses :focus-visible so mouse clicks don't show a ring, but keyboard
-   tabbing always does. Cyan accent on dark bg gives ~7:1 contrast. */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
-select:focus-visible,
-summary:focus-visible,
 [role="button"]:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
-/* Inputs already have an outline-none in components — re-enable focus
-   ring with a box-shadow so it works on top of existing borders. */
-input:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--accent-cyan);
-  outline-offset: 1px;
+/* The one decorative use of color: a single low-opacity radial behind the hero. */
+.ambient-sky {
+  background: radial-gradient(
+    ellipse 90% 60% at 70% 20%,
+    color-mix(in srgb, var(--ambient) 14%, transparent),
+    transparent 70%
+  );
 }
 
-/* Respect prefers-reduced-motion: collapse all animation, transition,
-   and scroll-behavior globally. Components with essential animations
-   (e.g. typewriter revealing text) should check window.matchMedia and
-   jump to their final state instead of using these durations. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -136,5 +94,15 @@ textarea:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-raised);
   }
 }

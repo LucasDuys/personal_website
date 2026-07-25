@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { jetbrainsMono, spaceGrotesk } from '@/styles/fonts';
+import { geistSans, geistMono, spaceGrotesk } from '@/styles/fonts';
 import { Providers } from '@/components/layout/Providers';
-import { LayoutShell } from '@/components/layout/LayoutShell';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -43,7 +42,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -51,9 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <Providers>
-          <LayoutShell>{children}</LayoutShell>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

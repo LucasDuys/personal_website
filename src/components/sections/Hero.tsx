@@ -1,390 +1,124 @@
 'use client';
-import { useEffect, useRef, useState, useCallback } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { HeroField } from '@/components/canvas/HeroField';
+import { useLenis } from '@/hooks/useLenis';
+import { SPRING } from '@/lib/motion';
 
-const ROLES = [
-  'CS & Engineering @ TU Eindhoven',
-  'AI Intern @ cape.io',
-  'Full-Stack Developer',
-];
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-// ---------- Role Cycler ----------
-function RoleCycler({ startDelay = 0 }: { startDelay?: number }) {
-  const [text, setText] = useState('');
-  const [started, setStarted] = useState(false);
-  const roleIndex = useRef(0);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setStarted(true), startDelay);
-    return () => clearTimeout(timer);
-  }, [startDelay]);
-
-  const typeRole = useCallback((role: string, onDone: () => void) => {
-    let i = 0;
-    const type = () => {
-      if (i >= role.length) {
-        onDone();
-        return;
-      }
-      i++;
-      setText(role.slice(0, i));
-      timeoutRef.current = setTimeout(type, 40);
-    };
-    timeoutRef.current = setTimeout(type, 40);
-  }, []);
-
-  const deleteRole = useCallback((role: string, onDone: () => void) => {
-    let i = role.length;
-    const del = () => {
-      if (i <= 0) {
-        onDone();
-        return;
-      }
-      i--;
-      setText(role.slice(0, i));
-      timeoutRef.current = setTimeout(del, 25);
-    };
-    timeoutRef.current = setTimeout(del, 25);
-  }, []);
-
-  const cycle = useCallback(() => {
-    const role = ROLES[roleIndex.current % ROLES.length];
-    typeRole(role, () => {
-      timeoutRef.current = setTimeout(() => {
-        deleteRole(role, () => {
-          roleIndex.current++;
-          timeoutRef.current = setTimeout(cycle, 200);
-        });
-      }, 2500);
-    });
-  }, [typeRole, deleteRole]);
-
-  useEffect(() => {
-    if (!started) return;
-    cycle();
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, [started, cycle]);
-
-  if (!started) return null;
-
-  return (
-    <span className="text-[var(--text-primary)]">
-      {text}
-      <span
-        className="inline-block w-2 h-[18px] bg-[var(--accent-green)] ml-[1px] align-middle"
-        style={{ animation: 'blink 1.06s step-end infinite' }}
-      />
-    </span>
-  );
-}
-
-// ---------- Live Clock ----------
-function LiveClock() {
-  const [time, setTime] = useState('');
-  const [date, setDate] = useState('');
-
-  useEffect(() => {
-    const update = () => {
-      const now = new Date();
-      const opts: Intl.DateTimeFormatOptions = {
-        timeZone: 'Europe/Amsterdam',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      };
-      setTime(now.toLocaleTimeString('en-GB', opts));
-      setDate(
-        now.toLocaleDateString('en-GB', {
-          timeZone: 'Europe/Amsterdam',
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        })
-      );
-    };
-    update();
-    const interval = setInterval(update, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="text-right font-mono text-xs text-[var(--text-muted)]">
-      <div className="text-[var(--text-secondary)]">{time} <span className="text-[var(--text-muted)]">CET</span></div>
-      <div>{date}</div>
-    </div>
-  );
-}
-
-// ---------- Scroll Indicator ----------
-function ScrollIndicator() {
-  return (
-    <div className="flex flex-col items-center gap-2 font-mono text-xs text-[var(--text-muted)]">
-      <span>scroll</span>
-      <div className="relative w-[1px] h-8 bg-[var(--border)] overflow-hidden">
-        <div
-          className="absolute w-full h-3 bg-[var(--accent-green)]"
-          style={{ animation: 'scrollPulse 2s ease-in-out infinite' }}
-        />
-      </div>
-      <svg width="12" height="8" viewBox="0 0 12 8" fill="none" className="text-[var(--text-muted)]">
-        <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    </div>
-  );
-}
-
-// ---------- Hero ----------
-interface HeroProps {
-  onOpenCommandPalette?: () => void;
-}
-
-export function Hero({ onOpenCommandPalette }: HeroProps = {}) {
+export function Hero() {
+  const { scrollTo } = useLenis();
+  const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const cornersRef = useRef<HTMLDivElement>(null);
-  const greetRef = useRef<HTMLDivElement>(null);
-  const nameRef = useRef<HTMLHeadingElement>(null);
-  const roleRef = useRef<HTMLDivElement>(null);
-  const photoRef = useRef<HTMLElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const scrollIndRef = useRef<HTMLDivElement>(null);
 
-  // Entrance animation
+  // Photo card commits shortly after the page settles: dashed -> solid
+  const [committed, setCommitted] = useState(false);
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.2 });
+    if (reduce) {
+      setCommitted(true);
+      return;
+    }
+    const t = setTimeout(() => setCommitted(true), 1600);
+    return () => clearTimeout(t);
+  }, [reduce]);
 
-      // Corners fade in
-      const corners = cornersRef.current?.querySelectorAll('.hud-corner');
-      if (corners) {
-        tl.fromTo(
-          corners,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.5, stagger: 0.15, ease: 'power2.out' }
-        );
-      }
+  // Scroll parallax: content drifts up and fades as the hero leaves
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const yText = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -70]);
+  const yCard = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -30]);
+  const fade = useTransform(scrollYProgress, [0, 0.7], [1, reduce ? 1 : 0]);
 
-      // Greeting
-      if (greetRef.current) {
-        tl.fromTo(
-          greetRef.current,
-          { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
-          '-=0.2'
-        );
-      }
-
-      // Name
-      if (nameRef.current) {
-        tl.fromTo(
-          nameRef.current,
-          { opacity: 0, scale: 0.96 },
-          { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' },
-          '-=0.3'
-        );
-      }
-
-      // Role
-      if (roleRef.current) {
-        tl.fromTo(
-          roleRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.4, ease: 'power2.out' },
-          '-=0.2'
-        );
-      }
-
-      // On-stage photo
-      if (photoRef.current) {
-        tl.fromTo(
-          photoRef.current,
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
-          '-=0.1'
-        );
-      }
-
-      // CTAs
-      if (ctaRef.current) {
-        tl.fromTo(
-          ctaRef.current,
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
-          '-=0.2'
-        );
-      }
-
-      // Scroll indicator
-      if (scrollIndRef.current) {
-        tl.fromTo(
-          scrollIndRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.5, ease: 'power2.out' },
-          '-=0.1'
-        );
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Scroll parallax
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (!sectionRef.current) return;
-
-      const trigger: ScrollTrigger.Vars = {
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 0.8,
-      };
-
-      if (nameRef.current) {
-        gsap.fromTo(nameRef.current, { y: 0, opacity: 1 }, { y: -60, opacity: 0, ease: 'none', scrollTrigger: trigger });
-      }
-      if (greetRef.current) {
-        gsap.fromTo(greetRef.current, { y: 0, opacity: 1 }, { y: -30, opacity: 0, ease: 'none', scrollTrigger: trigger });
-      }
-      if (roleRef.current) {
-        gsap.fromTo(roleRef.current, { y: 0, opacity: 1 }, { y: -40, opacity: 0, ease: 'none', scrollTrigger: trigger });
-      }
-      if (photoRef.current) {
-        gsap.fromTo(photoRef.current, { y: 0, opacity: 1 }, { y: -50, opacity: 0, ease: 'none', scrollTrigger: trigger });
-      }
-      if (ctaRef.current) {
-        gsap.fromTo(ctaRef.current, { y: 0, opacity: 1 }, { y: 20, opacity: 0, ease: 'none', scrollTrigger: trigger });
-      }
-      if (cornersRef.current) {
-        gsap.fromTo(cornersRef.current, { opacity: 1 }, { opacity: 0, ease: 'none', scrollTrigger: trigger });
-      }
-      if (scrollIndRef.current) {
-        gsap.fromTo(scrollIndRef.current, { y: 0, opacity: 1 }, { y: 15, opacity: 0, ease: 'none', scrollTrigger: { ...trigger, end: '40% top' } });
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const enter = (delay: number) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 22 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8, delay, ease: EASE },
+        };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center"
-    >
-      {/* HUD corners */}
-      <div ref={cornersRef} className="absolute inset-0 pointer-events-none">
-        {/* Top-left: location */}
-        <div className="hud-corner absolute top-6 left-6 md:top-10 md:left-10" style={{ opacity: 0 }}>
-          <div className="flex items-center gap-2 font-mono text-xs text-[var(--text-muted)]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-green)] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-green)]" />
-            </span>
-            <span className="text-[var(--text-secondary)]">Eindhoven, NL</span>
-          </div>
-          <div className="font-mono text-xs text-[var(--text-muted)] mt-0.5 ml-4">
-            51.4416&deg;N, 5.4697&deg;E
-          </div>
-        </div>
+    <section ref={sectionRef} className="relative min-h-[100dvh] flex items-center overflow-hidden">
+      <div className="ambient-sky absolute inset-0 pointer-events-none" aria-hidden="true" />
+      <HeroField />
 
-        {/* Top-right: clock */}
-        <div className="hud-corner absolute top-6 right-6 md:top-10 md:right-10" style={{ opacity: 0 }}>
-          <LiveClock />
-        </div>
+      <div className="relative w-full max-w-6xl mx-auto px-5 md:px-10 pt-24 pb-16 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+        <motion.div style={{ y: yText, opacity: fade }}>
+          <motion.h1
+            {...enter(0.05)}
+            className="font-[family-name:var(--font-display)] font-semibold text-[var(--text-1)] text-5xl md:text-6xl tracking-tight leading-[1.02]"
+          >
+            Lucas Duys
+          </motion.h1>
+          <motion.p
+            {...enter(0.16)}
+            className="mt-6 text-lg md:text-xl text-[var(--text-2)] leading-relaxed max-w-[46ch]"
+          >
+            I build AI tooling: agents, dev workflows, and the glue around them.
+          </motion.p>
+          <motion.p {...enter(0.24)} className="mt-3 text-sm text-[var(--text-3)] max-w-[52ch]">
+            CS at TU Eindhoven. Co-founder at Stacklink. AI engineering intern at cape.io.
+          </motion.p>
+          <motion.div {...enter(0.34)} className="mt-9 flex flex-wrap items-center gap-3">
+            <motion.button
+              onClick={() => scrollTo('#projects')}
+              whileHover={reduce ? undefined : { y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={SPRING}
+              className="inline-flex items-center px-5 py-2.5 rounded-lg bg-[var(--ink)] text-[var(--on-ink)] text-sm font-medium"
+            >
+              See the work
+            </motion.button>
+            <motion.button
+              onClick={() => scrollTo('#contact')}
+              whileHover={reduce ? undefined : { y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={SPRING}
+              className="inline-flex items-center px-5 py-2.5 rounded-lg border border-[var(--hairline-strong)] text-sm text-[var(--text-1)] hover:border-[var(--text-3)] transition-colors duration-150"
+            >
+              Contact
+            </motion.button>
+          </motion.div>
+        </motion.div>
 
-        {/* Bottom-left: section index */}
-        <div className="hud-corner absolute bottom-6 left-6 md:bottom-10 md:left-10 font-mono text-xs text-[var(--text-muted)]" style={{ opacity: 0 }}>
-          <span className="text-[var(--accent-green)]">// </span>001 - hero
-        </div>
-
-        {/* Bottom-right: scroll indicator */}
-        <div ref={scrollIndRef} className="hud-corner absolute bottom-6 right-6 md:bottom-10 md:right-10" style={{ opacity: 0 }}>
-          <ScrollIndicator />
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div ref={contentRef} className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        {/* Greeting */}
-        <div ref={greetRef} className="font-mono text-sm mb-4" style={{ opacity: 0 }}>
-          <span className="text-[var(--accent-green)]">&gt; </span>
-          <span className="text-[var(--text-secondary)]">Hello, I&apos;m</span>
-        </div>
-
-        {/* Name */}
-        <h1
-          ref={nameRef}
-          className="font-sans font-bold mb-6"
-          style={{
-            opacity: 0,
-            fontSize: 'clamp(56px, 8vw, 120px)',
-            lineHeight: 1.05,
-            background: 'linear-gradient(135deg, var(--text-primary) 60%, var(--accent-cyan) 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
+        {/* The proof: a real artifact that commits on arrival (dashed -> solid) */}
+        <motion.figure
+          {...enter(0.3)}
+          style={{ y: yCard, opacity: fade }}
+          className={`relative rounded-2xl bg-[var(--sheet)] overflow-hidden transition-shadow duration-700 ${
+            committed
+              ? 'border border-[var(--hairline)]'
+              : 'border border-dashed border-[var(--hairline-strong)]'
+          }`}
         >
-          Lucas Duys
-        </h1>
-
-        {/* Role cycler */}
-        <div ref={roleRef} className="font-mono text-sm md:text-base mb-8" style={{ opacity: 0 }}>
-          <span className="text-[var(--text-muted)]">$ title: </span>
-          <RoleCycler startDelay={1800} />
-        </div>
-
-        {/* On-stage photo — framed as a file-viewer card in the site's design system */}
-        <figure ref={photoRef} className="mx-auto mb-10 w-full max-w-[440px] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface-1)]" style={{ opacity: 0 }}>
+          <motion.span
+            aria-hidden="true"
+            className="absolute left-[-1px] top-6 bottom-6 w-[2px] rounded-full bg-[var(--accent)] origin-top z-10"
+            initial={false}
+            animate={{ scaleY: committed ? 1 : 0 }}
+            transition={SPRING}
+          />
+          {committed && (
+            <span className="absolute inset-0 pointer-events-none" style={{ boxShadow: 'var(--shadow-raised)' }} aria-hidden="true" />
+          )}
           <img
             src="/images/me/stage-pitch.jpg"
             alt="Lucas presenting Stacklink on stage at the TU/e Contest finals"
             className="block w-full"
+            fetchPriority="high"
           />
-          <figcaption className="flex items-center gap-2 px-3 py-2 border-t border-[var(--border)] font-mono text-[11px] text-[var(--text-muted)] text-left">
-            <span className="text-[var(--accent-green)]">&gt;</span>
-            <span>on stage &mdash; First Runner-Up, TU/e Contest 2026</span>
+          <figcaption className="px-4 py-3 border-t border-[var(--hairline)] text-[13px] text-[var(--text-2)] flex items-baseline justify-between gap-4">
+            <span>TU/e Contest finals, pitching Stacklink</span>
+            <span className="font-mono text-xs text-[var(--text-3)] whitespace-nowrap">
+              First runner-up · 2026
+            </span>
           </figcaption>
-        </figure>
-
-        {/* CTAs */}
-        <div ref={ctaRef} className="flex flex-col items-center gap-4" style={{ opacity: 0 }}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => {
-                const lenis = (window as any).__lenis;
-                if (lenis) lenis.scrollTo('#projects', { duration: 1.5 });
-                else document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm bg-[var(--accent-green)] text-[var(--bg)] font-semibold transition-all duration-200 hover:shadow-[0_0_20px_rgba(74,222,128,0.3)] hover:scale-[1.02]"
-            >
-              $ cd ./projects <span className="opacity-70 group-hover:opacity-100 transition-opacity">&crarr;</span>
-            </button>
-            <button
-              onClick={() => {
-                const lenis = (window as any).__lenis;
-                if (lenis) lenis.scrollTo('#contact', { duration: 2.0 });
-                else document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm border border-[var(--border)] text-[var(--text-secondary)] transition-all duration-200 hover:border-[var(--accent-green)] hover:text-[var(--text-primary)]"
-            >
-              $ contact --open <span className="opacity-70 group-hover:opacity-100 transition-opacity">&crarr;</span>
-            </button>
-          </div>
-          <button
-            onClick={() => onOpenCommandPalette?.()}
-            className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs border border-[var(--border)] text-[var(--text-muted)] transition-all duration-200 hover:border-[var(--accent-green)]/30 hover:text-[var(--text-secondary)] mt-1"
-          >
-            $ search --all <kbd className="px-1.5 py-0.5 border border-[var(--border)] rounded text-[var(--text-secondary)] ml-1 text-[10px]">{'\u2318'}K</kbd>
-          </button>
-        </div>
+        </motion.figure>
       </div>
     </section>
   );

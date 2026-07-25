@@ -1,205 +1,75 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
-import { gsap, ScrollTrigger } from '@/lib/registry';
-import { SectionWrapper } from '@/components/ui/SectionWrapper';
-import { CLIPrompt } from '@/components/ui/CLIPrompt';
-import { CipherText } from '@/components/ui/CipherText';
+import { useState, useCallback } from 'react';
+import { RiseGroup, RiseItem } from '@/components/ui/Motion';
 
-function CopyButton({ text }: { text: string }) {
+function CopyEmail() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(text).then(() => {
+    navigator.clipboard.writeText('lucas.duys@gmail.com').then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
-  }, [text]);
+  }, []);
 
   return (
     <button
       onClick={handleCopy}
-      className="font-mono text-[10px] px-2 py-0.5 rounded border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--accent-green)] hover:border-[var(--accent-green)] transition-colors"
+      className="px-2.5 py-1 rounded-lg border border-[var(--hairline)] text-xs text-[var(--text-2)] hover:border-[var(--hairline-strong)] hover:text-[var(--text-1)] transition-colors duration-150"
     >
-      {copied ? 'copied!' : 'copy'}
+      {copied ? 'Copied' : 'Copy'}
     </button>
   );
 }
 
 export function Contact() {
-  const [cliDone, setCliDone] = useState(false);
-  const responseRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!cliDone) return;
-    const ctx = gsap.context(() => {
-      if (responseRef.current) {
-        gsap.from(responseRef.current, {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: responseRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-        });
-      }
-
-      if (linksRef.current) {
-        const links = linksRef.current.querySelectorAll('.contact-link');
-        gsap.from(links, {
-          x: -16,
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: linksRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-        });
-      }
-
-      if (footerRef.current) {
-        gsap.from(footerRef.current, {
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top 95%',
-            toggleActions: 'play none none reverse',
-          },
-        });
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [cliDone]);
-
   return (
-    <SectionWrapper config={{ id: 'contact', index: '006', label: 'contact' }}>
-      <div ref={sectionRef}>
-        {/* CLI prompt */}
-        <div className="mb-8">
-          <CLIPrompt
-            command={`curl -X POST https://lucas.dev/contact --data '{"intent": "connect"}'`}
-            onComplete={() => setCliDone(true)}
-          />
-        </div>
+    <section id="contact" className="max-w-6xl mx-auto px-5 md:px-10 pt-28 md:pt-36 pb-10">
+      <RiseGroup>
+        <RiseItem>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[var(--text-1)] max-w-[24ch]">
+          Building something with AI that actually matters?
+        </h2>
+        <p className="mt-4 text-lg text-[var(--text-2)]">I want to hear about it.</p>
+        </RiseItem>
 
-        {cliDone && (
-          <div className="mt-6">
-            {/* HTTP Response */}
-            <div ref={responseRef} className="font-mono text-sm mb-10">
-              <div className="text-[var(--accent-green)] mb-3">
-                HTTP/1.1 200 OK
-              </div>
-              <div className="bg-[var(--surface-1)] rounded-lg border border-[var(--border)] p-6 max-w-[600px]">
-                <div className="space-y-1">
-                  <div>
-                    <span className="text-[var(--text-muted)]">{'{'}</span>
-                  </div>
-                  <div className="pl-4">
-                    <span className="text-[var(--accent-cyan)]">
-                      &quot;status&quot;
-                    </span>
-                    <span className="text-[var(--text-muted)]">: </span>
-                    <span className="text-[var(--accent-green)]">
-                      &quot;available&quot;
-                    </span>
-                    <span className="text-[var(--text-muted)]">,</span>
-                  </div>
-                  <div className="pl-4">
-                    <span className="text-[var(--accent-cyan)]">
-                      &quot;response_time&quot;
-                    </span>
-                    <span className="text-[var(--text-muted)]">: </span>
-                    <span className="text-[var(--accent-green)]">
-                      &quot;&lt;24h&quot;
-                    </span>
-                    <span className="text-[var(--text-muted)]">,</span>
-                  </div>
-                  <div className="pl-4">
-                    <span className="text-[var(--accent-cyan)]">
-                      &quot;message&quot;
-                    </span>
-                    <span className="text-[var(--text-muted)]">: </span>
-                    <span className="text-[var(--text-primary)] font-semibold">
-                      &quot;Let&apos;s build something.&quot;
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-[var(--text-muted)]">{'}'}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-3 text-xs text-[var(--accent-amber)]">
-                X-Powered-By: deadlines-and-curiosity
-              </div>
-            </div>
-
-            {/* Contact links */}
-            <div ref={linksRef} className="mb-12 space-y-4">
-              <div className="contact-link flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-sm">
-                <span className="text-[var(--accent-green)]">&rarr;</span>
-                <span className="text-[var(--text-muted)] w-16 sm:w-20">email</span>
-                <CipherText className="text-[var(--text-primary)] hover:text-[var(--accent-green)] transition-colors break-all">
-                  lucas.duys@gmail.com
-                </CipherText>
-                <CopyButton text="lucas.duys@gmail.com" />
-              </div>
-              <div className="contact-link flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-sm">
-                <span className="text-[var(--accent-green)]">&rarr;</span>
-                <span className="text-[var(--text-muted)] w-16 sm:w-20">linkedin</span>
-                <a
-                  href="https://linkedin.com/in/lucas-duys"
-                  className="text-[var(--text-primary)] hover:text-[var(--accent-green)] transition-colors"
-                >
-                  /in/lucas-duys
-                </a>
-                <a
-                  href="https://linkedin.com/in/lucas-duys"
-                  className="font-mono text-[10px] px-2 py-0.5 rounded border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--accent-green)] hover:border-[var(--accent-green)] transition-colors"
-                >
-                  open
-                </a>
-              </div>
-            </div>
-
-            {/* Final prompt */}
-            <div className="mb-4 font-mono text-sm">
-              <span className="text-[var(--accent-green)]">visitor</span>
-              <span className="text-[var(--text-muted)]">@</span>
-              <span className="text-[var(--accent-cyan)]">lucas.dev</span>
-              <span className="text-[var(--text-muted)]">:~$ </span>
-              <span
-                className="inline-block w-2 h-[18px] bg-[var(--accent-green)] ml-[1px] align-middle"
-                style={{ animation: 'blink 1.06s step-end infinite' }}
-              />
-            </div>
-            <p className="font-sans text-sm text-[var(--text-muted)] mb-16">
-              The terminal is yours. What will you build?
-            </p>
-
-            {/* Footer */}
-            <div ref={footerRef}>
-              <div className="border-t border-[var(--border)] pt-8 pb-4">
-                <p className="font-mono text-xs text-[var(--text-muted)] text-center">
-                  &copy; 2026 Lucas Duys | Built with Next.js + obsession |
-                  v1.0.0
-                </p>
-              </div>
-            </div>
+        <RiseItem>
+        <div className="mt-10 flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="mailto:lucas.duys@gmail.com"
+              className="font-mono text-base md:text-lg text-[var(--text-1)] hover:text-[var(--accent)] transition-colors duration-150 break-all"
+            >
+              lucas.duys@gmail.com
+            </a>
+            <CopyEmail />
           </div>
-        )}
-      </div>
-    </SectionWrapper>
+          <div className="flex flex-wrap gap-5 text-sm">
+            <a
+              href="https://linkedin.com/in/lucas-duys"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[var(--accent)] hover:underline underline-offset-4"
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              href="https://github.com/LucasDuys"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[var(--accent)] hover:underline underline-offset-4"
+            >
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+        </RiseItem>
+      </RiseGroup>
+
+      <footer className="mt-24 border-t border-[var(--hairline)] py-8">
+        <p className="text-xs text-[var(--text-3)]">© 2026 Lucas Duys</p>
+      </footer>
+    </section>
   );
 }

@@ -1,38 +1,34 @@
 'use client';
 
-import { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 import Lenis from 'lenis';
-import { gsap, ScrollTrigger } from '@/lib/registry';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 export function Providers({ children }: { children: ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reducedMotion) return;
+
     const lenis = new Lenis({
-      duration: reducedMotion ? 0.3 : 0.8,
+      duration: 0.9,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
-      wheelMultiplier: 1.0,
       touchMultiplier: 1.8,
     });
+    (window as unknown as { __lenis: Lenis | null }).__lenis = lenis;
 
-    lenisRef.current = lenis;
-    (window as any).__lenis = lenis;
-
-    lenis.on('scroll', ScrollTrigger.update);
-
-    const tickerCallback = (time: number) => {
-      lenis.raf(time * 1000);
+    let rafId: number;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
     };
-    gsap.ticker.add(tickerCallback);
-    gsap.ticker.lagSmoothing(0);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
-      gsap.ticker.remove(tickerCallback);
-      (window as any).__lenis = null;
+      (window as unknown as { __lenis: Lenis | null }).__lenis = null;
     };
   }, [reducedMotion]);
 

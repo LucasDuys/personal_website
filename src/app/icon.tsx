@@ -14,14 +14,13 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#06060A',
-          color: '#E8E6E3',
-          fontSize: 20,
+          background: '#1D1D22',
+          color: '#F8F7F4',
+          fontSize: 18,
           fontWeight: 600,
-          fontFamily: 'monospace',
+          fontFamily: 'sans-serif',
           letterSpacing: '-1px',
-          borderRadius: 6,
-          border: '1px solid #1F1F26',
+          borderRadius: 8,
         }}
       >
         LD

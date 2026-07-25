@@ -1,34 +1,16 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import dynamic from 'next/dynamic';
 import { Hero } from '@/components/sections/Hero';
+import { LiveDemo } from '@/components/sections/LiveDemo';
 import { About } from '@/components/sections/About';
+import { Projects } from '@/components/sections/Projects';
+import { Skills } from '@/components/sections/Skills';
 import { Experience } from '@/components/sections/Experience';
 import { Contact } from '@/components/sections/Contact';
-import { SynapseBridge } from '@/components/ui/SynapseBridge';
 import { NavBar } from '@/components/layout/NavBar';
 import { CommandPalette } from '@/components/layout/CommandPalette';
-import { SideIndicator } from '@/components/layout/SideIndicator';
 import { MobileMenu } from '@/components/layout/MobileMenu';
-
-// Lazy-load heavy client components to avoid blocking initial render
-const ParticleCanvas = dynamic(
-  () => import('@/components/canvas/ParticleCanvas').then(m => ({ default: m.ParticleCanvas })),
-  { ssr: false }
-);
-const Skills = dynamic(
-  () => import('@/components/sections/Skills').then(m => ({ default: m.Skills })),
-  { ssr: false, loading: () => <div className="min-h-screen" /> }
-);
-const Projects = dynamic(
-  () => import('@/components/sections/Projects').then(m => ({ default: m.Projects })),
-  { ssr: false, loading: () => <div className="min-h-screen" /> }
-);
-const SecretTerminal = dynamic(
-  () => import('@/components/ui/SecretTerminal').then(m => ({ default: m.SecretTerminal })),
-  { ssr: false }
-);
 
 const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
 
@@ -38,7 +20,6 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Track active section with IntersectionObserver
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
       (entries) => {
@@ -51,18 +32,12 @@ export default function Home() {
       { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
     );
 
-    // Observe all sections once they appear in the DOM
-    const timeout = setTimeout(() => {
-      for (const id of SECTION_IDS) {
-        const el = document.getElementById(id);
-        if (el) observerRef.current?.observe(el);
-      }
-    }, 500);
+    for (const id of SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (el) observerRef.current?.observe(el);
+    }
 
-    return () => {
-      clearTimeout(timeout);
-      observerRef.current?.disconnect();
-    };
+    return () => observerRef.current?.disconnect();
   }, []);
 
   const handleOpenCommandPalette = useCallback(() => setCommandPaletteOpen(true), []);
@@ -70,58 +45,27 @@ export default function Home() {
   const handleCloseMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
 
   return (
-    <main className="bg-[var(--bg)]">
-      <ParticleCanvas />
-
-      {/* Navigation */}
+    <main>
       <NavBar
         activeSection={activeSection}
         onOpenCommandPalette={handleOpenCommandPalette}
         onOpenMobileMenu={handleOpenMobileMenu}
       />
-      <SideIndicator activeSection={activeSection} />
       <CommandPalette open={commandPaletteOpen} onOpenChange={setCommandPaletteOpen} />
       <MobileMenu
         open={mobileMenuOpen}
         onClose={handleCloseMobileMenu}
         activeSection={activeSection}
-        onOpenCommandPalette={handleOpenCommandPalette}
       />
-      <SecretTerminal />
 
-      {/* 1. Hero */}
       <div id="hero">
-        <Hero onOpenCommandPalette={handleOpenCommandPalette} />
+        <Hero />
       </div>
-
-      {/* Bridge: hero → about */}
-      <SynapseBridge annotation="> loading profile..." />
-
-      {/* 2. About */}
+      <LiveDemo />
       <About />
-
-      {/* Bridge: about → projects */}
-      <SynapseBridge annotation="> cd ~/projects" />
-
-      {/* 3. Projects */}
       <Projects />
-
-      {/* Bridge: projects → skills */}
-      <SynapseBridge annotation="> cat skills.json" />
-
-      {/* 4. Skills */}
       <Skills />
-
-      {/* Bridge: skills → experience */}
-      <SynapseBridge annotation="> git log --oneline" />
-
-      {/* 5. Experience */}
       <Experience />
-
-      {/* Bridge: experience → contact */}
-      <SynapseBridge annotation="> open mailto" />
-
-      {/* 6. Contact */}
       <Contact />
     </main>
   );

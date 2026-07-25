@@ -29,7 +29,7 @@ export function Projects() {
           return (
               <RiseItem key={project.slug}>
               <article
-                className={`card-hover relative rounded-2xl bg-[var(--sheet)] p-6 md:p-7 flex flex-col ${
+                className={`card-hover relative rounded-2xl bg-[var(--sheet)] overflow-hidden flex flex-col ${
                   shipped
                     ? 'border border-[var(--hairline)]'
                     : 'border border-dashed border-[var(--hairline-strong)]'
@@ -39,9 +39,16 @@ export function Projects() {
                 {shipped && (
                   <span
                     aria-hidden="true"
-                    className="absolute left-[-1px] top-6 bottom-6 w-[2px] rounded-full bg-[var(--accent)]"
+                    className="absolute left-0 top-6 bottom-6 w-[2px] rounded-full bg-[var(--accent)] z-10"
                   />
                 )}
+                <img
+                  src={project.image}
+                  alt={project.imageAlt}
+                  loading="lazy"
+                  className="w-full aspect-[16/9] object-cover object-top border-b border-[var(--hairline)]"
+                />
+                <div className="p-6 md:p-7 flex flex-col flex-1">
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-lg font-semibold text-[var(--text-1)]">{project.title}</h3>
                   <span className="font-mono text-[11px] text-[var(--text-3)] whitespace-nowrap">
@@ -84,6 +91,7 @@ export function Projects() {
                       {link.label} ↗
                     </a>
                   ))}
+                </div>
                 </div>
               </article>
               </RiseItem>

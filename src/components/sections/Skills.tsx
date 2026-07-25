@@ -1,5 +1,6 @@
 import { SKILL_GROUPS } from '@/data/skills';
 import { RiseGroup, RiseItem } from '@/components/ui/Motion';
+import { SkillConstellation } from '@/components/canvas/SkillConstellation';
 
 export function Skills() {
   return (
@@ -11,7 +12,13 @@ export function Skills() {
           </h2>
           </RiseItem>
 
-        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        {/* Desktop: the constellation */}
+        <RiseItem className="hidden md:block mt-12">
+          <SkillConstellation />
+        </RiseItem>
+
+        {/* Mobile: grouped list */}
+        <div className="md:hidden mt-12 grid grid-cols-2 gap-x-8 gap-y-12">
           {SKILL_GROUPS.map((group) => (
             <RiseItem key={group.label}>
               <h3 className="text-sm font-medium text-[var(--text-1)]">{group.label}</h3>

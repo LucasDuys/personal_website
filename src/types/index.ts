@@ -2,6 +2,8 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
+  image: string;
+  imageAlt: string;
   tags: string[];
   links: { label: string; url: string }[];
   status: 'live' | 'in-progress';

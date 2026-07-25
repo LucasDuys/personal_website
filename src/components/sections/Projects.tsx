@@ -1,7 +1,16 @@
+'use client';
+
+import { useState } from 'react';
 import { projects } from '@/data/projects';
 import { RiseGroup, RiseItem } from '@/components/ui/Motion';
+import { CaseStudy } from '@/components/projects/CaseStudy';
+import type { Project } from '@/types';
+
+const HAS_CASE_STUDY = new Set(['stacklink', 'pitchr', 'hackaway']);
 
 export function Projects() {
+  const [selected, setSelected] = useState<Project | null>(null);
+
   return (
     <section id="projects" className="max-w-6xl mx-auto px-5 md:px-10 py-28 md:py-36">
       <RiseGroup>
@@ -56,6 +65,14 @@ export function Projects() {
                 </div>
 
                 <div className="pt-5 flex gap-4">
+                  {HAS_CASE_STUDY.has(project.slug) && (
+                    <button
+                      onClick={() => setSelected(project)}
+                      className="text-sm font-medium text-[var(--accent)] hover:underline underline-offset-4"
+                    >
+                      Case study
+                    </button>
+                  )}
                   {project.links.map((link) => (
                     <a
                       key={link.url}
@@ -74,6 +91,8 @@ export function Projects() {
         })}
       </div>
       </RiseGroup>
+
+      <CaseStudy project={selected} onClose={() => setSelected(null)} />
     </section>
   );
 }

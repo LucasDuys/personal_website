@@ -1,57 +1,58 @@
 import type { Metadata } from 'next';
-import { geistSans, geistMono, spaceGrotesk } from '@/styles/fonts';
-import { Providers } from '@/components/layout/Providers';
+import { bricolage, manrope } from '@/styles/fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Lucas Duys - CS & AI Developer',
-  description: 'CS & Engineering student at TU Eindhoven building AI tools. Creator of Pitchr.live (Built at HackEurope Paris) and Stacklink.nl (RAG system). AI Intern at cape.io.',
-  keywords: ['Lucas Duys', 'developer', 'AI', 'RAG', 'portfolio', 'TU Eindhoven', 'Next.js', 'TypeScript'],
-  authors: [{ name: 'Lucas Duys' }],
+  metadataBase: new URL('https://lucasduys.com'),
+  title: 'Lucas Duys | Founder and AI Engineer',
+  description: 'Lucas Duys is a founder and AI engineer in Eindhoven, building a stealth startup and joining Antler ONE in September 2026.',
+  keywords: ['Lucas Duys', 'founder', 'AI engineer', 'Antler ONE', 'TU Eindhoven', 'Stacklink', 'Cape.io'],
+  authors: [{ name: 'Lucas Duys', url: 'https://lucasduys.com' }],
   creator: 'Lucas Duys',
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Lucas Duys - CS & AI Developer',
-    description: 'Building at the intersection of engineering and AI.',
-    type: 'website',
+    title: 'Lucas Duys | Founder and AI Engineer',
+    description: 'A visual CV of products, systems, and proof.',
+    type: 'profile',
+    url: 'https://lucasduys.com',
     locale: 'en_US',
     siteName: 'Lucas Duys',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lucas Duys - CS & AI Developer',
-    description: 'Building at the intersection of engineering and AI.',
+    title: 'Lucas Duys | Founder and AI Engineer',
+    description: 'A visual CV of products, systems, and proof.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Lucas Duys',
-  jobTitle: 'CS & Engineering Student',
+  url: 'https://lucasduys.com',
+  jobTitle: 'Founder and AI Engineer',
   affiliation: {
-    '@type': 'Organization',
-    name: 'TU Eindhoven',
+    '@type': 'CollegeOrUniversity',
+    name: 'Eindhoven University of Technology',
   },
-  email: 'lucas.duys@gmail.com',
-  sameAs: ['https://www.linkedin.com/in/lucas-duys/'],
+  email: 'mailto:lucas.duys@gmail.com',
+  sameAs: [
+    'https://www.linkedin.com/in/lucas-duys/',
+    'https://github.com/LucasDuys',
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

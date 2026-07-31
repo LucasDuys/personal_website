@@ -12,6 +12,11 @@
 
 # testing
 /coverage
+/output/
+
+# local design tooling
+/.impeccable/hook.cache.json
+/.impeccable/questions/
 
 # next.js
 /.next/

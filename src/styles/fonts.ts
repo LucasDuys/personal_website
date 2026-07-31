@@ -1,21 +1,14 @@
-import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google';
+import { Bricolage_Grotesque, Manrope } from 'next/font/google';
 
-export const geistSans = Geist({
+export const manrope = Manrope({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
 });
 
-export const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-});
-
-// Display face for the hero headline only. The rest of the site stays Geist.
-export const spaceGrotesk = Space_Grotesk({
+export const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
-  weight: ['500', '600', '700'],
+  weight: ['600', '800'],
 });

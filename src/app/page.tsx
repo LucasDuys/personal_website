@@ -1,9 +1,9 @@
 /*
-  THESIS: A visual CV with the charge of a live demo day, not a portfolio template.
-  OWN-WORLD: Real stage photography, production rules, cold paper, black, and one chartreuse signal.
+  THESIS: A visual CV staged like a live show, not a static black-and-neon developer portfolio.
+  OWN-WORLD: Real stage photography, midnight navy, cold chrome, one vermilion signal, and sharp shutter reveals.
   STORY: Lucas now, then the chronological proof, then selected work and a direct contact.
-  FIRST VIEWPORT: A single left-to-right path states who Lucas is, what he is doing, and the public proof behind it.
-  FORM: Seed 02548378. Grounded direction 6, Backstage Credential, staged as one processional axis.
+  FIRST VIEWPORT: Lucas enters in two kinetic lines while the real TU/e stage opens beside him and the proof stays readable.
+  FORM: Seed 02548378. Backstage Credential evolved into Night Stage, with one orchestrated opening and timed scroll cues.
 */
 
 import Image from 'next/image';
@@ -93,8 +93,8 @@ export default function Home() {
             <div className="antler-note">
               <p className="note-title">Antler ONE / September 2026</p>
               <p>
-                Selected for Antler&apos;s residency, joining roughly 100 founders chosen
-                from about 10,000 applicants.
+                Selected for Antler&apos;s September residency to build alongside a
+                hand-picked cohort of founders.
               </p>
               <a href="https://www.antler.co/continental-europe">
                 About the program <span aria-hidden="true">↗</span>
@@ -128,7 +128,7 @@ export default function Home() {
                   <p>Stealth startup</p>
                 </div>
                 <div className="role-detail">
-                  <p className="impact-statement">Joining roughly 100 founders selected from about 10,000 applicants.</p>
+                  <p className="impact-statement">Building a stealth AI startup ahead of Antler ONE in September 2026.</p>
                   <p className="working-set">Product / AI systems / Engineering</p>
                 </div>
               </li>

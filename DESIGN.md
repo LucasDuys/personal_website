@@ -1,6 +1,6 @@
 ---
-name: Lucas Duys Backstage Credential
-description: A photography-led visual CV built from stage access, public proof, and precise technical outcomes.
+name: Lucas Duys Night Stage
+description: A cinematic visual CV built from live-stage energy, public proof, and precise technical outcomes.
 ---
 
 <!-- SEED: established with the user before implementation; re-run $impeccable document once there's code to capture the actual tokens and components. -->
@@ -9,9 +9,9 @@ description: A photography-led visual CV built from stage access, public proof, 
 
 ## Overview
 
-**Creative North Star: "Backstage Credential"**
+**Creative North Star: "Night Stage"**
 
-The system takes its physical language from demo-day passes, production call sheets, stage lighting, and the large typographic authority of event graphics. It must feel like access to a career already in motion, not a themed conference website. Real photography carries atmosphere. Dates, roles, outcomes, and links carry credibility.
+The system takes its physical language from live stage shutters, night-time production graphics, and the large typographic authority of event screens. It must feel like a career entering under a lighting cue, not a themed conference website. Real photography carries atmosphere. Dates, roles, outcomes, and links carry credibility.
 
 The world is bold but not noisy: one dominant image or fact at a time, native scrolling, and a processional rhythm that alternates dense evidence with quiet full-frame photography. Credential cues appear through cropping, bands, alignment, and typography rather than literal lanyards, QR codes, or fake tickets.
 
@@ -19,26 +19,27 @@ The world is bold but not noisy: one dominant image or fact at a time, native sc
 
 - Real stage and founder photography at architectural scale
 - Oversized, width-variable display typography
-- Off-black and cold off-white fields with one chartreuse signal color
+- Midnight navy and cold chrome fields with one hot vermilion signal color
 - Chronology organized as a sequence of earned access and public proof
-- One quick name settle establishes the world; the rest of the page stays still and readable
+- One orchestrated opening establishes the world; scroll-timed shutters reveal proof and photography without hijacking native scrolling
 
 ## Colors
 
-The palette is a fixed monochrome world with one electric chartreuse accent. Backstage black carries the opening, current chapter, and CV; cold paper frames the work archive. The visit does not change with the operating-system theme.
+The palette is a fixed cold-night world with one hot signal. Midnight navy carries the full page, cobalt-slate surfaces pace dense sections, and cold chrome keeps the CV legible. The visit does not change with the operating-system theme.
 
 ### Primary
 
-- **Credential Chartreuse** (`#C9FF4A`): active links, focus, selected chronology, and no more than one decisive element per viewport.
+- **Stage Vermilion** (`#FF5F3D`): active links, focus, selected chronology, and no more than one decisive element per viewport.
 
 ### Neutral
 
-- **Backstage Black** (`#0B0D0C`): the dark ground and the framing color around photography.
-- **Cold Paper** (`#EFF0E8`): primary copy and the light-theme ground.
-- **Rigging Graphite** (`#20231F`): secondary dark surfaces and restrained dividers.
-- **House Gray** (`#8D9288`): metadata that remains readable but recedes from the proof.
+- **Midnight Canvas** (`#07111F`): the page ground and framing color around photography.
+- **Cold Chrome** (`#E7EDF6`): primary copy and high-contrast figures.
+- **Cobalt Slate** (`#0D1B2B`): secondary surfaces and work sections.
+- **Raised Slate** (`#13263A`): hover and depth planes.
+- **House Blue Gray** (`#76889F`): metadata that remains readable but recedes from the proof.
 
-**The One Signal Rule.** Chartreuse identifies the one thing to notice or act on. It never becomes decorative confetti, glow, or a multi-stop gradient.
+**The One Signal Rule.** Vermilion identifies the one thing to notice or act on. It never becomes decorative confetti, glow, or a multi-stop gradient.
 
 ## Typography
 
@@ -64,7 +65,7 @@ Desktop uses a broad asymmetric grid where one image, chapter title, or outcome 
 
 Mobile collapses to a strict single column. Every image keeps a purposeful crop, numbers retain their context, and no essential content depends on hover, parallax, or horizontal travel.
 
-Native browser scrolling is the base. The only authored motion is a 480 millisecond title settle. The stage photograph paints immediately, semantic content is visible by default, and reduced-motion preferences remove the effect.
+Native browser scrolling is the base. A sub-second stage-shutter sequence reveals the name, current status, and stage photograph in reading order. Progressive CSS view timelines draw chronology rules and uncover major photographs as they enter. Unsupported browsers receive the complete static composition, and reduced-motion preferences remove every authored effect.
 
 ## Elevation & Depth
 
@@ -90,5 +91,5 @@ The base language is sharp and cut, with near-square corners. Large photographs 
 - **Don't** turn the system into a literal badge, airport, terminal, or conference simulation.
 - **Don't** hide ordinary content behind scroll reveals.
 - **Don't** use generic project cards for every chapter.
-- **Don't** use purple gradients, neon glows, fake terminals, decorative status dots, or a custom cursor.
+- **Don't** use gradients, neon glows, fake terminals, decorative status dots, or a custom cursor.
 - **Don't** publish unverified stealth-startup details, invented metrics, or unsupported claims.

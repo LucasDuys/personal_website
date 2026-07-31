@@ -21,7 +21,7 @@ The world is bold but not noisy: one dominant image or fact at a time, native sc
 - Oversized, width-variable display typography
 - Midnight navy and cold chrome fields with one hot vermilion signal color
 - Chronology organized as a sequence of earned access and public proof
-- One orchestrated opening establishes the world; scroll-timed shutters reveal proof and photography without hijacking native scrolling
+- One orchestrated opening establishes the world; a pinned stage-camera move hands off to scroll-timed proof without hijacking native scrolling
 
 ## Colors
 
@@ -65,7 +65,7 @@ Desktop uses a broad asymmetric grid where one image, chapter title, or outcome 
 
 Mobile collapses to a strict single column. Every image keeps a purposeful crop, numbers retain their context, and no essential content depends on hover, parallax, or horizontal travel.
 
-Native browser scrolling is the base. A sub-second stage-shutter sequence reveals the name, current status, and stage photograph in reading order. Progressive CSS view timelines draw chronology rules and uncover major photographs as they enter. Unsupported browsers receive the complete static composition, and reduced-motion preferences remove every authored effect.
+Native browser scrolling is the base. A sub-second stage-shutter sequence reveals the name, current status, and stage photograph in reading order. On desktop, GSAP ScrollTrigger briefly pins that scene and expands the stage photograph into a near full-frame camera move before releasing into the evidence ledger. Chronology rules, outcomes, and project imagery then reveal in restrained scroll-linked beats. Mobile keeps the image drift but removes the pin, and reduced-motion preferences receive the complete static composition.
 
 ## Elevation & Depth
 

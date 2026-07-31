@@ -7,10 +7,12 @@
 */
 
 import Image from 'next/image';
+import CinematicMotion from './CinematicMotion';
 
 export default function Home() {
   return (
     <>
+      <CinematicMotion />
       <a className="skip-link" href="#main-content">Skip to content</a>
 
       <header className="site-header frame">
@@ -57,6 +59,12 @@ export default function Home() {
                 <strong>First Runner-Up / 2nd of 70</strong>
               </figcaption>
             </figure>
+
+            <div className="hero-progress" aria-hidden="true">
+              <span>01</span>
+              <i><b className="hero-progress__fill" /></i>
+              <span>04</span>
+            </div>
           </div>
         </section>
 
@@ -206,25 +214,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="photo-proof dark-surface" aria-label="Stacklink event photography">
+        <section className="photo-proof dark-surface" aria-label="Stacklink award photography">
           <div className="photo-proof-grid">
-            <figure>
-              <Image
-                src="/images/me/cofounders.jpg"
-                alt="Lucas and his Stacklink co-founder at the TU/e Contest"
-                width={2048}
-                height={1365}
-                sizes="(max-width: 760px) 100vw, 58vw"
-              />
-              <figcaption>Stacklink co-founders / TU/e Contest 2026</figcaption>
-            </figure>
             <figure>
               <Image
                 src="/images/me/award.jpg"
                 alt="Lucas receiving the TU/e Contest First Runner-Up award"
                 width={2048}
                 height={1152}
-                sizes="(max-width: 760px) 100vw, 42vw"
+                sizes="100vw"
               />
               <figcaption>First Runner-Up / €3,000</figcaption>
             </figure>

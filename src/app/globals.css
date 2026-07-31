@@ -163,6 +163,7 @@ a:focus-visible {
 }
 
 .hero-shell {
+  position: relative;
   min-height: calc(100svh - 4.75rem);
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
@@ -283,6 +284,40 @@ a:focus-visible {
 .hero-stage figcaption strong {
   color: var(--signal);
   font-weight: 800;
+}
+
+.hero-progress {
+  position: absolute;
+  z-index: 2;
+  right: clamp(0.35rem, 1.4vw, 1.5rem);
+  bottom: clamp(1.25rem, 2vw, 2rem);
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 0.55rem;
+  background: var(--black);
+  color: var(--paper-dim);
+  font-size: 0.58rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hero-progress i {
+  width: 2px;
+  height: 3.75rem;
+  display: block;
+  overflow: hidden;
+  background: var(--rule-dark);
+}
+
+.hero-progress__fill {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scaleY(0);
+  transform-origin: top;
+  background: var(--signal);
 }
 
 .proof-overview {
@@ -529,6 +564,7 @@ a:focus-visible {
 }
 
 .experience-list > li {
+  --line-progress: 0;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 2.1fr 5.9fr;
@@ -545,7 +581,7 @@ a:focus-visible {
   left: 0;
   height: 1px;
   background: var(--signal);
-  transform: scaleX(0);
+  transform: scaleX(var(--line-progress));
   transform-origin: left;
 }
 
@@ -649,30 +685,19 @@ a:focus-visible {
 }
 
 .photo-proof {
+  overflow: hidden;
   padding-bottom: clamp(6rem, 10vw, 10rem);
 }
 
-.photo-proof-grid {
-  display: grid;
-  grid-template-columns: 58fr 42fr;
-  align-items: end;
-}
-
 .photo-proof figure {
+  position: relative;
+  overflow: hidden;
   margin: 0;
 }
 
-.photo-proof figure:last-child {
-  margin-bottom: 10vw;
-}
-
-.photo-proof figure:first-child img {
-  aspect-ratio: 1.3;
-  object-fit: cover;
-}
-
-.photo-proof figure:last-child img {
-  aspect-ratio: 1.12;
+.photo-proof figure img {
+  max-height: 88svh;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: center;
 }
@@ -919,7 +944,7 @@ a:focus-visible {
   }
 
   .hero h1 span {
-    animation: title-cut 620ms var(--ease-stage) both;
+    animation: title-cut 620ms var(--ease-stage) backwards;
   }
 
   .hero h1 span:first-child {
@@ -939,7 +964,7 @@ a:focus-visible {
   }
 
   .hero-stage {
-    animation: stage-open 680ms var(--ease-stage) 180ms both;
+    animation: stage-open 680ms var(--ease-stage) 180ms backwards;
   }
 
   .hero-stage picture::after {
@@ -949,6 +974,7 @@ a:focus-visible {
   .hero-stage figcaption {
     animation-duration: 420ms;
     animation-delay: 480ms;
+    animation-fill-mode: backwards;
   }
 }
 
@@ -984,110 +1010,6 @@ a:focus-visible {
   100% { opacity: 0; transform: scaleX(1); }
 }
 
-@keyframes ledger-arrive {
-  from { opacity: 0; clip-path: inset(0 0 35%); transform: translateY(3rem); }
-  to { opacity: 1; clip-path: inset(0); transform: translateY(0); }
-}
-
-@keyframes line-draw {
-  0% { transform: scaleX(0); transform-origin: left; }
-  50% { transform: scaleX(1); transform-origin: left; }
-  51% { transform: scaleX(1); transform-origin: right; }
-  100% { transform: scaleX(0); transform-origin: right; }
-}
-
-@keyframes image-curtain-left {
-  from { opacity: 0.25; clip-path: inset(0 100% 0 0); transform: translateX(2rem); }
-  to { opacity: 1; clip-path: inset(0); transform: translateX(0); }
-}
-
-@keyframes image-curtain-right {
-  from { opacity: 0.25; clip-path: inset(0 0 0 100%); transform: translateX(-2rem); }
-  to { opacity: 1; clip-path: inset(0); transform: translateX(0); }
-}
-
-@keyframes final-cue {
-  from { opacity: 0; clip-path: inset(0 0 100%); transform: translateY(2rem); }
-  to { opacity: 1; clip-path: inset(0); transform: translateY(0); }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .proof-overview-grid > div {
-      animation-name: ledger-arrive;
-      animation-duration: 1ms;
-      animation-fill-mode: both;
-      animation-timing-function: var(--ease-stage);
-      animation-timeline: view(block);
-      animation-range: entry 5% cover 34%;
-    }
-
-    .proof-overview-grid > div:nth-child(2) {
-      animation-range: entry 11% cover 40%;
-    }
-
-    .proof-overview-grid > div:nth-child(3) {
-      animation-range: entry 17% cover 46%;
-    }
-
-    .experience-list > li::before {
-      animation-name: line-draw;
-      animation-duration: 1ms;
-      animation-fill-mode: both;
-      animation-timing-function: linear;
-      animation-timeline: view(block);
-      animation-range: entry 0% cover 26%;
-    }
-
-    .photo-proof figure:first-child img,
-    .cape-feature > img,
-    .stacklink-hero,
-    .pitchr-feature > img {
-      animation-name: image-curtain-left;
-      animation-duration: 1ms;
-      animation-fill-mode: both;
-      animation-timing-function: var(--ease-stage);
-      animation-timeline: view(block);
-      animation-range: entry 0% cover 36%;
-    }
-
-    .photo-proof figure:last-child img,
-    .stacklink-gallery,
-    .hackaway-feature > img {
-      animation-name: image-curtain-right;
-      animation-duration: 1ms;
-      animation-fill-mode: both;
-      animation-timing-function: var(--ease-stage);
-      animation-timeline: view(block);
-      animation-range: entry 0% cover 36%;
-    }
-
-    .contact h2,
-    .contact-email {
-      animation-name: final-cue;
-      animation-duration: 1ms;
-      animation-fill-mode: both;
-      animation-timing-function: var(--ease-stage);
-      animation-timeline: view(block);
-      animation-range: entry 4% cover 34%;
-    }
-
-    .hero-stage img {
-      animation-name: hero-drift;
-      animation-duration: 1ms;
-      animation-fill-mode: both;
-      animation-timing-function: linear;
-      animation-timeline: scroll(root block);
-      animation-range: 0 100svh;
-    }
-  }
-}
-
-@keyframes hero-drift {
-  from { transform: scale(1); }
-  to { transform: scale(1.06) translateY(1.5%); }
-}
-
 @media (max-width: 880px) {
   .hero-shell,
   .now-grid,
@@ -1104,6 +1026,10 @@ a:focus-visible {
     gap: 3rem;
     padding-top: 4rem;
     padding-bottom: 3rem;
+  }
+
+  .hero-progress {
+    display: none;
   }
 
   .hero-copy {
@@ -1214,11 +1140,6 @@ a:focus-visible {
   .stacklink-gallery,
   .capabilities dl div {
     grid-template-columns: 1fr;
-  }
-
-  .photo-proof figure:last-child {
-    width: 82%;
-    margin: -2rem 0 0 auto;
   }
 
   .work-pair {

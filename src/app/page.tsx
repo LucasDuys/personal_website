@@ -2,7 +2,7 @@
   THESIS: A visual CV with the charge of a live demo day, not a portfolio template.
   OWN-WORLD: Real stage photography, production rules, cold paper, black, and one chartreuse signal.
   STORY: Lucas now, then the chronological proof, then selected work and a direct contact.
-  FIRST VIEWPORT: His name resolves into the TU/e Contest stage image and immediately states what he is building.
+  FIRST VIEWPORT: A single left-to-right path states who Lucas is, what he is doing, and the public proof behind it.
   FORM: Seed 02548378. Grounded direction 6, Backstage Credential, staged as one processional axis.
 */
 
@@ -25,41 +25,58 @@ export default function Home() {
 
       <main id="main-content">
         <section className="hero" id="top" aria-labelledby="hero-title">
-          <div className="hero-intro frame">
-            <div className="hero-meta" aria-label="Profile summary">
-              <span>Founder / AI engineer</span>
-              <span>Building in stealth</span>
-              <span>Eindhoven, Netherlands</span>
+          <div className="hero-shell frame">
+            <div className="hero-copy">
+              <p className="hero-kicker">Founder / AI engineer</p>
+              <h1 id="hero-title">
+                <span>Lucas</span>
+                <span>Duys</span>
+              </h1>
+              <p className="hero-summary">
+                Building a stealth AI startup. Selected for Antler ONE, September 2026.
+              </p>
+              <a className="hero-action" href="#experience">View experience</a>
             </div>
-            <h1 id="hero-title">
-              <span>Lucas</span>
-              <span>Duys</span>
-            </h1>
+
+            <figure className="hero-stage">
+              <picture>
+                <source media="(max-width: 680px)" srcSet="/images/me/stage-pitch-900.avif" type="image/avif" />
+                <source srcSet="/images/me/stage-pitch-1800.avif" type="image/avif" />
+                {/* The static export uses explicit AVIF sources instead of a runtime image optimizer. */}
+                <img
+                  src="/images/me/stage-pitch.jpg"
+                  alt="Lucas pitching Stacklink on stage at the TU/e Contest 2026 finale"
+                  width={2048}
+                  height={1152}
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption>
+                <span>Pitching Stacklink at the TU/e Contest 2026</span>
+                <strong>First Runner-Up / 2nd of 70</strong>
+              </figcaption>
+            </figure>
           </div>
+        </section>
 
-          <figure className="hero-stage">
-            <picture>
-              <source media="(max-width: 680px)" srcSet="/images/me/stage-pitch-900.avif" type="image/avif" />
-              <source srcSet="/images/me/stage-pitch-1800.avif" type="image/avif" />
-              {/* The static export uses explicit AVIF sources instead of a runtime image optimizer. */}
-              <img
-                src="/images/me/stage-pitch.jpg"
-                alt="Lucas pitching Stacklink on stage at the TU/e Contest 2026 finale"
-                width={2048}
-                height={1152}
-                fetchPriority="high"
-                decoding="async"
-              />
-            </picture>
-            <figcaption>
-              <span>TU/e Contest 2026</span>
-              <span>First Runner-Up, 2nd of 70</span>
-            </figcaption>
-          </figure>
-
-          <div className="hero-handoff frame">
-            <p>Founder and engineer building AI systems that hold up outside the demo.</p>
-            <a href="#experience">Read the CV</a>
+        <section className="proof-overview" id="highlights" aria-label="Career highlights">
+          <div className="frame proof-overview-grid">
+            <div>
+              <p>Antler ONE</p>
+              <strong>~100 / ~10k</strong>
+              <span>Founders selected from the applicant pool for the residency.</span>
+            </div>
+            <div>
+              <p>Cape engineering</p>
+              <strong>500×</strong>
+              <span>More inputs, while runtime fell from 55s to about 8s at 98% accuracy.</span>
+            </div>
+            <div>
+              <p>Stacklink</p>
+              <strong>€5.5k</strong>
+              <span>Won across the TU/e Contest prize and The Gate grant.</span>
+            </div>
           </div>
         </section>
 
@@ -100,7 +117,7 @@ export default function Home() {
           <div className="frame">
             <header className="section-heading">
               <p>Experience</p>
-              <h2 id="experience-title">The CV, with receipts.</h2>
+              <h2 id="experience-title">Selected experience.</h2>
             </header>
 
             <ol className="experience-list">
@@ -111,7 +128,7 @@ export default function Home() {
                   <p>Stealth startup</p>
                 </div>
                 <div className="role-detail">
-                  <p>Building a new AI company and joining Antler ONE in September 2026.</p>
+                  <p className="impact-statement">Joining roughly 100 founders selected from about 10,000 applicants.</p>
                   <p className="working-set">Product / AI systems / Engineering</p>
                 </div>
               </li>
@@ -123,7 +140,8 @@ export default function Home() {
                   <p><a href="https://cape.io">Cape.io <span aria-hidden="true">↗</span></a></p>
                 </div>
                 <div className="role-detail">
-                  <p>Rebuilt agent pipelines around measurable speed, accuracy, cost, and permission boundaries.</p>
+                  <p className="impact-statement">500× the input volume, about 7× faster, at 98% accuracy.</p>
+                  <p className="role-context">Rebuilt agent pipelines around measurable speed, cost, accuracy, and permission boundaries.</p>
                   <div className="evidence-pair" aria-label="Cape engineering outcomes">
                     <p><strong>190k <span aria-hidden="true">→</span> 1.2k</strong><span>tokens per run, more than 99% less</span></p>
                     <p><strong>20 <span aria-hidden="true">→</span> 10,000</strong><span>inputs, from 55s to about 8s at 98% accuracy</span></p>
@@ -139,7 +157,8 @@ export default function Home() {
                   <p><a href="https://stacklink.nl">Stacklink <span aria-hidden="true">↗</span></a></p>
                 </div>
                 <div className="role-detail">
-                  <p>Built an EU-sovereign, permission-aware knowledge layer for governed AI agents.</p>
+                  <p className="impact-statement">Placed 2nd out of 70 teams and won €5,500 across two awards.</p>
+                  <p className="role-context">Built an EU-sovereign, permission-aware knowledge layer for governed AI agents.</p>
                   <ul className="proof-list">
                     <li>
                       <strong>2nd / 70</strong>
@@ -167,7 +186,7 @@ export default function Home() {
                   <p>TU Eindhoven</p>
                 </div>
                 <div className="role-detail">
-                  <p>Studying computer science with a focus on AI systems, while building products in public and under pressure.</p>
+                  <p className="impact-statement">Building production AI systems alongside a full-time computer science degree.</p>
                   <p className="working-set">Computer science / AI / Systems</p>
                 </div>
               </li>
@@ -179,7 +198,7 @@ export default function Home() {
                   <p>Paris / Amsterdam</p>
                 </div>
                 <div className="role-detail">
-                  <p>Built Pitchr.live in 24 hours at HackEurope Paris, then a five-agent grocery system in 6 hours at Hackaway, selected to pitch from 80 builders.</p>
+                  <p className="impact-statement">Two working AI products built in 24 hours and 6 hours. One selected to pitch from 80 builders.</p>
                   <p className="working-set">Next.js / Claude / ElevenLabs / Multi-agent systems</p>
                 </div>
               </li>
@@ -224,6 +243,7 @@ export default function Home() {
                 <p className="work-type">Enterprise AI / 2026</p>
                 <h3>Cape.io</h3>
                 <p>Agent infrastructure rebuilt for scale, accuracy, and strict permission boundaries.</p>
+                <p className="work-impact">500× more inputs. Runtime cut from 55s to about 8s.</p>
                 <a href="https://cape.io">Visit Cape.io <span aria-hidden="true">↗</span></a>
               </div>
               <Image
@@ -243,6 +263,7 @@ export default function Home() {
                   A governed knowledge layer for AI agents, designed for customer-owned
                   infrastructure and air-gapped deployment.
                 </p>
+                <p className="work-impact">2nd of 70. €5,500 won across two awards.</p>
                 <a href="https://stacklink.nl">Visit Stacklink <span aria-hidden="true">↗</span></a>
               </div>
               <Image
@@ -274,6 +295,7 @@ export default function Home() {
                   <p className="work-type">24 hour build / Paris</p>
                   <h3>Pitchr.live</h3>
                   <p>Rubric scoring, rewritten scripts, and mock investor Q&amp;A in one AI pitch coach.</p>
+                  <p className="work-impact">Built from zero in 24 hours at Station F.</p>
                   <a href="https://pitchr.live">Visit Pitchr.live <span aria-hidden="true">↗</span></a>
                 </div>
               </article>
@@ -290,6 +312,7 @@ export default function Home() {
                   <p className="work-type">6 hour build / Amsterdam</p>
                   <h3>Weekly Shop Agent</h3>
                   <p>Five agents negotiate meals, dietary needs, and budget to assemble a weekly grocery order.</p>
+                  <p className="work-impact">Built in 6 hours. Selected to pitch from 80 builders.</p>
                   <a href="https://github.com/LucasDuys/hackaway-grocery-agent">View the code <span aria-hidden="true">↗</span></a>
                 </div>
               </article>

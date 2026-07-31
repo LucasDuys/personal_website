@@ -25,7 +25,7 @@ The world is bold but not noisy: one dominant image or fact at a time, native sc
 
 ## Colors
 
-The palette is a fixed monochrome world with one electric chartreuse accent. Cold paper frames the opening and work archive; backstage black carries the current chapter and CV. The visit does not change with the operating-system theme.
+The palette is a fixed monochrome world with one electric chartreuse accent. Backstage black carries the opening, current chapter, and CV; cold paper frames the work archive. The visit does not change with the operating-system theme.
 
 ### Primary
 
@@ -60,7 +60,7 @@ The palette is a fixed monochrome world with one electric chartreuse accent. Col
 
 ## Layout
 
-Desktop uses a broad asymmetric grid where one image, chapter title, or outcome owns most of the frame. The first viewport uses a split nameplate and full-width stage crop. CV chapters use a three-column ledger for period, role, and evidence. The work archive alternates a sticky description with a dominant product image, a four-image product contact sheet, and an offset two-project close.
+Desktop uses a broad asymmetric grid where one image, chapter title, or outcome owns most of the frame. The first viewport follows one left-to-right path: identity and current status on the left, public stage proof on the right. A three-part evidence ledger below the hero translates the strongest outcomes into comparable scale. CV chapters use a three-column ledger for period, role, and evidence. The work archive alternates a sticky description with a dominant product image, a four-image product contact sheet, and an offset two-project close.
 
 Mobile collapses to a strict single column. Every image keeps a purposeful crop, numbers retain their context, and no essential content depends on hover, parallax, or horizontal travel.
 

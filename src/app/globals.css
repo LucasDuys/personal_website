@@ -247,6 +247,7 @@ p {
   text-align: center;
   pointer-events: none;
   opacity: var(--fc, 0);
+  visibility: var(--fc-vis, hidden);
   transform: translate3d(0, var(--fc-y, -24px), 0);
   will-change: transform, opacity;
 }
@@ -254,16 +255,57 @@ p {
 .film-cap-0 {
   --fc: var(--fc0, 0);
   --fc-y: var(--fc0-y, -24px);
+  --fc-vis: var(--fc0-vis, hidden);
 }
 
 .film-cap-1 {
   --fc: var(--fc1, 0);
   --fc-y: var(--fc1-y, -24px);
+  --fc-vis: var(--fc1-vis, hidden);
 }
 
 .film-cap-2 {
   --fc: var(--fc2, 0);
   --fc-y: var(--fc2-y, -24px);
+  --fc-vis: var(--fc2-vis, hidden);
+}
+
+/* The one live control in each beat: the organisation's mark, above its
+   figure, linking out. White like everything else; cobalt only on touch. */
+.cap-brand {
+  pointer-events: auto;
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.3rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: color 160ms var(--ease-stage), border-color 160ms var(--ease-stage);
+}
+
+.cap-brand:hover {
+  color: var(--signal);
+  border-color: var(--signal);
+}
+
+.cap-brand svg {
+  display: block;
+}
+
+.cap-brand-arrow {
+  color: var(--ink-mute);
+  font-size: 0.85rem;
+  transition: color 160ms var(--ease-stage);
+}
+
+.cap-brand:hover .cap-brand-arrow {
+  color: var(--signal);
 }
 
 /* A pool of paper behind the words for the frames where dust is still in
@@ -928,10 +970,15 @@ html.rv [data-reveal].is-in {
   .film-cap {
     position: static;
     opacity: 1;
+    visibility: visible;
     transform: none;
     text-align: left;
     display: block;
     margin: 2.6rem clamp(1.25rem, 4vw, 4rem) 0;
+  }
+
+  .cap-brand {
+    margin-bottom: 0.8rem;
   }
 
   .film-cap::before {

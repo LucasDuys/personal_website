@@ -1,16 +1,16 @@
-/* Shore — the film cut, in daylight.
-   Warm sand paper, deep-sea ink, one ocean signal per viewport; the film is
-   ink stipple on paper rather than light on darkness.
+/* Black — the film cut.
+   Pure black ground, warm-white ink, one cobalt signal where needed; the
+   film is light on darkness, and figures are set in Geist Mono.
    Motion vocabulary: --ease-stage for arrivals, --ease-exit for departures;
    content is visible by default and only hides once html.rv confirms JS. */
 
 :root {
-  --ground: #f5f1e6;
-  --ink: #14232b;
-  --ink-dim: #4c5e68;
-  --ink-mute: #63737b;
-  --signal: #176d8c;
-  --rule: rgba(20, 35, 43, 0.16);
+  --ground: #050505;
+  --ink: #f2f2ee;
+  --ink-dim: #b0b0a8;
+  --ink-mute: #83837b;
+  --signal: #5e8bff;
+  --rule: rgba(242, 242, 238, 0.15);
   --ease-stage: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);
 }
@@ -32,7 +32,7 @@ body {
   overflow-x: hidden;
   background: var(--ground);
   color: var(--ink);
-  font-family: var(--font-sans), Arial, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
@@ -99,9 +99,9 @@ a:focus-visible {
 
 h1, h2, h3 {
   margin: 0;
-  font-family: var(--font-display), serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.04;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
@@ -125,10 +125,10 @@ p {
 }
 
 .monogram {
-  font-family: var(--font-display), serif;
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: 0.02em;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
   text-decoration: none;
 }
 
@@ -202,7 +202,7 @@ p {
 .film-title h1 {
   margin-top: 0.9rem;
   font-size: clamp(3.1rem, 9.5vw, 6rem);
-  font-weight: 800;
+  font-weight: 650;
 }
 
 .film-title h1 span {
@@ -222,7 +222,7 @@ p {
   padding: 0.85rem 1.6rem;
   background: var(--ink);
   color: var(--ground);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -232,7 +232,7 @@ p {
 
 .film-action:hover {
   background: var(--signal);
-  color: #f5f1e6;
+  color: #050505;
 }
 
 /* Captions: one at a time, each a pure-text moment at the centre of the
@@ -279,7 +279,7 @@ p {
   width: min(46rem, 92vw);
   height: 24rem;
   transform: translate(-50%, -50%);
-  background: radial-gradient(closest-side, rgba(245, 241, 230, 0.9), rgba(245, 241, 230, 0) 76%);
+  background: radial-gradient(closest-side, rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0) 76%);
 }
 
 .cap-label {
@@ -292,10 +292,10 @@ p {
 
 .cap-figure {
   margin-top: 0.7rem;
-  font-family: var(--font-display), serif;
-  font-weight: 800;
-  font-size: clamp(2.7rem, 6.5vw, 5.4rem);
-  letter-spacing: -0.008em;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5.8vw, 4.6rem);
+  letter-spacing: -0.03em;
   line-height: 1;
 }
 
@@ -347,7 +347,7 @@ p {
   height: 32svh;
   width: 2px;
   transform: translateY(-50%);
-  background: rgba(20, 35, 43, 0.14);
+  background: rgba(242, 242, 238, 0.15);
 }
 
 .film-rail i {
@@ -407,7 +407,7 @@ html.rv [data-reveal].is-in {
 
 .stage-proof figcaption strong,
 .photo-proof figcaption strong {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: 800;
   letter-spacing: 0.01em;
   color: var(--signal);
@@ -437,7 +437,7 @@ html.rv [data-reveal].is-in {
 
 .now-copy h2 {
   font-size: clamp(2.2rem, 5vw, 3.6rem);
-  font-weight: 800;
+  font-weight: 650;
 }
 
 .now-copy p {
@@ -454,7 +454,7 @@ html.rv [data-reveal].is-in {
 
 .antler-note .note-title {
   font-weight: 800;
-  font-family: var(--font-display), serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: 0.01em;
 }
 
@@ -496,7 +496,7 @@ html.rv [data-reveal].is-in {
 .section-heading h2 {
   margin-top: 0.9rem;
   font-size: clamp(2.2rem, 5vw, 3.6rem);
-  font-weight: 800;
+  font-weight: 650;
 }
 
 .experience-list {
@@ -518,7 +518,8 @@ html.rv [data-reveal].is-in {
 }
 
 .period {
-  font-size: 0.85rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -547,7 +548,7 @@ html.rv [data-reveal].is-in {
 }
 
 .impact-statement {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
   font-size: clamp(1.15rem, 2vw, 1.45rem);
   letter-spacing: -0.01em;
@@ -569,10 +570,10 @@ html.rv [data-reveal].is-in {
 
 .evidence-pair strong {
   display: block;
-  font-family: var(--font-display), serif;
-  font-weight: 800;
-  font-size: clamp(1.4rem, 2.6vw, 2rem);
-  letter-spacing: -0.02em;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  letter-spacing: -0.03em;
 }
 
 .evidence-pair span {
@@ -600,9 +601,9 @@ html.rv [data-reveal].is-in {
 }
 
 .proof-list strong {
-  font-family: var(--font-display), serif;
-  font-weight: 800;
-  font-size: 1.15rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 1.05rem;
   white-space: nowrap;
 }
 
@@ -660,7 +661,7 @@ html.rv [data-reveal].is-in {
 
 .entry-pair h4 {
   margin: 0.5rem 0 0;
-  font-family: var(--font-display), serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
   letter-spacing: -0.01em;
@@ -674,7 +675,7 @@ html.rv [data-reveal].is-in {
 
 .work-impact {
   margin-top: 0.7rem;
-  font-family: var(--font-display), serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
   font-size: 1rem;
 }
@@ -719,7 +720,7 @@ html.rv [data-reveal].is-in {
 .capabilities-grid header h2 {
   margin-top: 0.9rem;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 800;
+  font-weight: 650;
 }
 
 .capabilities-grid dl {
@@ -730,7 +731,7 @@ html.rv [data-reveal].is-in {
 }
 
 .capabilities-grid dt {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
   font-size: 1.05rem;
 }
@@ -795,13 +796,13 @@ html.rv [data-reveal].is-in {
 .contact-copy h2 {
   margin-top: 0.7rem;
   font-size: clamp(2.8rem, 7vw, 5.2rem);
-  font-weight: 800;
+  font-weight: 650;
 }
 
 .contact-email {
   display: inline-block;
   margin-top: 1.6rem;
-  font-family: var(--font-display), serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;
   font-size: clamp(1.15rem, 2.4vw, 1.7rem);
   letter-spacing: -0.01em;

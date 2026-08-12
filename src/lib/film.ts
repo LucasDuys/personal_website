@@ -74,9 +74,6 @@ void main() {
   vec3 p = mix(dust, aRing, wRing);
   p = mix(p, aArc, wArc);
   p = mix(p, aMark, wMark);
-  /* While a caption holds the stage the field pours gently downward, so the
-     dissolve itself walks the eye down onto the words. */
-  p.y -= uCalm * (0.08 + 0.14 * fract(aSeed * 13.0));
 
   /* The dolly. The camera pushes in over the whole journey and the velocity
      of the scroll stretches the field along y, so a flick reads as travel. */
@@ -84,6 +81,19 @@ void main() {
   float scale = (1.0 + 0.20 * ease(uProgress)) * uFit;
   p.y += uVelocity * (0.04 + 0.16 * fract(aSeed * 23.0));
   vec2 xy = p.xy * scale * persp;
+
+  /* While a caption holds the stage, the field parts around it: every point
+     inside an ellipse the size of the text block slides out to its rim, so
+     the current figure visibly re-forms AROUND the words rather than fading
+     behind them. Screen-space, so it holds at every zoom and aspect. */
+  float rx = 0.86 * clamp(uAspect, 0.45, 1.0);
+  vec2 axes = vec2(rx, 0.46);
+  vec2 q = xy / axes;
+  float dist = max(0.001, length(q));
+  float insideText = 1.0 - smoothstep(1.0, 1.6, dist);
+  vec2 rim = (q / dist) * axes * (1.05 + 0.3 * fract(aSeed * 31.0));
+  xy = mix(xy, rim, insideText * uCalm);
+
   xy.x /= uAspect;
 
   gl_Position = vec4(xy, 0.0, 1.0);
@@ -266,9 +276,8 @@ export class FilmScene {
     }
 
     gl.enable(gl.BLEND);
-    // Normal blending: ink settling on paper, not light added to darkness.
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-    gl.uniform1f(this.uniforms.uOpacity, 0.85);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE); // additive: dust is light on a black stage
+    gl.uniform1f(this.uniforms.uOpacity, 0.62);
 
     const tokens = readFilmTokens();
     this.background = tokens.background;

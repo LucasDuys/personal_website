@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { alegreya, alegreyaSans } from '@/styles/fonts';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -45,7 +46,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${alegreyaSans.variable} ${alegreya.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         {/* Reveal styles only engage once JS is confirmed, so a visitor
             without it sees every section, immediately. */}

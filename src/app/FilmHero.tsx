@@ -70,7 +70,7 @@ function applyJourney(stage: HTMLElement, p: number): number {
     const arrive = enter(w.in[0], w.in[1], p);
     const leave = exit(w.out[0], w.out[1], p);
     const cap = arrive * (1 - leave);
-    calm = Math.max(calm, i === 2 ? cap * 0.8 : cap);
+    calm = Math.max(calm, cap);
     stage.style.setProperty(`--fc${i}`, String(cap));
     stage.style.setProperty(`--fc${i}-y`, `${-24 * (1 - arrive) + 20 * leave}px`);
   });
@@ -80,9 +80,10 @@ function applyJourney(stage: HTMLElement, p: number): number {
      plane, or an invisible button keeps focus and clicks mid-film. */
   stage.style.setProperty('--ft-vis', title < 0.02 ? 'hidden' : 'visible');
   stage.style.setProperty('--fcue', String(cue));
-  /* The canvas swells through the transits and drains under the words. */
+  /* The canvas swells through the transits and only settles slightly under
+     the words: the field stays present, parted around them. */
   const swell = 0.55 + enter(0.06, 0.26, p) * 0.35 * (1 - exit(0.9, 1, p) * 0.5);
-  stage.style.setProperty('--fcv', String(swell * (1 - 0.9 * calm)));
+  stage.style.setProperty('--fcv', String(swell * (1 - 0.25 * calm)));
   stage.style.setProperty('--frail', String(p));
   stage.dataset.progress = p.toFixed(3);
   return calm;

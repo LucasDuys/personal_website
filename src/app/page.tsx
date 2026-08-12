@@ -1,17 +1,21 @@
 /*
-  THESIS: A visual CV staged like a live show, not a static black-and-neon developer portfolio.
-  OWN-WORLD: Real stage photography, midnight navy, cold chrome, one vermilion signal, and sharp shutter reveals.
-  STORY: Lucas now, then the chronological proof, then selected work and a direct contact.
-  FIRST VIEWPORT: Lucas enters in two kinetic lines while the real TU/e stage opens beside him and the proof stays readable.
-  FORM: Seed 02548378. Backstage Credential evolved into Night Stage, with one orchestrated opening and timed scroll cues.
+  THESIS: A visual CV staged like a live show, with dynamic scroll reveals and ambient effects.
+  OWN-WORLD: Real stage photography, midnight navy, cold chrome, one vermilion signal, particle effects.
+  STORY: Lucas enters with orchestrated shutter reveal, then achievements unfold as scroll reveals proof.
+  FIRST VIEWPORT: Shutter clears, name types, TU/e stage expands, status emerges.
+  FORM: HeroSequence (GSAP timeline) + ScrollReveal (scroll triggers) + AmbientBackground (particles).
 */
 
 import Image from 'next/image';
 import CinematicMotion from './CinematicMotion';
+import { HeroSequence } from '@/components/HeroSequence';
+import { ScrollReveal, ScrollRevealList } from '@/components/ScrollReveal';
+import { AmbientBackground } from '@/components/AmbientBackground';
 
 export default function Home() {
   return (
     <>
+      <AmbientBackground />
       <CinematicMotion />
       <a className="skip-link" href="#main-content">Skip to content</a>
 
@@ -27,108 +31,75 @@ export default function Home() {
 
       <main id="main-content">
         <section className="hero" id="top" aria-labelledby="hero-title">
-          <div className="hero-shell frame">
-            <div className="hero-copy">
-              <p className="hero-kicker">Founder / AI engineer</p>
-              <h1 id="hero-title">
-                <span>Lucas</span>
-                <span>Duys</span>
-              </h1>
-              <p className="hero-summary">
-                Building a stealth AI startup. Selected for Antler ONE, September 2026.
-              </p>
-              <a className="hero-action" href="#experience">View experience</a>
-            </div>
-
-            <figure className="hero-stage">
-              <picture>
-                <source media="(max-width: 680px)" srcSet="/images/me/stage-pitch-900.avif" type="image/avif" />
-                <source srcSet="/images/me/stage-pitch-1800.avif" type="image/avif" />
-                {/* The static export uses explicit AVIF sources instead of a runtime image optimizer. */}
-                <img
-                  src="/images/me/stage-pitch.jpg"
-                  alt="Lucas pitching Stacklink on stage at the TU/e Contest 2026 finale"
-                  width={2048}
-                  height={1152}
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </picture>
-              <figcaption>
-                <span>Pitching Stacklink at the TU/e Contest 2026</span>
-                <strong>First Runner-Up / 2nd of 70</strong>
-              </figcaption>
-            </figure>
-
-            <div className="hero-progress" aria-hidden="true">
-              <span>01</span>
-              <i><b className="hero-progress__fill" /></i>
-              <span>04</span>
-            </div>
-          </div>
+          <HeroSequence />
         </section>
 
-        <section className="proof-overview" id="highlights" aria-label="Career highlights">
-          <div className="frame proof-overview-grid">
-            <div>
-              <p>Antler ONE</p>
-              <strong>~100 / ~10k</strong>
-              <span>Founders selected from the applicant pool for the residency.</span>
+        <ScrollReveal>
+          <section className="proof-overview" id="highlights" aria-label="Career highlights">
+            <div className="frame proof-overview-grid">
+              <div data-reveal-item>
+                <p>Antler ONE</p>
+                <strong>~100 / ~10k</strong>
+                <span>Founders selected from the applicant pool for the residency.</span>
+              </div>
+              <div data-reveal-item>
+                <p>Cape engineering</p>
+                <strong>500×</strong>
+                <span>More inputs, while runtime fell from 55s to about 8s at 98% accuracy.</span>
+              </div>
+              <div data-reveal-item>
+                <p>Stacklink</p>
+                <strong>€5.5k</strong>
+                <span>Won across the TU/e Contest prize and The Gate grant.</span>
+              </div>
             </div>
-            <div>
-              <p>Cape engineering</p>
-              <strong>500×</strong>
-              <span>More inputs, while runtime fell from 55s to about 8s at 98% accuracy.</span>
-            </div>
-            <div>
-              <p>Stacklink</p>
-              <strong>€5.5k</strong>
-              <span>Won across the TU/e Contest prize and The Gate grant.</span>
-            </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
-        <section className="now dark-surface" id="now" aria-labelledby="now-title">
-          <div className="frame now-grid">
-            <div className="section-label">Current chapter</div>
-            <div className="now-copy">
-              <h2 id="now-title">Building in stealth.</h2>
-              <p>
-                I am starting a company at the intersection of AI, product, and systems.
-                The details stay private for now. The work does not.
-              </p>
+        <ScrollReveal>
+          <section className="now dark-surface" id="now" aria-labelledby="now-title">
+            <div className="frame now-grid">
+              <div className="section-label">Current chapter</div>
+              <div className="now-copy">
+                <h2 id="now-title">Building in stealth.</h2>
+                <p>
+                  I am starting a company at the intersection of AI, product, and systems.
+                  The details stay private for now. The work does not.
+                </p>
+              </div>
+              <div className="antler-note">
+                <p className="note-title">Antler ONE / September 2026</p>
+                <p>
+                  Selected for Antler&apos;s September residency to build alongside a
+                  hand-picked cohort of founders.
+                </p>
+                <a href="https://www.antler.co/continental-europe">
+                  About the program <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
-            <div className="antler-note">
-              <p className="note-title">Antler ONE / September 2026</p>
-              <p>
-                Selected for Antler&apos;s September residency to build alongside a
-                hand-picked cohort of founders.
-              </p>
-              <a href="https://www.antler.co/continental-europe">
-                About the program <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
 
-          <a
-            className="forge-line frame"
-            href="https://github.com/LucasDuys/forge"
-          >
-            <span>Also building</span>
-            <strong>Forge</strong>
-            <span>One idea to a tested, reviewed, committed branch.</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </section>
+            <a
+              className="forge-line frame"
+              href="https://github.com/LucasDuys/forge"
+            >
+              <span>Also building</span>
+              <strong>Forge</strong>
+              <span>One idea to a tested, reviewed, committed branch.</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+        </ScrollReveal>
 
-        <section className="experience dark-surface" id="experience" aria-labelledby="experience-title">
-          <div className="frame">
-            <header className="section-heading">
-              <p>Experience</p>
-              <h2 id="experience-title">Selected experience.</h2>
-            </header>
+        <ScrollReveal>
+          <section className="experience dark-surface" id="experience" aria-labelledby="experience-title">
+            <div className="frame">
+              <header className="section-heading">
+                <p>Experience</p>
+                <h2 id="experience-title">Selected experience.</h2>
+              </header>
 
-            <ol className="experience-list">
+              <ol className="experience-list">
               <li>
                 <p className="period">Now</p>
                 <div className="role">
@@ -211,10 +182,12 @@ export default function Home() {
                 </div>
               </li>
             </ol>
-          </div>
-        </section>
+            </div>
+          </section>
+        </ScrollReveal>
 
-        <section className="photo-proof dark-surface" aria-label="Stacklink award photography">
+        <ScrollReveal>
+          <section className="photo-proof dark-surface" aria-label="Stacklink award photography">
           <div className="photo-proof-grid">
             <figure>
               <Image
@@ -227,9 +200,11 @@ export default function Home() {
               <figcaption>First Runner-Up / €3,000</figcaption>
             </figure>
           </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
-        <section className="work paper-surface" id="work" aria-labelledby="work-title">
+        <ScrollReveal>
+          <section className="work paper-surface" id="work" aria-labelledby="work-title">
           <div className="frame">
             <header className="section-heading ink-heading">
               <p>Selected work</p>
@@ -316,23 +291,27 @@ export default function Home() {
               </article>
             </div>
           </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
-        <section className="capabilities paper-surface" aria-labelledby="capabilities-title">
-          <div className="frame capabilities-grid">
-            <header>
-              <p>Working set</p>
-              <h2 id="capabilities-title">What I build with.</h2>
-            </header>
-            <dl>
-              <div><dt>AI systems</dt><dd>Agents, RAG, evaluations, permissions, tool use</dd></div>
-              <div><dt>Engineering</dt><dd>TypeScript, Python, Go, React, Next.js, Postgres</dd></div>
-              <div><dt>Product</dt><dd>Rapid prototyping, interaction design, testing, shipping</dd></div>
-            </dl>
-          </div>
-        </section>
+        <ScrollReveal>
+          <section className="capabilities paper-surface" aria-labelledby="capabilities-title">
+            <div className="frame capabilities-grid">
+              <header>
+                <p>Working set</p>
+                <h2 id="capabilities-title">What I build with.</h2>
+              </header>
+              <dl>
+                <div><dt>AI systems</dt><dd>Agents, RAG, evaluations, permissions, tool use</dd></div>
+                <div><dt>Engineering</dt><dd>TypeScript, Python, Go, React, Next.js, Postgres</dd></div>
+                <div><dt>Product</dt><dd>Rapid prototyping, interaction design, testing, shipping</dd></div>
+              </dl>
+            </div>
+          </section>
+        </ScrollReveal>
 
-        <section className="contact" id="contact" aria-labelledby="contact-title">
+        <ScrollReveal>
+          <section className="contact" id="contact" aria-labelledby="contact-title">
           <div className="frame contact-grid">
             <p>Good people, hard problems.</p>
             <h2 id="contact-title">Let&apos;s talk.</h2>
@@ -344,7 +323,8 @@ export default function Home() {
               <a href="https://github.com/LucasDuys">GitHub <span aria-hidden="true">↗</span></a>
             </nav>
           </div>
-        </section>
+          </section>
+        </ScrollReveal>
       </main>
     </>
   );

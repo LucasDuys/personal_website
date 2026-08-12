@@ -1,22 +1,25 @@
 /*
-  THESIS: A visual CV staged like a live show, with dynamic scroll reveals and ambient effects.
-  OWN-WORLD: Real stage photography, midnight navy, cold chrome, one vermilion signal, particle effects.
-  STORY: Lucas enters with orchestrated shutter reveal, then achievements unfold as scroll reveals proof.
-  FIRST VIEWPORT: Shutter clears, name types, TU/e stage expands, status emerges.
-  FORM: HeroSequence (GSAP timeline) + ScrollReveal (scroll triggers) + AmbientBackground (particles).
+  THESIS: A career told as one scroll-driven film, then proven in the record. Refuses the
+  static hero over a card grid, and refuses restating the film in the sections below it.
+  OWN-WORLD: Midnight navy ground, cold-chrome stage dust in a WebGL point film, one vermilion
+  signal, Bricolage display over Manrope, hairline rules, sharp corners, real photography.
+  STORY: Dust gathers into the spotlight ring (2nd of 70), rises along the trajectory (Cape,
+  500×), seals into the LD mark (Antler ONE), then the real stage photograph lands and the
+  ledger, the shipped work, and a direct contact follow.
+  FIRST VIEWPORT: Name at display scale lower-left over the breathing dust field, kicker above,
+  summary and View experience below, scroll cue and an honest progress rail on the right edge.
+  FORM: Kenward film grammar, hand-rolled: 300svh sticky stage, one scroll listener writing CSS
+  vars and shader uniforms, render-on-demand points, reduced-motion static cut in pure CSS.
 */
 
 import Image from 'next/image';
-import CinematicMotion from './CinematicMotion';
-import { HeroSequence } from '@/components/HeroSequence';
-import { ScrollReveal, ScrollRevealList } from '@/components/ScrollReveal';
-import { AmbientBackground } from '@/components/AmbientBackground';
+import FilmHero from './FilmHero';
+import Reveals from './Reveals';
 
 export default function Home() {
   return (
     <>
-      <AmbientBackground />
-      <CinematicMotion />
+      <Reveals />
       <a className="skip-link" href="#main-content">Skip to content</a>
 
       <header className="site-header frame">
@@ -30,77 +33,69 @@ export default function Home() {
       </header>
 
       <main id="main-content">
-        <section className="hero" id="top" aria-labelledby="hero-title">
-          <HeroSequence />
+        <FilmHero />
+
+        {/* The film's payoff: the abstraction resolves into the real stage. */}
+        <section className="stage-proof" aria-label="TU/e Contest 2026 stage photography">
+          <figure data-reveal>
+            <picture>
+              <source media="(max-width: 680px)" srcSet="/images/me/stage-pitch-900.avif" type="image/avif" />
+              <source srcSet="/images/me/stage-pitch-1800.avif" type="image/avif" />
+              {/* The static export uses explicit AVIF sources instead of a runtime image optimizer. */}
+              <img
+                src="/images/me/stage-pitch.jpg"
+                alt="Lucas pitching Stacklink on stage at the TU/e Contest 2026 finale"
+                width={2048}
+                height={1152}
+                decoding="async"
+              />
+            </picture>
+            <figcaption className="frame">
+              <span>Pitching Stacklink at the TU/e Contest 2026</span>
+              <strong>First Runner-Up / 2nd of 70</strong>
+            </figcaption>
+          </figure>
         </section>
 
-        <ScrollReveal>
-          <section className="proof-overview" id="highlights" aria-label="Career highlights">
-            <div className="frame proof-overview-grid">
-              <div data-reveal-item>
-                <p>Antler ONE</p>
-                <strong>~100 / ~10k</strong>
-                <span>Founders selected from the applicant pool for the residency.</span>
-              </div>
-              <div data-reveal-item>
-                <p>Cape engineering</p>
-                <strong>500×</strong>
-                <span>More inputs, while runtime fell from 55s to about 8s at 98% accuracy.</span>
-              </div>
-              <div data-reveal-item>
-                <p>Stacklink</p>
-                <strong>€5.5k</strong>
-                <span>Won across the TU/e Contest prize and The Gate grant.</span>
-              </div>
+        <section className="now" id="now" aria-labelledby="now-title">
+          <div className="frame now-grid">
+            <p className="section-label" data-reveal>Current chapter</p>
+            <div className="now-copy" data-reveal>
+              <h2 id="now-title">Building in stealth.</h2>
+              <p>
+                I am starting a company at the intersection of AI, product, and systems.
+                The details stay private for now. The work does not.
+              </p>
             </div>
-          </section>
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <section className="now dark-surface" id="now" aria-labelledby="now-title">
-            <div className="frame now-grid">
-              <div className="section-label">Current chapter</div>
-              <div className="now-copy">
-                <h2 id="now-title">Building in stealth.</h2>
-                <p>
-                  I am starting a company at the intersection of AI, product, and systems.
-                  The details stay private for now. The work does not.
-                </p>
-              </div>
-              <div className="antler-note">
-                <p className="note-title">Antler ONE / September 2026</p>
-                <p>
-                  Selected for Antler&apos;s September residency to build alongside a
-                  hand-picked cohort of founders.
-                </p>
-                <a href="https://www.antler.co/continental-europe">
-                  About the program <span aria-hidden="true">↗</span>
-                </a>
-              </div>
+            <div className="antler-note" data-reveal>
+              <p className="note-title">Antler ONE / September 2026</p>
+              <p>
+                Selected for Antler&apos;s September residency to build alongside a
+                hand-picked cohort of founders.
+              </p>
+              <a href="https://www.antler.co/continental-europe">
+                About the program <span aria-hidden="true">↗</span>
+              </a>
             </div>
+          </div>
 
-            <a
-              className="forge-line frame"
-              href="https://github.com/LucasDuys/forge"
-            >
-              <span>Also building</span>
-              <strong>Forge</strong>
-              <span>One idea to a tested, reviewed, committed branch.</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-          </section>
-        </ScrollReveal>
+          <a className="forge-line frame" href="https://github.com/LucasDuys/forge" data-reveal>
+            <span>Also building</span>
+            <strong>Forge</strong>
+            <span>One idea to a tested, reviewed, committed branch.</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </section>
 
-        <ScrollReveal>
-          <section className="experience dark-surface" id="experience" aria-labelledby="experience-title">
-            <div className="frame">
-              <header className="section-heading">
-                <p>Experience</p>
-                <h2 id="experience-title">Selected experience.</h2>
-              </header>
+        <section className="experience" id="experience" aria-labelledby="experience-title">
+          <div className="frame">
+            <header className="section-heading" data-reveal>
+              <p>Experience</p>
+              <h2 id="experience-title">Selected experience.</h2>
+            </header>
 
-              <ol className="experience-list">
-              <li>
+            <ol className="experience-list">
+              <li data-reveal>
                 <p className="period">Now</p>
                 <div className="role">
                   <h3>Founder / AI engineer</h3>
@@ -112,7 +107,7 @@ export default function Home() {
                 </div>
               </li>
 
-              <li>
+              <li data-reveal>
                 <p className="period">2026</p>
                 <div className="role">
                   <h3>AI engineering intern</h3>
@@ -129,7 +124,7 @@ export default function Home() {
                 </div>
               </li>
 
-              <li>
+              <li data-reveal>
                 <p className="period">2026</p>
                 <div className="role">
                   <h3>Co-founder</h3>
@@ -158,7 +153,7 @@ export default function Home() {
                 </div>
               </li>
 
-              <li>
+              <li data-reveal>
                 <p className="period">2024 to now</p>
                 <div className="role">
                   <h3>BSc Computer Science &amp; Engineering</h3>
@@ -170,7 +165,7 @@ export default function Home() {
                 </div>
               </li>
 
-              <li>
+              <li data-reveal>
                 <p className="period">2026</p>
                 <div className="role">
                   <h3>Hackathon builder</h3>
@@ -182,36 +177,33 @@ export default function Home() {
                 </div>
               </li>
             </ol>
-            </div>
-          </section>
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <section className="photo-proof dark-surface" aria-label="Stacklink award photography">
-          <div className="photo-proof-grid">
-            <figure>
-              <Image
-                src="/images/me/award.jpg"
-                alt="Lucas receiving the TU/e Contest First Runner-Up award"
-                width={2048}
-                height={1152}
-                sizes="100vw"
-              />
-              <figcaption>First Runner-Up / €3,000</figcaption>
-            </figure>
           </div>
-          </section>
-        </ScrollReveal>
+        </section>
 
-        <ScrollReveal>
-          <section className="work paper-surface" id="work" aria-labelledby="work-title">
+        <section className="photo-proof" aria-label="Stacklink award photography">
+          <figure data-reveal>
+            <Image
+              src="/images/me/award.jpg"
+              alt="Lucas receiving the TU/e Contest First Runner-Up award"
+              width={2048}
+              height={1152}
+              sizes="100vw"
+            />
+            <figcaption className="frame">
+              <span>Kickoff EHV Ventures Demo Day</span>
+              <strong>First Runner-Up / €3,000</strong>
+            </figcaption>
+          </figure>
+        </section>
+
+        <section className="work" id="work" aria-labelledby="work-title">
           <div className="frame">
-            <header className="section-heading ink-heading">
+            <header className="section-heading" data-reveal>
               <p>Selected work</p>
               <h2 id="work-title">Systems shipped, not mockups.</h2>
             </header>
 
-            <article className="work-feature cape-feature">
+            <article className="work-feature" data-reveal>
               <div className="work-copy">
                 <p className="work-type">Enterprise AI / 2026</p>
                 <h3>Cape.io</h3>
@@ -228,7 +220,7 @@ export default function Home() {
               />
             </article>
 
-            <article className="work-feature stacklink-feature">
+            <article className="work-feature stacklink-feature" data-reveal>
               <div className="work-copy">
                 <p className="work-type">Agentic infrastructure / 2026</p>
                 <h3>Stacklink</h3>
@@ -256,7 +248,7 @@ export default function Home() {
             </article>
 
             <div className="work-pair">
-              <article className="work-small pitchr-feature">
+              <article className="work-small" data-reveal>
                 <Image
                   src="/images/projects/pitchr-live.jpg"
                   alt="Pitchr.live AI pitch coach"
@@ -273,7 +265,7 @@ export default function Home() {
                 </div>
               </article>
 
-              <article className="work-small hackaway-feature">
+              <article className="work-small" data-reveal>
                 <Image
                   src="/images/projects/hackaway-demo.jpg"
                   alt="Weekly Shop Agent assembling a Picnic grocery cart"
@@ -291,40 +283,47 @@ export default function Home() {
               </article>
             </div>
           </div>
-          </section>
-        </ScrollReveal>
+        </section>
 
-        <ScrollReveal>
-          <section className="capabilities paper-surface" aria-labelledby="capabilities-title">
-            <div className="frame capabilities-grid">
-              <header>
-                <p>Working set</p>
-                <h2 id="capabilities-title">What I build with.</h2>
-              </header>
-              <dl>
-                <div><dt>AI systems</dt><dd>Agents, RAG, evaluations, permissions, tool use</dd></div>
-                <div><dt>Engineering</dt><dd>TypeScript, Python, Go, React, Next.js, Postgres</dd></div>
-                <div><dt>Product</dt><dd>Rapid prototyping, interaction design, testing, shipping</dd></div>
-              </dl>
-            </div>
-          </section>
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <section className="contact" id="contact" aria-labelledby="contact-title">
-          <div className="frame contact-grid">
-            <p>Good people, hard problems.</p>
-            <h2 id="contact-title">Let&apos;s talk.</h2>
-            <a className="contact-email" href="mailto:lucas.duys@gmail.com">
-              lucas.duys@gmail.com <span aria-hidden="true">↗</span>
-            </a>
-            <nav aria-label="Social links">
-              <a href="https://www.linkedin.com/in/lucas-duys/">LinkedIn <span aria-hidden="true">↗</span></a>
-              <a href="https://github.com/LucasDuys">GitHub <span aria-hidden="true">↗</span></a>
-            </nav>
+        <section className="capabilities" aria-labelledby="capabilities-title">
+          <div className="frame capabilities-grid" data-reveal>
+            <header>
+              <p>Working set</p>
+              <h2 id="capabilities-title">What I build with.</h2>
+            </header>
+            <dl>
+              <div><dt>AI systems</dt><dd>Agents, RAG, evaluations, permissions, tool use</dd></div>
+              <div><dt>Engineering</dt><dd>TypeScript, Python, Go, React, Next.js, Postgres</dd></div>
+              <div><dt>Product</dt><dd>Rapid prototyping, interaction design, testing, shipping</dd></div>
+            </dl>
           </div>
-          </section>
-        </ScrollReveal>
+        </section>
+
+        <section className="contact" id="contact" aria-labelledby="contact-title">
+          <div className="frame contact-grid">
+            <figure className="contact-portrait" data-reveal>
+              {/* The person behind the record, once the record has made its case. */}
+              <Image
+                src="/images/me/portrait.jpg"
+                alt="Lucas Duys"
+                width={800}
+                height={800}
+                sizes="(max-width: 760px) 40vw, 20vw"
+              />
+            </figure>
+            <div className="contact-copy" data-reveal>
+              <p>Good people, hard problems.</p>
+              <h2 id="contact-title">Let&apos;s talk.</h2>
+              <a className="contact-email" href="mailto:lucas.duys@gmail.com">
+                lucas.duys@gmail.com <span aria-hidden="true">↗</span>
+              </a>
+              <nav aria-label="Social links">
+                <a href="https://www.linkedin.com/in/lucas-duys/">LinkedIn <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/LucasDuys">GitHub <span aria-hidden="true">↗</span></a>
+              </nav>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );

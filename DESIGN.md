@@ -61,11 +61,13 @@ The palette is a fixed cold-night world with one hot signal. Midnight navy carri
 
 ## Layout
 
-Desktop uses a broad asymmetric grid where one image, chapter title, or outcome owns most of the frame. The first viewport follows one left-to-right path: identity and current status on the left, public stage proof on the right. A three-part evidence ledger below the hero translates the strongest outcomes into comparable scale. CV chapters use a three-column ledger for period, role, and evidence. The work archive alternates a sticky description with a dominant product image, a four-image product contact sheet, and an offset two-project close.
+The page opens on the film: a 300svh section whose sticky stage holds a WebGL point field of stage dust. Scroll is the only clock. The dust gathers into three figures in sequence, the spotlight ring, the rising trajectory with vermilion milestone knots, and the LD mark, while one caption at a time states the proof in real DOM type: 2nd of 70, 500×, ~100/~10k. At rest the field neither plays nor freezes: each point drifts toward the light on its own phase and fades before it arrives. The film releases into the real stage photograph, and the film never restates below itself.
 
-Mobile collapses to a strict single column. Every image keeps a purposeful crop, numbers retain their context, and no essential content depends on hover, parallax, or horizontal travel.
+Below the film, CV chapters use a three-column ledger for period, role, and evidence. The work archive alternates description with a dominant product image, a four-image product contact sheet, and an offset two-project close. The contact close pairs the portrait photograph with the address. Mobile collapses to a strict single column; the film keeps a smaller point count and lifts the mark above its caption.
 
-Native browser scrolling is the base. A sub-second stage-shutter sequence reveals the name, current status, and stage photograph in reading order. On desktop, GSAP ScrollTrigger briefly pins that scene and expands the stage photograph into a near full-frame camera move before releasing into the evidence ledger. Chronology rules, outcomes, and project imagery then reveal in restrained scroll-linked beats. Mobile keeps the image drift but removes the pin, and reduced-motion preferences receive the complete static composition.
+Native browser scrolling is the base; the sticky stage is honest and a flick passes it. One scroll listener writes CSS custom properties and shader uniforms; React renders nothing per frame. Section reveals use one IntersectionObserver whose hiding style engages only after an inline script confirms JavaScript. Reduced motion and no-JS both receive the complete static composition in pure CSS: the film flattens to the name and the three proof rows, and the canvas never draws.
+
+Film engine rules: raw WebGL points, no scene-graph dependency; pixel ratio capped at 1.25; no idle clock once the visitor stops, frames drawn on demand; the canvas carries only light and dust, never words. Motion vocabulary: `--ease-stage` (0.16, 1, 0.3, 1) for arrivals, `--ease-exit` (0.4, 0, 1, 1) for departures; exits faster than entrances.
 
 ## Elevation & Depth
 

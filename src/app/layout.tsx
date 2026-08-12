@@ -47,6 +47,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${manrope.variable} ${bricolage.variable}`}>
       <head>
+        {/* Reveal styles only engage once JS is confirmed, so a visitor
+            without it sees every section, immediately. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('rv')" }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

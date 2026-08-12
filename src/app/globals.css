@@ -497,7 +497,7 @@ a:focus-visible {
   border-bottom: 1px solid var(--rule-dark);
   color: var(--paper-dim);
   text-decoration: none;
-  transition: background 240ms ease, padding-inline 240ms var(--ease-stage);
+  transition: background 240ms ease;
 }
 
 .forge-line strong {

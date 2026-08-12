@@ -1,15 +1,15 @@
 ---
-name: Lucas Duys Night Stage
-description: A cinematic visual CV built from live-stage energy, public proof, and precise technical outcomes.
+name: Lucas Duys Green Room
+description: A cinematic visual CV set in the green room before the stage: ink green, warm bone, one tungsten-amber signal.
 ---
 
 <!-- SEED: established with the user before implementation; re-run $impeccable document once there's code to capture the actual tokens and components. -->
 
-# Design System: Lucas Duys Backstage Credential
+# Design System: Lucas Duys Green Room
 
 ## Overview
 
-**Creative North Star: "Night Stage"**
+**Creative North Star: "The Green Room"**
 
 The system takes its physical language from live stage shutters, night-time production graphics, and the large typographic authority of event screens. It must feel like a career entering under a lighting cue, not a themed conference website. Real photography carries atmosphere. Dates, roles, outcomes, and links carry credibility.
 
@@ -19,27 +19,26 @@ The world is bold but not noisy: one dominant image or fact at a time, native sc
 
 - Real stage and founder photography at architectural scale
 - Oversized, width-variable display typography
-- Midnight navy and cold chrome fields with one hot vermilion signal color
+- Ink-green fields, warm bone type, and one hot tungsten-amber signal
 - Chronology organized as a sequence of earned access and public proof
 - One orchestrated opening establishes the world; a pinned stage-camera move hands off to scroll-timed proof without hijacking native scrolling
 
 ## Colors
 
-The palette is a fixed cold-night world with one hot signal. Midnight navy carries the full page, cobalt-slate surfaces pace dense sections, and cold chrome keeps the CV legible. The visit does not change with the operating-system theme.
+The palette is the theater's green room after hours: a fixed ink-green world with one hot tungsten signal. Ink green carries the full page and warm bone keeps the CV legible. The visit does not change with the operating-system theme.
 
 ### Primary
 
-- **Stage Vermilion** (`#FF5F3D`): active links, focus, selected chronology, and no more than one decisive element per viewport.
+- **Tungsten Amber** (`#F0A62B`): active links, focus, the film's milestone knots, and no more than one decisive element per viewport.
 
 ### Neutral
 
-- **Midnight Canvas** (`#07111F`): the page ground and framing color around photography.
-- **Cold Chrome** (`#E7EDF6`): primary copy and high-contrast figures.
-- **Cobalt Slate** (`#0D1B2B`): secondary surfaces and work sections.
-- **Raised Slate** (`#13263A`): hover and depth planes.
-- **House Blue Gray** (`#76889F`): metadata that remains readable but recedes from the proof.
+- **Ink Green** (`#0A1410`): the page ground and framing color around photography.
+- **Warm Bone** (`#EDE6D6`): primary copy, high-contrast figures, and the film's dust.
+- **Faded Bone** (`#B4AE9C`): secondary copy.
+- **Sage Gray** (`#7E8878`): metadata that remains readable but recedes from the proof.
 
-**The One Signal Rule.** Vermilion identifies the one thing to notice or act on. It never becomes decorative confetti, glow, or a multi-stop gradient.
+**The One Signal Rule.** Amber identifies the one thing to notice or act on. It never becomes decorative confetti, glow, or a multi-stop gradient.
 
 ## Typography
 
@@ -61,9 +60,9 @@ The palette is a fixed cold-night world with one hot signal. Midnight navy carri
 
 ## Layout
 
-The page opens on the film: a 300svh section whose sticky stage holds a WebGL point field of stage dust. Scroll is the only clock. The dust gathers into three figures in sequence, the spotlight ring, the rising trajectory with vermilion milestone knots, and the LD mark, while one caption at a time states the proof in real DOM type: 2nd of 70, 500×, ~100/~10k. At rest the field neither plays nor freezes: each point drifts toward the light on its own phase and fades before it arrives. The film releases into the real stage photograph, and the film never restates below itself.
+The page opens on the film: a 300svh section whose sticky stage holds a WebGL point field of stage dust. Scroll is the only clock. The dust gathers into three figures in sequence, the spotlight ring, the rising trajectory with amber milestone knots, and the LD mark, while one caption at a time states the proof in real DOM type: 2nd of 70, 500×, ~100/~10k. At rest the field neither plays nor freezes: each point drifts toward the light on its own phase and fades before it arrives. The film releases into the real stage photograph, and the film never restates below itself.
 
-Below the film, CV chapters use a three-column ledger for period, role, and evidence. The work archive alternates description with a dominant product image, a four-image product contact sheet, and an offset two-project close. The contact close pairs the portrait photograph with the address. Mobile collapses to a strict single column; the film keeps a smaller point count and lifts the mark above its caption.
+Below the film, one record carries every venture exactly once: a three-column ledger of period, role, and evidence, with each entry's product imagery embedded in its evidence column (Stacklink carries a dominant product image and a four-image contact sheet, the hackathons a two-build pair). Nothing on the page is said twice: the film owns the headline figures, the record owns the detail, and the photo bands carry only their moment. The contact close pairs the portrait photograph with the address. Mobile collapses to a strict single column; the film keeps a smaller point count and lifts the mark above its caption.
 
 Native browser scrolling is the base; the sticky stage is honest and a flick passes it. One scroll listener writes CSS custom properties and shader uniforms; React renders nothing per frame. Section reveals use one IntersectionObserver whose hiding style engages only after an inline script confirms JavaScript. Reduced motion and no-JS both receive the complete static composition in pure CSS: the film flattens to the name and the three proof rows, and the canvas never draws.
 

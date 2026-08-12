@@ -26,9 +26,9 @@ Most visitors will arrive from GitHub, LinkedIn, an application, or a direct int
 
 - Preserve the existing photography and project imagery.
 - Keep the site statically exportable with Next.js.
-- Lead with Lucas and his CV, not with Forge or any single product.
+- Lead with Lucas and his CV, not with any single product.
 - Present quantified achievements with context and restraint.
-- Current work includes a stealth startup and Forge.
+- Current work is a stealth startup. Forge exists but is not mentioned on the site.
 - Lucas has been accepted to the Antler ONE September 2026 residency.
 - Do not disclose or invent details about the stealth startup.
 - Do not use the former claims about a pilot with the Netherlands' second-largest company or a 60+ company pipeline.
@@ -50,7 +50,6 @@ Most visitors will arrive from GitHub, LinkedIn, an application, or a direct int
 - The Gate grant awarded at the Kickoff EHV Ventures Demo Day.
 - Antler describes ONE as a cohort of roughly 100 founders selected from about 10,000 applicants across Europe.
 - User-provided Cape outcomes include reducing agent token usage from 190k to 1.2k per run and scaling a pipeline from 20 inputs in 55 seconds at under 50% accuracy to 10,000 inputs in about 8 seconds at 98% accuracy.
-- Forge is public at `github.com/LucasDuys/forge`.
 - No public claims, customers, metrics, or product details exist for the stealth startup and none should be fabricated.
 
 ## Product Principles
@@ -64,3 +63,5 @@ Most visitors will arrive from GitHub, LinkedIn, an application, or a direct int
 ## Accessibility & Inclusion
 
 Honor reduced-motion preferences, preserve semantic navigation and keyboard focus, keep content visible without animation, and maintain WCAG AA contrast across supported viewports.
+
+- Each project and each claim appears on the page exactly once; the film carries the headline figures and the record carries the detail.

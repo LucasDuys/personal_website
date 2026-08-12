@@ -1,17 +1,15 @@
-/* Night Stage — the film cut.
-   Midnight ground, cold chrome, one vermilion signal per viewport.
+/* The Green Room — the film cut.
+   Ink-green ground, warm bone type, one tungsten-amber signal per viewport.
    Motion vocabulary: --ease-stage for arrivals, --ease-exit for departures;
    content is visible by default and only hides once html.rv confirms JS. */
 
 :root {
-  --black: #07111f;
-  --graphite: #0d1b2b;
-  --raised: #13263a;
-  --paper: #e7edf6;
-  --paper-dim: #a8b7ca;
-  --gray: #76889f;
-  --signal: #ff5f3d;
-  --rule: rgba(231, 237, 246, 0.16);
+  --black: #0a1410;
+  --paper: #ede6d6;
+  --paper-dim: #b4ae9c;
+  --gray: #7e8878;
+  --signal: #f0a62b;
+  --rule: rgba(237, 230, 214, 0.16);
   --ease-stage: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);
 }
@@ -265,7 +263,7 @@ p {
   content: "";
   position: absolute;
   inset: -3.5rem -5rem;
-  background: radial-gradient(closest-side, rgba(7, 17, 31, 0.8), rgba(7, 17, 31, 0) 78%);
+  background: radial-gradient(closest-side, rgba(10, 20, 16, 0.8), rgba(10, 20, 16, 0) 78%);
 }
 
 .film-cap-0::before {
@@ -273,7 +271,7 @@ p {
   width: min(46rem, 90vw);
   height: 22rem;
   transform: translate(-50%, -50%);
-  background: radial-gradient(closest-side, rgba(7, 17, 31, 0.85), rgba(7, 17, 31, 0) 74%);
+  background: radial-gradient(closest-side, rgba(10, 20, 16, 0.85), rgba(10, 20, 16, 0) 74%);
 }
 
 .film-cap-1 {
@@ -426,7 +424,7 @@ html.rv [data-reveal].is-in {
 /* ---------- Now. ---------- */
 
 .now {
-  padding-block: clamp(5rem, 11vw, 9.5rem) 0;
+  padding-block: clamp(5rem, 11vw, 9.5rem) clamp(2rem, 5vw, 4rem);
 }
 
 .now-grid {
@@ -489,45 +487,7 @@ html.rv [data-reveal].is-in {
   text-decoration: underline;
 }
 
-.forge-line {
-  display: grid;
-  grid-template-columns: auto auto 1fr auto;
-  gap: 1.5rem;
-  align-items: baseline;
-  margin-top: clamp(4rem, 8vw, 7rem);
-  padding-block: 1.5rem;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  color: var(--paper-dim);
-  text-decoration: none;
-  transition: background 240ms var(--ease-stage);
-}
-
-.forge-line:hover {
-  background: var(--graphite);
-}
-
-.forge-line strong {
-  color: var(--paper);
-  font-family: var(--font-display), sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.5rem, 3vw, 2.4rem);
-  letter-spacing: -0.02em;
-}
-
-.forge-line > span:first-child {
-  color: var(--signal);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.forge-line:hover strong {
-  color: var(--signal);
-}
-
-/* ---------- Experience: the ledger. ---------- */
+/* ---------- The record: one ledger, every venture exactly once. ---------- */
 
 .experience {
   padding-block: clamp(5rem, 11vw, 9.5rem);
@@ -668,22 +628,37 @@ html.rv [data-reveal].is-in {
   color: var(--gray);
 }
 
-/* ---------- Work. ---------- */
+/* Imagery lives inside the entry that earned it. */
 
-.work {
-  border-top: 1px solid var(--rule);
-  padding-block: clamp(5rem, 11vw, 9.5rem);
+.entry-media {
+  margin-top: 1.6rem;
 }
 
-.work-feature {
+.entry-media img {
+  border: 1px solid var(--rule);
+}
+
+.entry-gallery {
   display: grid;
-  grid-template-columns: minmax(18rem, 1fr) 1.9fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: end;
-  margin-top: clamp(3.5rem, 7vw, 6rem);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.entry-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: 1.6rem;
+  align-items: start;
+}
+
+.entry-pair img {
+  border: 1px solid var(--rule);
 }
 
 .work-type {
+  margin-top: 1.1rem;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -691,29 +666,31 @@ html.rv [data-reveal].is-in {
   color: var(--gray);
 }
 
-.work-copy h3 {
-  margin-top: 0.8rem;
-  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
-  font-weight: 800;
+.entry-pair h4 {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
 }
 
-.work-copy h3 + p {
-  margin-top: 1rem;
+.entry-pair h4 + p {
+  margin-top: 0.6rem;
   color: var(--paper-dim);
-  max-width: 26rem;
+  font-size: 0.95rem;
 }
 
 .work-impact {
-  margin-top: 1rem;
+  margin-top: 0.7rem;
   font-family: var(--font-display), sans-serif;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-.work-copy > a {
+.entry-pair article > a {
   display: inline-block;
-  margin-top: 1.3rem;
-  font-size: 0.85rem;
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -721,47 +698,8 @@ html.rv [data-reveal].is-in {
   text-decoration: none;
 }
 
-.work-copy > a:hover {
+.entry-pair article > a:hover {
   text-decoration: underline;
-}
-
-.work-feature img {
-  border: 1px solid var(--rule);
-}
-
-.stacklink-feature {
-  grid-template-columns: 1fr;
-  gap: 2.2rem;
-}
-
-.stacklink-feature .work-copy {
-  max-width: 44rem;
-}
-
-.stacklink-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-
-.work-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  margin-top: clamp(3.5rem, 7vw, 6rem);
-  align-items: start;
-}
-
-.work-small img {
-  border: 1px solid var(--rule);
-}
-
-.work-small .work-copy {
-  margin-top: 1.4rem;
-}
-
-.work-small h3 {
-  font-size: 1.5rem;
 }
 
 /* ---------- Working set. ---------- */
@@ -894,25 +832,13 @@ html.rv [data-reveal].is-in {
     gap: 1rem;
   }
 
-  .work-feature {
-    grid-template-columns: 1fr;
-    gap: 1.6rem;
-  }
-
-  .work-feature .work-copy {
-    order: 2;
-  }
-
-  .stacklink-feature .work-copy {
-    order: 0;
-  }
-
-  .stacklink-gallery {
+  .entry-gallery {
     grid-template-columns: 1fr 1fr;
   }
 
-  .work-pair {
+  .entry-pair {
     grid-template-columns: 1fr;
+    gap: 2.2rem;
   }
 
   .capabilities-grid dl {
@@ -940,14 +866,6 @@ html.rv [data-reveal].is-in {
 
   .evidence-pair {
     grid-template-columns: 1fr;
-  }
-
-  .forge-line {
-    grid-template-columns: 1fr auto;
-  }
-
-  .forge-line > span:nth-child(3) {
-    grid-column: 1 / -1;
   }
 }
 

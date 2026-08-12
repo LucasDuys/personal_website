@@ -1,15 +1,16 @@
-/* The Green Room — the film cut.
-   Ink-green ground, warm bone type, one tungsten-amber signal per viewport.
+/* Shore — the film cut, in daylight.
+   Warm sand paper, deep-sea ink, one ocean signal per viewport; the film is
+   ink stipple on paper rather than light on darkness.
    Motion vocabulary: --ease-stage for arrivals, --ease-exit for departures;
    content is visible by default and only hides once html.rv confirms JS. */
 
 :root {
-  --black: #0a1410;
-  --paper: #ede6d6;
-  --paper-dim: #b4ae9c;
-  --gray: #7e8878;
-  --signal: #f0a62b;
-  --rule: rgba(237, 230, 214, 0.16);
+  --ground: #f5f1e6;
+  --ink: #14232b;
+  --ink-dim: #4c5e68;
+  --ink-mute: #63737b;
+  --signal: #176d8c;
+  --rule: rgba(20, 35, 43, 0.16);
   --ease-stage: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);
 }
@@ -19,8 +20,9 @@
 }
 
 html {
-  background: var(--black);
-  color: var(--paper);
+  background: var(--ground);
+  color: var(--ink);
+  scroll-behavior: smooth;
   scroll-padding-top: 1rem;
 }
 
@@ -28,8 +30,8 @@ body {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
-  background: var(--black);
-  color: var(--paper);
+  background: var(--ground);
+  color: var(--ink);
   font-family: var(--font-sans), Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.55;
@@ -56,7 +58,7 @@ a:focus-visible {
 
 ::selection {
   background: var(--signal);
-  color: var(--black);
+  color: var(--ground);
 }
 
 .frame {
@@ -83,8 +85,8 @@ a:focus-visible {
   top: 0.75rem;
   left: 0.75rem;
   padding: 0.6rem 1rem;
-  background: var(--paper);
-  color: var(--black);
+  background: var(--ink);
+  color: var(--ground);
   font-weight: 700;
   text-decoration: none;
   transform: translateY(-300%);
@@ -97,9 +99,9 @@ a:focus-visible {
 
 h1, h2, h3 {
   margin: 0;
-  font-family: var(--font-display), sans-serif;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  font-family: var(--font-display), serif;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
   text-wrap: balance;
 }
 
@@ -123,7 +125,7 @@ p {
 }
 
 .monogram {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 800;
   font-size: 1.15rem;
   letter-spacing: 0.02em;
@@ -141,14 +143,14 @@ p {
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   text-decoration: none;
   transition: color 160ms var(--ease-stage);
 }
 
 .primary-nav a:hover,
 .header-contact:hover {
-  color: var(--paper);
+  color: var(--ink);
 }
 
 /* ---------- The film. 300svh of scroll drives the whole opening. ---------- */
@@ -211,15 +213,15 @@ p {
   margin-top: 1.1rem;
   max-width: 34rem;
   font-size: clamp(1rem, 1.4vw, 1.2rem);
-  color: var(--paper-dim);
+  color: var(--ink-dim);
 }
 
 .film-action {
   display: inline-block;
   margin-top: 1.8rem;
   padding: 0.85rem 1.6rem;
-  background: var(--paper);
-  color: var(--black);
+  background: var(--ink);
+  color: var(--ground);
   font-weight: 800;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
@@ -230,31 +232,42 @@ p {
 
 .film-action:hover {
   background: var(--signal);
-  color: var(--black);
+  color: #f5f1e6;
 }
 
-/* Captions: one at a time, each parked in the figure's empty space. */
+/* Captions: one at a time, each a pure-text moment at the centre of the
+   frame. The field drains away beneath them, so the words stand alone. */
 
 .film-cap {
   position: absolute;
   z-index: 1;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
   pointer-events: none;
   opacity: var(--fc, 0);
-  transform: translate3d(0, var(--fc-y, 18px), 0);
+  transform: translate3d(0, var(--fc-y, -24px), 0);
   will-change: transform, opacity;
 }
 
 .film-cap-0 {
   --fc: var(--fc0, 0);
-  --fc-y: var(--fc0-y, 18px);
-  inset: 0;
-  display: grid;
-  place-content: center;
-  text-align: center;
+  --fc-y: var(--fc0-y, -24px);
 }
 
-/* A quiet pool of dark behind every caption so the dust in transit never
-   fights the words that are announcing it. */
+.film-cap-1 {
+  --fc: var(--fc1, 0);
+  --fc-y: var(--fc1-y, -24px);
+}
+
+.film-cap-2 {
+  --fc: var(--fc2, 0);
+  --fc-y: var(--fc2-y, -24px);
+}
+
+/* A pool of paper behind the words for the frames where dust is still in
+   transit around them. */
 .film-cap > * {
   position: relative;
 }
@@ -262,32 +275,11 @@ p {
 .film-cap::before {
   content: "";
   position: absolute;
-  inset: -3.5rem -5rem;
-  background: radial-gradient(closest-side, rgba(10, 20, 16, 0.8), rgba(10, 20, 16, 0) 78%);
-}
-
-.film-cap-0::before {
   inset: 50% auto auto 50%;
-  width: min(46rem, 90vw);
-  height: 22rem;
+  width: min(46rem, 92vw);
+  height: 24rem;
   transform: translate(-50%, -50%);
-  background: radial-gradient(closest-side, rgba(10, 20, 16, 0.85), rgba(10, 20, 16, 0) 74%);
-}
-
-.film-cap-1 {
-  --fc: var(--fc1, 0);
-  --fc-y: var(--fc1-y, 18px);
-  left: clamp(1.25rem, 6vw, 6rem);
-  top: 22vh;
-  top: 22svh;
-}
-
-.film-cap-2 {
-  --fc: var(--fc2, 0);
-  --fc-y: var(--fc2-y, 18px);
-  left: clamp(1.25rem, 6vw, 6rem);
-  bottom: 20vh;
-  bottom: 20svh;
+  background: radial-gradient(closest-side, rgba(245, 241, 230, 0.9), rgba(245, 241, 230, 0) 76%);
 }
 
 .cap-label {
@@ -300,10 +292,10 @@ p {
 
 .cap-figure {
   margin-top: 0.7rem;
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 800;
   font-size: clamp(2.7rem, 6.5vw, 5.4rem);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.008em;
   line-height: 1;
 }
 
@@ -311,11 +303,11 @@ p {
   margin-top: 0.8rem;
   max-width: 24rem;
   font-size: 0.95rem;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   text-wrap: balance;
 }
 
-.film-cap-0 .cap-line {
+.film-cap .cap-line {
   margin-inline: auto;
 }
 
@@ -333,7 +325,7 @@ p {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--ink-mute);
   opacity: var(--fcue, 1);
 }
 
@@ -355,13 +347,13 @@ p {
   height: 32svh;
   width: 2px;
   transform: translateY(-50%);
-  background: rgba(231, 237, 246, 0.14);
+  background: rgba(20, 35, 43, 0.14);
 }
 
 .film-rail i {
   position: absolute;
   inset: 0;
-  background: var(--paper);
+  background: var(--ink);
   opacity: 0.75;
   transform: scaleY(var(--frail, 0));
   transform-origin: top;
@@ -410,12 +402,12 @@ html.rv [data-reveal].is-in {
   padding-block: 1.1rem;
   border-top: 1px solid var(--rule);
   font-size: 0.9rem;
-  color: var(--gray);
+  color: var(--ink-mute);
 }
 
 .stage-proof figcaption strong,
 .photo-proof figcaption strong {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 800;
   letter-spacing: 0.01em;
   color: var(--signal);
@@ -439,7 +431,7 @@ html.rv [data-reveal].is-in {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--ink-mute);
   padding-top: 0.6rem;
 }
 
@@ -452,7 +444,7 @@ html.rv [data-reveal].is-in {
   margin-top: 1.3rem;
   max-width: 32rem;
   font-size: 1.1rem;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
 }
 
 .antler-note {
@@ -462,13 +454,13 @@ html.rv [data-reveal].is-in {
 
 .antler-note .note-title {
   font-weight: 800;
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   letter-spacing: 0.01em;
 }
 
 .antler-note p + p {
   margin-top: 0.7rem;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
 }
 
@@ -498,7 +490,7 @@ html.rv [data-reveal].is-in {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--ink-mute);
 }
 
 .section-heading h2 {
@@ -530,7 +522,7 @@ html.rv [data-reveal].is-in {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--ink-mute);
   padding-top: 0.35rem;
 }
 
@@ -542,7 +534,7 @@ html.rv [data-reveal].is-in {
 
 .role p {
   margin-top: 0.45rem;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
 }
 
@@ -555,7 +547,7 @@ html.rv [data-reveal].is-in {
 }
 
 .impact-statement {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 600;
   font-size: clamp(1.15rem, 2vw, 1.45rem);
   letter-spacing: -0.01em;
@@ -564,7 +556,7 @@ html.rv [data-reveal].is-in {
 
 .role-context {
   margin-top: 0.8rem;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   max-width: 36rem;
 }
 
@@ -577,7 +569,7 @@ html.rv [data-reveal].is-in {
 
 .evidence-pair strong {
   display: block;
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 800;
   font-size: clamp(1.4rem, 2.6vw, 2rem);
   letter-spacing: -0.02em;
@@ -587,7 +579,7 @@ html.rv [data-reveal].is-in {
   display: block;
   margin-top: 0.35rem;
   font-size: 0.88rem;
-  color: var(--gray);
+  color: var(--ink-mute);
   max-width: 16rem;
 }
 
@@ -608,14 +600,14 @@ html.rv [data-reveal].is-in {
 }
 
 .proof-list strong {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 800;
   font-size: 1.15rem;
   white-space: nowrap;
 }
 
 .proof-list span {
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   font-size: 0.92rem;
 }
 
@@ -625,7 +617,7 @@ html.rv [data-reveal].is-in {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--ink-mute);
 }
 
 /* Imagery lives inside the entry that earned it. */
@@ -663,12 +655,12 @@ html.rv [data-reveal].is-in {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--ink-mute);
 }
 
 .entry-pair h4 {
   margin: 0.5rem 0 0;
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 600;
   font-size: 1.25rem;
   letter-spacing: -0.01em;
@@ -676,13 +668,13 @@ html.rv [data-reveal].is-in {
 
 .entry-pair h4 + p {
   margin-top: 0.6rem;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
 }
 
 .work-impact {
   margin-top: 0.7rem;
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 600;
   font-size: 1rem;
 }
@@ -721,7 +713,7 @@ html.rv [data-reveal].is-in {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--ink-mute);
 }
 
 .capabilities-grid header h2 {
@@ -738,15 +730,38 @@ html.rv [data-reveal].is-in {
 }
 
 .capabilities-grid dt {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 600;
   font-size: 1.05rem;
 }
 
 .capabilities-grid dd {
   margin: 0.6rem 0 0;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
+}
+
+/* ---------- The shore band: the palette's source, as a breath. ---------- */
+
+.shore-band {
+  border-top: 1px solid var(--rule);
+}
+
+.shore-band figure {
+  margin: 0;
+}
+
+.shore-band img {
+  max-height: 44vh;
+  max-height: 44svh;
+  object-fit: cover;
+}
+
+.shore-band figcaption {
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--ink-mute);
 }
 
 /* ---------- Contact. ---------- */
@@ -774,7 +789,7 @@ html.rv [data-reveal].is-in {
 
 .contact-copy > p:first-child {
   font-size: 0.95rem;
-  color: var(--gray);
+  color: var(--ink-mute);
 }
 
 .contact-copy h2 {
@@ -786,7 +801,7 @@ html.rv [data-reveal].is-in {
 .contact-email {
   display: inline-block;
   margin-top: 1.6rem;
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-display), serif;
   font-weight: 600;
   font-size: clamp(1.15rem, 2.4vw, 1.7rem);
   letter-spacing: -0.01em;
@@ -809,12 +824,12 @@ html.rv [data-reveal].is-in {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--paper-dim);
+  color: var(--ink-dim);
   text-decoration: none;
 }
 
 .contact-copy nav a:hover {
-  color: var(--paper);
+  color: var(--ink);
 }
 
 /* ---------- Narrow viewports. ---------- */
@@ -844,14 +859,6 @@ html.rv [data-reveal].is-in {
   .capabilities-grid dl {
     grid-template-columns: 1fr;
     gap: 1.4rem;
-  }
-
-  .film-cap-1 {
-    top: 16svh;
-  }
-
-  .film-cap-2 {
-    bottom: 24svh;
   }
 
   .film-rail {
@@ -926,7 +933,11 @@ html.rv [data-reveal].is-in {
     margin: 2.6rem clamp(1.25rem, 4vw, 4rem) 0;
   }
 
-  .film-cap-0 .cap-line {
+  .film-cap::before {
+    display: none;
+  }
+
+  .film-cap .cap-line {
     margin-inline: 0;
   }
 

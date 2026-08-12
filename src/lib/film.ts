@@ -38,9 +38,9 @@ const hex = (value: string): [number, number, number] => {
 export function readFilmTokens(): FilmTokens {
   const styles = getComputedStyle(document.documentElement);
   return {
-    point: hex(styles.getPropertyValue('--paper')),
+    point: hex(styles.getPropertyValue('--ink')),
     accent: hex(styles.getPropertyValue('--signal')),
-    background: hex(styles.getPropertyValue('--black')),
+    background: hex(styles.getPropertyValue('--ground')),
   };
 }
 
@@ -49,22 +49,22 @@ attribute vec3 aDust; attribute vec3 aRing; attribute vec3 aArc; attribute vec3 
 attribute float aSeed; attribute float aAccent;
 uniform float uProgress; uniform float uTime; uniform float uVelocity;
 uniform float uSize; uniform float uOpacity; uniform float uAspect; uniform float uFit;
-uniform float uLift;
+uniform float uCalm;
 varying float vFade; varying float vAccent;
 
 float ease(float t) { return t * t * (3.0 - 2.0 * t); }
 
 void main() {
-  /* Each figure finishes forming BEFORE its caption peaks, and the mark holds
-     crisp for the last sixth of the scroll: a pose, then the release. */
+  /* Each figure finishes forming BEFORE its caption arrives; the caption
+     beats then drain the field away so the words stand alone. */
   float d = (fract(aSeed * 71.3) - 0.5) * 0.06;
-  float wRing = smoothstep(0.14 + d, 0.32 + d, uProgress);
-  float wArc  = smoothstep(0.40 + d, 0.58 + d, uProgress);
-  float wMark = smoothstep(0.66 + d, 0.84 + d, uProgress);
+  float wRing = smoothstep(0.12 + d, 0.26 + d, uProgress);
+  float wArc  = smoothstep(0.36 + d, 0.50 + d, uProgress);
+  float wMark = smoothstep(0.60 + d, 0.74 + d, uProgress);
 
   /* At rest each point sets off toward the ring on its own phase and fades
      before it lands, so the respawn is invisible and the field never settles. */
-  float idle = 1.0 - smoothstep(0.0, 0.14, uProgress);
+  float idle = 1.0 - smoothstep(0.0, 0.12, uProgress);
   float fall = fract(uTime * (0.05 + 0.06 * fract(aSeed * 7.7)) + aSeed);
   vec3 dust = mix(aDust, aRing, ease(fall) * 0.42 * idle);
   dust.x += sin(aSeed * 6.28318 + uTime * 0.4) * 0.03 * idle;
@@ -74,8 +74,9 @@ void main() {
   vec3 p = mix(dust, aRing, wRing);
   p = mix(p, aArc, wArc);
   p = mix(p, aMark, wMark);
-  /* On a tall frame the mark rides above its caption instead of behind it. */
-  p.y += uLift * wMark;
+  /* While a caption holds the stage the field pours gently downward, so the
+     dissolve itself walks the eye down onto the words. */
+  p.y -= uCalm * (0.08 + 0.14 * fract(aSeed * 13.0));
 
   /* The dolly. The camera pushes in over the whole journey and the velocity
      of the scroll stretches the field along y, so a flick reads as travel. */
@@ -259,14 +260,15 @@ export class FilmScene {
 
     for (const name of [
       'uProgress', 'uTime', 'uVelocity', 'uSize', 'uOpacity',
-      'uAspect', 'uFit', 'uLift', 'uColor', 'uAccentColor',
+      'uAspect', 'uFit', 'uCalm', 'uColor', 'uAccentColor',
     ]) {
       this.uniforms[name] = gl.getUniformLocation(program, name);
     }
 
     gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE); // additive: dust adds light on a dark stage
-    gl.uniform1f(this.uniforms.uOpacity, 0.6);
+    // Normal blending: ink settling on paper, not light added to darkness.
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.uniform1f(this.uniforms.uOpacity, 0.85);
 
     const tokens = readFilmTokens();
     this.background = tokens.background;
@@ -297,8 +299,9 @@ export class FilmScene {
     if (!still) this.schedule();
   }
 
-  setProgress(value: number) {
+  setProgress(value: number, calm = 0) {
     if (this.still) return;
+    this.gl.uniform1f(this.uniforms.uCalm, clamp01(calm));
     const next = clamp01(value);
     if (Math.abs(next - this.progress) < 0.00001) return;
     const now = performance.now();
@@ -323,7 +326,6 @@ export class FilmScene {
     const aspect = w / h;
     gl.uniform1f(this.uniforms.uAspect, aspect);
     gl.uniform1f(this.uniforms.uFit, Math.max(0.5, Math.min(1, aspect / 1.15)));
-    gl.uniform1f(this.uniforms.uLift, aspect < 0.75 ? 0.24 : 0);
     gl.uniform1f(this.uniforms.uSize, 4.6 * ratio());
     this.renderOnce();
   }

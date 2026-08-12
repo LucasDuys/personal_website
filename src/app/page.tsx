@@ -248,6 +248,22 @@ export default function Home() {
           </div>
         </section>
 
+        {/* A breath of the world the palette comes from, before the ask. */}
+        <section className="shore-band" aria-label="Coastal photography">
+          <figure data-reveal>
+            <Image
+              src="/images/shore.jpg"
+              alt="A mountain ridge above the sea"
+              width={1400}
+              height={350}
+              sizes="100vw"
+            />
+            <figcaption className="frame">
+              <span>Off stage.</span>
+            </figcaption>
+          </figure>
+        </section>
+
         <section className="contact" id="contact" aria-labelledby="contact-title">
           <div className="frame contact-grid">
             <figure className="contact-portrait" data-reveal>

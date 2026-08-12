@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { bricolage, manrope } from '@/styles/fonts';
+import { alegreya, alegreyaSans } from '@/styles/fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`}>
+    <html lang="en" className={`${alegreyaSans.variable} ${alegreya.variable}`}>
       <head>
         {/* Reveal styles only engage once JS is confirmed, so a visitor
             without it sees every section, immediately. */}

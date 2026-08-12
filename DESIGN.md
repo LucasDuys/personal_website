@@ -1,17 +1,17 @@
 ---
-name: Lucas Duys Green Room
-description: A cinematic visual CV set in the green room before the stage: ink green, warm bone, one tungsten-amber signal.
+name: Lucas Duys Shore
+description: A cinematic visual CV in daylight: warm sand paper, deep-sea ink, one ocean signal, the film as ink stipple on paper.
 ---
 
 <!-- SEED: established with the user before implementation; re-run $impeccable document once there's code to capture the actual tokens and components. -->
 
-# Design System: Lucas Duys Green Room
+# Design System: Lucas Duys Shore
 
 ## Overview
 
-**Creative North Star: "The Green Room"**
+**Creative North Star: "Shore"**
 
-The system takes its physical language from live stage shutters, night-time production graphics, and the large typographic authority of event screens. It must feel like a career entering under a lighting cue, not a themed conference website. Real photography carries atmosphere. Dates, roles, outcomes, and links carry credibility.
+The system takes its physical language from the coast in daylight: sand, sea, and ink settling on warm paper, with the large typographic authority of a printed front page. It must feel like a record set in open air, not a themed conference website. Real photography carries atmosphere. Dates, roles, outcomes, and links carry credibility.
 
 The world is bold but not noisy: one dominant image or fact at a time, native scrolling, and a processional rhythm that alternates dense evidence with quiet full-frame photography. Credential cues appear through cropping, bands, alignment, and typography rather than literal lanyards, QR codes, or fake tickets.
 
@@ -19,54 +19,54 @@ The world is bold but not noisy: one dominant image or fact at a time, native sc
 
 - Real stage and founder photography at architectural scale
 - Oversized, width-variable display typography
-- Ink-green fields, warm bone type, and one hot tungsten-amber signal
+- Warm sand paper, deep-sea ink, and one ocean-blue signal
 - Chronology organized as a sequence of earned access and public proof
 - One orchestrated opening establishes the world; a pinned stage-camera move hands off to scroll-timed proof without hijacking native scrolling
 
 ## Colors
 
-The palette is the theater's green room after hours: a fixed ink-green world with one hot tungsten signal. Ink green carries the full page and warm bone keeps the CV legible. The visit does not change with the operating-system theme.
+The palette is the coast in daylight: warm sand paper carries the full page, deep-sea ink carries every word, and one ocean signal directs the eye. The film is ink stipple settling on paper, not light on darkness. The visit does not change with the operating-system theme.
 
 ### Primary
 
-- **Tungsten Amber** (`#F0A62B`): active links, focus, the film's milestone knots, and no more than one decisive element per viewport.
+- **Sea** (`#176D8C`): active links, focus, kickers and caption labels, the film's milestone knots, and no more than one decisive element per viewport.
 
 ### Neutral
 
-- **Ink Green** (`#0A1410`): the page ground and framing color around photography.
-- **Warm Bone** (`#EDE6D6`): primary copy, high-contrast figures, and the film's dust.
-- **Faded Bone** (`#B4AE9C`): secondary copy.
-- **Sage Gray** (`#7E8878`): metadata that remains readable but recedes from the proof.
+- **Sand Paper** (`#F5F1E6`): the page ground and framing color around photography.
+- **Sea Ink** (`#14232B`): primary copy, high-contrast figures, and the film's dust.
+- **Weathered Ink** (`#4C5E68`): secondary copy.
+- **Driftwood Gray** (`#63737B`): metadata that remains readable but recedes from the proof.
 
-**The One Signal Rule.** Amber identifies the one thing to notice or act on. It never becomes decorative confetti, glow, or a multi-stop gradient.
+**The One Signal Rule.** Sea identifies the one thing to notice or act on. It never becomes decorative confetti, glow, or a multi-stop gradient.
 
 ## Typography
 
-**Display Font:** Bricolage Grotesque at weights 600 and 800 with a sans-serif fallback
+**Display Font:** Alegreya at weights 600 to 800 with a serif fallback
 
-**Body Font:** Manrope with a system sans-serif fallback
+**Body Font:** Alegreya Sans with a system sans-serif fallback
 
-**Character:** Bricolage provides the compressed and expanded forms of event lettering without needing a second decorative face. Manrope keeps the CV copy direct and highly readable.
+**Character:** Alegreya is a humanist serif with real warmth at display sizes, set slightly loose; its sans companion keeps the CV copy direct and highly readable, and the two share one skeleton so the page reads as a single voice.
 
 ### Hierarchy
 
-- **Display:** wide or condensed Bricolage, heavy, tightly tracked, used for Lucas's name and major chapter titles.
-- **Headline:** Bricolage at a stable width and medium-heavy weight, used for roles and milestone statements.
-- **Body:** Manrope regular, generous line-height, maximum line length around 66 characters.
-- **Label:** Bricolage medium in compact caps, used sparingly for dates, locations, and proof categories.
-- **Figures:** tabular Manrope where possible, with the unit or context attached to every number.
+- **Display:** Alegreya, heavy, near-default tracking, used for Lucas's name and major chapter titles.
+- **Headline:** Alegreya at medium-heavy weight, used for roles and milestone statements.
+- **Body:** Alegreya Sans regular, generous line-height, maximum line length around 66 characters.
+- **Label:** Alegreya Sans bold in compact caps, used sparingly for dates, locations, and proof categories.
+- **Figures:** Alegreya bold, with the unit or context attached to every number.
 
 **The Weight Carries Hierarchy Rule.** Type changes weight only to distinguish scale and role. It does not wobble or animate while the visitor reads.
 
 ## Layout
 
-The page opens on the film: a 300svh section whose sticky stage holds a WebGL point field of stage dust. Scroll is the only clock. The dust gathers into three figures in sequence, the spotlight ring, the rising trajectory with amber milestone knots, and the LD mark, while one caption at a time states the proof in real DOM type: 2nd of 70, 500×, ~100/~10k. At rest the field neither plays nor freezes: each point drifts toward the light on its own phase and fades before it arrives. The film releases into the real stage photograph, and the film never restates below itself.
+The page opens on the film: a 300svh section whose sticky stage holds a WebGL point field of stage dust. Scroll is the only clock. The dust gathers into three figures in sequence, the spotlight ring, the rising trajectory with sea-blue milestone knots, and the LD mark. Between figures, one caption at a time takes the centre of the frame as a pure-text beat: the field drains to near nothing beneath it (the last beat keeps a ghost of the mark), the caption falls in from above and departs downward, and the dust pours gently down while the words hold. 2nd of 70, 500×, 1 of ~100. At rest the field neither plays nor freezes: each point drifts toward the light on its own phase and fades before it arrives. The film releases into the real stage photograph, and the film never restates below itself.
 
-Below the film, one record carries every venture exactly once: a three-column ledger of period, role, and evidence, with each entry's product imagery embedded in its evidence column (Stacklink carries a dominant product image and a four-image contact sheet, the hackathons a two-build pair). Nothing on the page is said twice: the film owns the headline figures, the record owns the detail, and the photo bands carry only their moment. The contact close pairs the portrait photograph with the address. Mobile collapses to a strict single column; the film keeps a smaller point count and lifts the mark above its caption.
+Below the film, one record carries every venture exactly once: a three-column ledger of period, role, and evidence, with each entry's product imagery embedded in its evidence column (Stacklink carries a dominant product image and a four-image contact sheet, the hackathons a two-build pair). Nothing on the page is said twice: the film owns the headline figures, the record owns the detail, and the photo bands carry only their moment. The contact close pairs the portrait photograph with the address. Mobile collapses to a strict single column; the film keeps a smaller point count, and the final caption reads over the mark's ghost.
 
 Native browser scrolling is the base; the sticky stage is honest and a flick passes it. One scroll listener writes CSS custom properties and shader uniforms; React renders nothing per frame. Section reveals use one IntersectionObserver whose hiding style engages only after an inline script confirms JavaScript. Reduced motion and no-JS both receive the complete static composition in pure CSS: the film flattens to the name and the three proof rows, and the canvas never draws.
 
-Film engine rules: raw WebGL points, no scene-graph dependency; pixel ratio capped at 1.25; no idle clock once the visitor stops, frames drawn on demand; the canvas carries only light and dust, never words. Motion vocabulary: `--ease-stage` (0.16, 1, 0.3, 1) for arrivals, `--ease-exit` (0.4, 0, 1, 1) for departures; exits faster than entrances.
+Film engine rules: raw WebGL points with normal blending (ink on paper), no scene-graph dependency; pixel ratio capped at 1.25; no idle clock once the visitor stops, frames drawn on demand; the canvas carries only light and dust, never words. Motion vocabulary: `--ease-stage` (0.16, 1, 0.3, 1) for arrivals, `--ease-exit` (0.4, 0, 1, 1) for departures; exits faster than entrances.
 
 ## Elevation & Depth
 

@@ -46,33 +46,46 @@ const clamp01 = (n: number) => Math.max(0, Math.min(1, n));
 const enter = (a: number, b: number, p: number) => arrive(clamp01((p - a) / (b - a)));
 const exit = (a: number, b: number, p: number) => depart(clamp01((p - a) / (b - a)));
 
-/** Each element's window on the 0..1 scroll timeline. */
-function applyJourney(stage: HTMLElement, p: number) {
-  const title = 1 - exit(0.05, 0.16, p);
-  const cue = 1 - exit(0.015, 0.06, p);
-  const caps = [
-    enter(0.26, 0.32, p) * (1 - exit(0.4, 0.46, p)),
-    enter(0.5, 0.56, p) * (1 - exit(0.62, 0.68, p)),
-    enter(0.74, 0.8, p) * (1 - exit(0.92, 0.98, p)),
-  ];
+/** The three caption windows: figure first, then the words stand alone. */
+const CAPS = [
+  { in: [0.28, 0.34], out: [0.42, 0.48] },
+  { in: [0.52, 0.58], out: [0.66, 0.72] },
+  { in: [0.76, 0.82], out: [0.94, 0.99] },
+] as const;
+
+/**
+ * Each element's window on the 0..1 scroll timeline.
+ *
+ * Returns how strongly a caption currently holds the stage, so the scene can
+ * pour the field downward under it. While a caption is up, the canvas drains
+ * to near nothing (the last one keeps a ghost of the mark), and the caption
+ * itself arrives from above and departs downward: one continuous fall, the
+ * direction the reader is already travelling.
+ */
+function applyJourney(stage: HTMLElement, p: number): number {
+  const title = 1 - exit(0.05, 0.14, p);
+  const cue = 1 - exit(0.015, 0.05, p);
+  let calm = 0;
+  CAPS.forEach((w, i) => {
+    const arrive = enter(w.in[0], w.in[1], p);
+    const leave = exit(w.out[0], w.out[1], p);
+    const cap = arrive * (1 - leave);
+    calm = Math.max(calm, i === 2 ? cap * 0.8 : cap);
+    stage.style.setProperty(`--fc${i}`, String(cap));
+    stage.style.setProperty(`--fc${i}-y`, `${-24 * (1 - arrive) + 20 * leave}px`);
+  });
   stage.style.setProperty('--ft', String(title));
   stage.style.setProperty('--ft-y', `${-26 * (1 - title)}px`);
   /* A faded title must also leave the accessibility tree and the hit-test
      plane, or an invisible button keeps focus and clicks mid-film. */
   stage.style.setProperty('--ft-vis', title < 0.02 ? 'hidden' : 'visible');
   stage.style.setProperty('--fcue', String(cue));
-  /* The canvas swells through the acts and recedes for the release, so the
-     dust has dynamic range instead of one flat exposure. */
-  stage.style.setProperty(
-    '--fcv',
-    String(0.55 + enter(0.08, 0.3, p) * 0.35 * (1 - exit(0.9, 1, p) * 0.5)),
-  );
-  caps.forEach((cap, i) => {
-    stage.style.setProperty(`--fc${i}`, String(cap));
-    stage.style.setProperty(`--fc${i}-y`, `${18 * (1 - cap)}px`);
-  });
+  /* The canvas swells through the transits and drains under the words. */
+  const swell = 0.55 + enter(0.06, 0.26, p) * 0.35 * (1 - exit(0.9, 1, p) * 0.5);
+  stage.style.setProperty('--fcv', String(swell * (1 - 0.9 * calm)));
   stage.style.setProperty('--frail', String(p));
   stage.dataset.progress = p.toFixed(3);
+  return calm;
 }
 
 export default function FilmHero() {
@@ -102,8 +115,8 @@ export default function FilmHero() {
       frame = 0;
       const range = Math.max(1, node.offsetTop + node.offsetHeight - innerHeight);
       const p = clamp01((scrollY - node.offsetTop) / range);
-      applyJourney(stageNode, p);
-      scene?.setProgress(p);
+      const calm = applyJourney(stageNode, p);
+      scene?.setProgress(p, calm);
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(read);
@@ -158,8 +171,8 @@ export default function FilmHero() {
 
         <div className="film-cap film-cap-2">
           <p className="cap-label">Antler ONE / September 2026</p>
-          <p className="cap-figure">~100 / ~10k</p>
-          <p className="cap-line">Founders selected from the applicant pool. Now building in stealth.</p>
+          <p className="cap-figure">1 of ~100</p>
+          <p className="cap-line">founders selected from about 10,000 applicants across Europe. Now building in stealth.</p>
         </div>
 
         <p className="film-cue" aria-hidden="true">

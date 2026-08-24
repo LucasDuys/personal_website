@@ -88,8 +88,7 @@ export default function Home() {
         <section className="experience" id="experience" aria-labelledby="record-title">
           <div className="frame">
             <header className="section-heading" data-reveal>
-              <p>The record</p>
-              <h2 id="record-title">Systems shipped, not mockups.</h2>
+              <p id="record-title">The record</p>
             </header>
 
             <ol className="experience-list">

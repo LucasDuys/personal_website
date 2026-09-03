@@ -50,6 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Reveal styles only engage once JS is confirmed, so a visitor
             without it sees every section, immediately. */}
+        {/* The booking calendar loads its embed from Cal's CDN on demand. */}
+        <link rel="preconnect" href="https://app.cal.com" />
+        <link rel="preconnect" href="https://cal.com" />
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('rv')" }} />
         <script
           type="application/ld+json"

@@ -807,6 +807,122 @@ html.rv [data-reveal].is-in {
   color: var(--ink-mute);
 }
 
+/* ---------- Book a call: the ask, with the calendar inline. ---------- */
+
+.book {
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(5rem, 11vw, 9rem);
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.book-copy h2 {
+  margin-top: 0.9rem;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 650;
+}
+
+.book-lede {
+  margin-top: 1.3rem;
+  max-width: 32rem;
+  font-size: 1.1rem;
+  color: var(--ink-dim);
+}
+
+.book-meta {
+  list-style: none;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.book-meta li {
+  display: flex;
+  gap: 1.2rem;
+  align-items: baseline;
+}
+
+.book-meta span {
+  min-width: 6.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.book-meta strong {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.book-direct {
+  display: inline-block;
+  margin-top: 1.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--signal);
+  text-decoration: none;
+}
+
+.book-direct:hover {
+  text-decoration: underline;
+}
+
+/* The frame holds a hairline border and a loading note; the Cal iframe
+   covers the note once it arrives, so a slow embed never shows a hole. */
+
+.book-cal {
+  position: relative;
+  border: 1px solid var(--rule);
+  background: #0a0a0a;
+  min-height: 42rem;
+}
+
+.cal-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+}
+
+#cal-book-inline {
+  position: relative;
+  z-index: 1;
+}
+
+#cal-book-inline iframe {
+  display: block;
+  width: 100%;
+  min-height: 42rem;
+  border: 0;
+}
+
+.cal-fallback {
+  padding: 2.5rem 2rem;
+  color: var(--ink-dim);
+}
+
+.cal-fallback a {
+  color: var(--signal);
+}
+
 /* ---------- Contact. ---------- */
 
 .contact {
@@ -875,10 +991,26 @@ html.rv [data-reveal].is-in {
   color: var(--ink);
 }
 
+.contact-book {
+  margin-top: 1.2rem;
+  color: var(--ink-dim);
+}
+
+.contact-book a {
+  color: var(--signal);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.contact-book a:hover {
+  text-decoration: underline;
+}
+
 /* ---------- Narrow viewports. ---------- */
 
 @media (max-width: 880px) {
   .now-grid,
+  .book-grid,
   .capabilities-grid,
   .contact-grid {
     grid-template-columns: 1fr;

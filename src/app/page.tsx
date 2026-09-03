@@ -15,6 +15,7 @@
 */
 
 import Image from 'next/image';
+import BookCal from './BookCal';
 import FilmHero from './FilmHero';
 import Reveals from './Reveals';
 
@@ -29,6 +30,7 @@ export default function Home() {
         <nav className="primary-nav" aria-label="Primary navigation">
           <a href="#now">Now</a>
           <a href="#experience">Record</a>
+          <a href="#book">Book</a>
           <a href="#contact">Contact</a>
         </nav>
         <a className="header-contact" href="mailto:lucas.duys@gmail.com">Email</a>
@@ -263,6 +265,32 @@ export default function Home() {
           </figure>
         </section>
 
+        <section className="book" id="book" aria-labelledby="book-title">
+          <div className="frame book-grid">
+            <div className="book-copy" data-reveal>
+              <p className="section-label">Book a call</p>
+              <h2 id="book-title">Thirty minutes.</h2>
+              <p className="book-lede">
+                For hiring conversations, founder chats, and hard technical
+                problems. Pick a time that suits you — a video link arrives
+                with the confirmation.
+              </p>
+              <ul className="book-meta">
+                <li><span>Duration</span><strong>30 min</strong></li>
+                <li><span>Where</span><strong>Video call</strong></li>
+                <li><span>Timezone</span><strong>Detected automatically</strong></li>
+              </ul>
+              <a className="book-direct" href="https://cal.com/lucas-duys/30min?overlayCalendar=true">
+                Open on Cal.com <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div className="book-cal" data-reveal>
+              <p className="cal-loading" aria-hidden="true">Loading the calendar…</p>
+              <BookCal />
+            </div>
+          </div>
+        </section>
+
         <section className="contact" id="contact" aria-labelledby="contact-title">
           <div className="frame contact-grid">
             <figure className="contact-portrait" data-reveal>
@@ -281,6 +309,12 @@ export default function Home() {
               <a className="contact-email" href="mailto:lucas.duys@gmail.com">
                 lucas.duys@gmail.com <span aria-hidden="true">↗</span>
               </a>
+              <p className="contact-book">
+                Prefer to pick a time?{' '}
+                <a href="#book">
+                  Book 30 minutes <span aria-hidden="true">→</span>
+                </a>
+              </p>
               <nav aria-label="Social links">
                 <a href="https://www.linkedin.com/in/lucas-duys/">LinkedIn <span aria-hidden="true">↗</span></a>
                 <a href="https://github.com/LucasDuys">GitHub <span aria-hidden="true">↗</span></a>

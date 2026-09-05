@@ -142,7 +142,7 @@ export default function FilmHero() {
         Scroll to play the opening film. Stage dust gathers into a spotlight ring for the TU/e
         Contest where Stacklink placed second of seventy teams, rises along a trajectory through
         the Cape engineering work, and settles into the LD mark as Lucas is selected for Antler
-        ONE. The full record follows below.
+        ONE. What he is building now, and the full record, follow below.
       </p>
 
       <div ref={stage} className="film-stage">
@@ -154,10 +154,11 @@ export default function FilmHero() {
             <span>Lucas</span> <span>Duys</span>
           </h1>
           <p className="film-summary">
-            Building a stealth AI startup. Selected for Antler ONE, September 2026.
+            Building Athren, autonomous conversion experimentation for growth teams. Antler ONE,
+            September 2026.
           </p>
-          <a className="film-action" href="#experience">
-            View experience
+          <a className="film-action" href="#now">
+            What I&apos;m building
           </a>
         </div>
 
@@ -211,7 +212,7 @@ export default function FilmHero() {
           </a>
           <p className="cap-label">September 2026</p>
           <p className="cap-figure">1 of ~100</p>
-          <p className="cap-line">founders selected from about 10,000 applicants across Europe. Now building in stealth.</p>
+          <p className="cap-line">founders selected from about 10,000 applicants across Europe.</p>
         </div>
 
         <p className="film-cue" aria-hidden="true">

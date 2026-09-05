@@ -122,7 +122,9 @@ function configure() {
   cal('init', 'book', { origin: 'https://app.cal.com' });
   cal.ns.book('inline', {
     elementOrSelector: TARGET,
-    config: { layout: 'month_view' },
+    /* theme travels in the iframe URL too, so a light-mode phone never gets
+       a white calendar on the black page while the ui message is in flight. */
+    config: { layout: 'month_view', theme: 'dark' },
     calLink: 'lucas-duys/30min',
   });
   cal.ns.book('ui', {

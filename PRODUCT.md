@@ -28,9 +28,9 @@ Most visitors will arrive from GitHub, LinkedIn, an application, or a direct int
 - Keep the site statically exportable with Next.js.
 - Lead with Lucas and his CV, not with any single product.
 - Present quantified achievements with context and restraint.
-- Current work is a stealth startup. Forge exists but is not mentioned on the site.
-- Lucas has been accepted to the Antler ONE September 2026 residency.
-- Do not disclose or invent details about the stealth startup.
+- Current work is Athren (athren.nl), autonomous conversion experimentation for growth teams. The site says only what athren.nl already says in public. Forge exists but is not mentioned on the site.
+- Lucas is in the Antler ONE September 2026 cohort.
+- Do not invent Athren customers, results, or product details beyond athren.nl.
 - Do not use the former claims about a pilot with the Netherlands' second-largest company or a 60+ company pipeline.
 - The current `/resume.pdf` link has no backing file and must not remain as a broken action.
 
@@ -50,7 +50,7 @@ Most visitors will arrive from GitHub, LinkedIn, an application, or a direct int
 - The Gate grant awarded at the Kickoff EHV Ventures Demo Day.
 - Antler describes ONE as a cohort of roughly 100 founders selected from about 10,000 applicants across Europe.
 - User-provided Cape outcomes include reducing agent token usage from 190k to 1.2k per run and scaling a pipeline from 20 inputs in 55 seconds at under 50% accuracy to 10,000 inputs in about 8 seconds at 98% accuracy.
-- No public claims, customers, metrics, or product details exist for the stealth startup and none should be fabricated.
+- Athren's public claims are the ones on athren.nl: it finds the leak in a funnel, tests the fix, ships on approval, twenty experiments a month, read-only to start. No customers or results are public and none should be fabricated.
 
 ## Product Principles
 

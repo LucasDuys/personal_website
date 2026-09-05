@@ -2,7 +2,7 @@
    Pure black ground, warm-white ink, one cobalt signal where needed; the
    film is light on darkness, and figures are set in Geist Mono.
    Motion vocabulary: --ease-stage for arrivals, --ease-exit for departures;
-   content is visible by default and only hides once html.rv confirms JS. */
+   below the film nothing hides behind a reveal: the page reads without JS. */
 
 :root {
   --ground: #050505;
@@ -402,175 +402,179 @@ p {
   will-change: transform;
 }
 
-/* ---------- Scroll reveals: hidden only once JS has announced itself. ---------- */
+/* ---------- Below the film: one type scale, one spacing scale. ---------- */
 
-html.rv [data-reveal] {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.75s var(--ease-stage), transform 0.75s var(--ease-stage);
+:root {
+  --section-pad: clamp(4.5rem, 9vw, 8rem);
+  --gutter: clamp(1.5rem, 4vw, 4rem);
+  --measure: 34rem;
 }
 
-html.rv [data-reveal].is-in {
-  opacity: 1;
-  transform: none;
+.section-title {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 650;
+}
+
+.body-copy,
+.now-copy p,
+.role-context,
+.contact-lede,
+.loop p,
+.figures dd,
+.entry-pair article > p {
+  color: var(--ink-dim);
+  line-height: 1.6;
 }
 
 /* ---------- Full-bleed photography bands. ---------- */
 
-.stage-proof,
-.photo-proof {
+.photo-band {
   border-top: 1px solid var(--rule);
 }
 
-.stage-proof figure,
-.photo-proof figure {
+.photo-band figure {
   margin: 0;
 }
 
-.stage-proof img,
-.photo-proof img {
-  max-height: 92vh;
-  max-height: 92svh;
+.photo-band img {
+  max-height: 88vh;
+  max-height: 88svh;
   object-fit: cover;
 }
 
-.stage-proof figcaption,
-.photo-proof figcaption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem 2rem;
-  padding-block: 1.1rem;
+.photo-band figcaption {
+  padding-block: 1rem;
   border-top: 1px solid var(--rule);
   font-size: 0.9rem;
   color: var(--ink-mute);
 }
 
-.stage-proof figcaption strong,
-.photo-proof figcaption strong {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  color: var(--signal);
-}
-
-/* ---------- Now. ---------- */
+/* ---------- Now: what I am building, and the rule underneath it. ---------- */
 
 .now {
-  padding-block: clamp(5rem, 11vw, 9.5rem) clamp(2rem, 5vw, 4rem);
+  border-top: 1px solid var(--rule);
+  padding-block: var(--section-pad);
 }
 
 .now-grid {
   display: grid;
-  grid-template-columns: minmax(9rem, 1fr) 2.2fr 1.6fr;
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
   align-items: start;
 }
 
-.section-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  padding-top: 0.6rem;
-}
-
 .now-copy h2 {
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  max-width: 22ch;
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
   font-weight: 650;
 }
 
 .now-copy p {
-  margin-top: 1.3rem;
-  max-width: 32rem;
+  margin-top: 1.4rem;
+  max-width: var(--measure);
   font-size: 1.1rem;
-  color: var(--ink-dim);
 }
 
-.antler-note {
-  border-top: 1px solid var(--signal);
-  padding-top: 1.1rem;
+.now-copy p a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration-color: var(--ink-mute);
 }
 
-.antler-note .note-title {
-  font-weight: 800;
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: 0.01em;
+.now-copy p a:hover {
+  color: var(--signal);
+  text-decoration-color: var(--signal);
 }
 
-.antler-note p + p {
-  margin-top: 0.7rem;
-  color: var(--ink-dim);
+.now-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+  margin-top: 1.8rem;
+}
+
+.now-links a,
+.entry-pair article > a,
+.contact-copy nav a {
   font-size: 0.95rem;
-}
-
-.antler-note a {
-  display: inline-block;
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--signal);
   text-decoration: none;
 }
 
-.antler-note a:hover {
+.now-links a:hover,
+.entry-pair article > a:hover,
+.contact-copy nav a:hover {
   text-decoration: underline;
+}
+
+/* The loop: three stations, numbered in reading order. */
+
+.loop {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.loop li {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  column-gap: 0.75rem;
+  padding-block: 1.35rem;
+  border-top: 1px solid var(--rule);
+}
+
+.loop-n {
+  grid-row: 1 / span 2;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.95rem;
+  color: var(--ink-mute);
+  padding-top: 0.2rem;
+}
+
+.loop h3 {
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.loop p {
+  margin-top: 0.45rem;
+  font-size: 0.98rem;
 }
 
 /* ---------- The record: one ledger, every venture exactly once. ---------- */
 
 .experience {
-  padding-block: clamp(5rem, 11vw, 9.5rem);
-}
-
-.section-heading p {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-
-.section-heading h2 {
-  margin-top: 0.9rem;
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
-  font-weight: 650;
+  border-top: 1px solid var(--rule);
+  padding-block: var(--section-pad);
 }
 
 .experience-list {
   list-style: none;
-  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
+  margin: clamp(2rem, 4vw, 3.5rem) 0 0;
   padding: 0;
+  border-bottom: 1px solid var(--rule);
 }
 
 .experience-list li {
   display: grid;
-  grid-template-columns: minmax(8rem, 1fr) 1.6fr 2.6fr;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  padding-block: clamp(1.8rem, 3.5vw, 2.8rem);
+  grid-template-columns: 6.5rem 1fr 2.8fr;
+  gap: var(--gutter);
+  padding-block: clamp(2rem, 4vw, 3rem);
   border-top: 1px solid var(--rule);
-}
-
-.experience-list li:last-child {
-  border-bottom: 1px solid var(--rule);
 }
 
 .period {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.9rem;
   color: var(--ink-mute);
-  padding-top: 0.35rem;
+  padding-top: 0.3rem;
 }
 
 .role h3 {
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -578,88 +582,71 @@ html.rv [data-reveal].is-in {
 .role p {
   margin-top: 0.45rem;
   color: var(--ink-dim);
-  font-size: 0.95rem;
 }
 
 .role a {
-  text-decoration-color: var(--rule);
+  text-decoration-color: var(--ink-mute);
 }
 
 .role a:hover {
   color: var(--signal);
+  text-decoration-color: var(--signal);
 }
 
 .impact-statement {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  max-width: 30rem;
   font-weight: 600;
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   letter-spacing: -0.01em;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .role-context {
   margin-top: 0.8rem;
-  color: var(--ink-dim);
-  max-width: 36rem;
+  max-width: var(--measure);
 }
 
-.evidence-pair {
+/* Figures: the measurement and its meaning on one line, mono for the number. */
+
+.figures {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.4rem;
+  gap: 0.7rem;
+  margin: 1.5rem 0 0;
 }
 
-.evidence-pair strong {
-  display: block;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-weight: 500;
-  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
-  letter-spacing: -0.03em;
-}
-
-.evidence-pair span {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 0.88rem;
-  color: var(--ink-mute);
-  max-width: 16rem;
-}
-
-.proof-list {
-  list-style: none;
-  margin: 1.4rem 0 0;
-  padding: 0;
+.figures div {
   display: grid;
-  gap: 0.8rem;
-}
-
-.proof-list li {
-  display: flex;
-  gap: 1.2rem;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
   align-items: baseline;
-  border: 0;
-  padding: 0;
 }
 
-.proof-list strong {
+.figures dt {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
   white-space: nowrap;
 }
 
-.proof-list span {
-  color: var(--ink-dim);
-  font-size: 0.92rem;
+.figures dd {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.figures dd a {
+  color: var(--ink);
+  text-decoration-color: var(--ink-mute);
+}
+
+.figures dd a:hover {
+  color: var(--signal);
+  text-decoration-color: var(--signal);
 }
 
 .working-set {
   margin-top: 1.3rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.9rem;
   color: var(--ink-mute);
 }
 
@@ -669,15 +656,11 @@ html.rv [data-reveal].is-in {
   margin-top: 1.6rem;
 }
 
-.entry-media img {
-  border: 1px solid var(--rule);
-}
-
 .entry-gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.8rem;
-  margin-top: 0.8rem;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
 }
 
 .entry-pair {
@@ -689,204 +672,85 @@ html.rv [data-reveal].is-in {
 }
 
 .entry-pair img {
-  border: 1px solid var(--rule);
-}
-
-.work-type {
-  margin-top: 1.1rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .entry-pair h4 {
-  margin: 0.5rem 0 0;
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  margin: 1.1rem 0 0;
+  font-size: 1.15rem;
   font-weight: 600;
-  font-size: 1.25rem;
   letter-spacing: -0.01em;
 }
 
-.entry-pair h4 + p {
-  margin-top: 0.6rem;
-  color: var(--ink-dim);
-  font-size: 0.95rem;
-}
-
-.work-impact {
-  margin-top: 0.7rem;
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
+.entry-pair article > p {
+  margin-top: 0.5rem;
+  font-size: 0.98rem;
 }
 
 .entry-pair article > a {
   display: inline-block;
-  margin-top: 0.9rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--signal);
-  text-decoration: none;
+  margin-top: 0.8rem;
 }
 
-.entry-pair article > a:hover {
-  text-decoration: underline;
-}
+/* ---------- Contact: the person, the address, the calendar. ---------- */
 
-/* ---------- Working set. ---------- */
-
-.capabilities {
+.contact {
   border-top: 1px solid var(--rule);
-  padding-block: clamp(4rem, 8vw, 6.5rem);
+  padding-block: var(--section-pad);
 }
 
-.capabilities-grid {
+.contact-grid {
   display: grid;
-  grid-template-columns: 1.2fr 2.4fr;
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: 1fr 1.45fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
   align-items: start;
 }
 
-.capabilities-grid header p {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+.contact-portrait {
+  margin: 0 0 1.8rem;
+  width: clamp(6rem, 9vw, 8rem);
 }
 
-.capabilities-grid header h2 {
-  margin-top: 0.9rem;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+.contact-copy h2 {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
   font-weight: 650;
 }
 
-.capabilities-grid dl {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin: 0;
-}
-
-.capabilities-grid dt {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 600;
+.contact-lede {
+  margin-top: 1.2rem;
+  max-width: 28rem;
   font-size: 1.05rem;
 }
 
-.capabilities-grid dd {
-  margin: 0.6rem 0 0;
-  color: var(--ink-dim);
-  font-size: 0.95rem;
-}
-
-/* ---------- The shore band: the palette's source, as a breath. ---------- */
-
-.shore-band {
-  border-top: 1px solid var(--rule);
-}
-
-.shore-band figure {
-  margin: 0;
-}
-
-.shore-band img {
-  max-height: 44vh;
-  max-height: 44svh;
-  object-fit: cover;
-}
-
-.shore-band figcaption {
-  padding-block: 1.1rem;
-  border-top: 1px solid var(--rule);
-  font-size: 0.9rem;
-  color: var(--ink-mute);
-}
-
-/* ---------- Book a call: the ask, with the calendar inline. ---------- */
-
-.book {
-  border-top: 1px solid var(--rule);
-  padding-block: clamp(5rem, 11vw, 9rem);
-}
-
-.book-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
-}
-
-.book-copy h2 {
-  margin-top: 0.9rem;
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
-  font-weight: 650;
-}
-
-.book-lede {
-  margin-top: 1.3rem;
-  max-width: 32rem;
-  font-size: 1.1rem;
-  color: var(--ink-dim);
-}
-
-.book-meta {
-  list-style: none;
-  margin: 1.6rem 0 0;
-  padding: 0;
-  display: grid;
-  gap: 0.6rem;
-}
-
-.book-meta li {
-  display: flex;
-  gap: 1.2rem;
-  align-items: baseline;
-}
-
-.book-meta span {
-  min-width: 6.5rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-
-.book-meta strong {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--ink);
-}
-
-.book-direct {
+.contact-email {
   display: inline-block;
-  margin-top: 1.6rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  letter-spacing: -0.01em;
   color: var(--signal);
   text-decoration: none;
 }
 
-.book-direct:hover {
+.contact-email:hover {
   text-decoration: underline;
 }
 
-/* The frame holds a hairline border and a loading note; the Cal iframe
-   covers the note once it arrives, so a slow embed never shows a hole. */
+.contact-copy nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  margin-top: 1.4rem;
+}
+
+/* The frame holds a loading note; the Cal iframe covers it once it arrives,
+   so a slow embed never shows a hole. */
 
 .book-cal {
   position: relative;
-  border: 1px solid var(--rule);
   background: #0a0a0a;
-  min-height: 42rem;
+  min-height: 40rem;
 }
 
 .cal-loading {
@@ -910,7 +774,7 @@ html.rv [data-reveal].is-in {
 #cal-book-inline iframe {
   display: block;
   width: 100%;
-  min-height: 42rem;
+  min-height: 40rem;
   border: 0;
 }
 
@@ -923,103 +787,26 @@ html.rv [data-reveal].is-in {
   color: var(--signal);
 }
 
-/* ---------- Contact. ---------- */
-
-.contact {
-  border-top: 1px solid var(--rule);
-  padding-block: clamp(5rem, 11vw, 9rem);
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: clamp(2.5rem, 6vw, 6rem);
-  align-items: center;
-}
-
-.contact-portrait {
-  margin: 0;
-  width: clamp(9.5rem, 18vw, 15rem);
-}
-
-.contact-portrait img {
-  border: 1px solid var(--rule);
-}
-
-.contact-copy > p:first-child {
-  font-size: 0.95rem;
-  color: var(--ink-mute);
-}
-
-.contact-copy h2 {
-  margin-top: 0.7rem;
-  font-size: clamp(2.8rem, 7vw, 5.2rem);
-  font-weight: 650;
-}
-
-.contact-email {
-  display: inline-block;
-  margin-top: 1.6rem;
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-weight: 600;
-  font-size: clamp(1.15rem, 2.4vw, 1.7rem);
-  letter-spacing: -0.01em;
-  color: var(--signal);
-  text-decoration: none;
-}
-
-.contact-email:hover {
-  text-decoration: underline;
-}
-
-.contact-copy nav {
-  display: flex;
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-
-.contact-copy nav a {
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-  text-decoration: none;
-}
-
-.contact-copy nav a:hover {
-  color: var(--ink);
-}
-
-.contact-book {
-  margin-top: 1.2rem;
-  color: var(--ink-dim);
-}
-
-.contact-book a {
-  color: var(--signal);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.contact-book a:hover {
-  text-decoration: underline;
-}
-
-/* ---------- Narrow viewports. ---------- */
+/* ---------- Narrow viewports: one column, same order. ---------- */
 
 @media (max-width: 880px) {
   .now-grid,
-  .book-grid,
-  .capabilities-grid,
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
 
   .experience-list li {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.9rem;
+  }
+
+  .period {
+    padding-top: 0;
+  }
+
+  .role-detail {
+    margin-top: 0.4rem;
   }
 
   .entry-gallery {
@@ -1028,12 +815,11 @@ html.rv [data-reveal].is-in {
 
   .entry-pair {
     grid-template-columns: 1fr;
-    gap: 2.2rem;
+    gap: 2rem;
   }
 
-  .capabilities-grid dl {
-    grid-template-columns: 1fr;
-    gap: 1.4rem;
+  .contact-portrait {
+    width: 6.5rem;
   }
 
   .film-rail {
@@ -1046,8 +832,9 @@ html.rv [data-reveal].is-in {
     display: none;
   }
 
-  .evidence-pair {
+  .figures div {
     grid-template-columns: 1fr;
+    row-gap: 0.15rem;
   }
 }
 
@@ -1058,12 +845,6 @@ html.rv [data-reveal].is-in {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  html.rv [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 
   .film-cue svg {

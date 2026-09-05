@@ -1,28 +1,28 @@
 /*
-  THESIS: A career told as one scroll-driven film, then proven in the record — and nothing on
-  the page is said twice. Refuses the static hero over a card grid, refuses restating the film
-  below itself, and refuses the same project appearing in two sections.
-  OWN-WORLD: The Green Room. Ink-green ground, warm bone stage dust in a WebGL point film, one
-  tungsten-amber signal, Bricolage display over Manrope, hairline rules, sharp corners, real
-  photography. The room where you wait before going on stage.
+  THESIS: A career told as one scroll-driven film, then read as a page. The film carries the
+  headline figures; below it the page says what I am building and why, proves it in one record,
+  and closes on a way to talk. Nothing is said twice, no project appears in two sections, and
+  nothing below the film hides behind a reveal: a visitor without JavaScript reads the same CV.
+  OWN-WORLD: Black Cut. Pure black ground, warm-white ink, one cobalt signal, Geist with mono
+  figures, sharp corners, real photography.
   STORY: Dust gathers into the spotlight ring (2nd of 70), rises along the trajectory (Cape,
-  500×), seals into the LD mark (Antler ONE), then the real stage photograph lands and one
-  chronological record carries each venture exactly once, closing on a direct contact.
+  500x), seals into the LD mark (Antler ONE), then the real stage photograph lands. The page
+  then reads in order: what I am building now (Athren, and the rule underneath it), the record
+  (Cape, Stacklink, two hackathons, TU/e), the award photograph, and the ask.
   FIRST VIEWPORT: Name at display scale lower-left over the breathing dust field, kicker above,
-  summary and View experience below, scroll cue and an honest progress rail on the right edge.
+  one line of summary and the record link below, an honest progress rail on the right edge.
   FORM: Kenward film grammar, hand-rolled: 300svh sticky stage, one scroll listener writing CSS
   vars and shader uniforms, render-on-demand points, reduced-motion static cut in pure CSS.
+  Below the film: plain sections, one type scale, one spacing scale, no scroll reveals.
 */
 
 import Image from 'next/image';
 import BookCal from './BookCal';
 import FilmHero from './FilmHero';
-import Reveals from './Reveals';
 
 export default function Home() {
   return (
     <>
-      <Reveals />
       <a className="skip-link" href="#main-content">Skip to content</a>
 
       <header className="site-header frame">
@@ -30,7 +30,6 @@ export default function Home() {
         <nav className="primary-nav" aria-label="Primary navigation">
           <a href="#now">Now</a>
           <a href="#experience">Record</a>
-          <a href="#book">Book</a>
           <a href="#contact">Contact</a>
         </nav>
         <a className="header-contact" href="mailto:lucas.duys@gmail.com">Email</a>
@@ -41,8 +40,8 @@ export default function Home() {
 
         {/* The film's payoff: the abstraction resolves into the real stage.
             The numbers were just said; this band carries only the moment. */}
-        <section className="stage-proof" aria-label="TU/e Contest 2026 stage photography">
-          <figure data-reveal>
+        <section className="photo-band" aria-label="TU/e Contest 2026 stage photography">
+          <figure>
             <picture>
               <source media="(max-width: 680px)" srcSet="/images/me/stage-pitch-900.avif" type="image/avif" />
               <source srcSet="/images/me/stage-pitch-1800.avif" type="image/avif" />
@@ -55,32 +54,52 @@ export default function Home() {
                 decoding="async"
               />
             </picture>
-            <figcaption className="frame">
-              <span>Pitching Stacklink at the TU/e Contest 2026 finale</span>
-            </figcaption>
+            <figcaption className="frame">Pitching Stacklink at the TU/e Contest 2026 finale</figcaption>
           </figure>
         </section>
 
+        {/* What I am building, and the one rule underneath it. Every claim here
+            is on athren.nl already; nothing is promised ahead of the evidence. */}
         <section className="now" id="now" aria-labelledby="now-title">
           <div className="frame now-grid">
-            <p className="section-label" data-reveal>Current chapter</p>
-            <div className="now-copy" data-reveal>
-              <h2 id="now-title">Building in stealth.</h2>
+            <div className="now-copy">
+              <h2 id="now-title">Software that does the work, then waits for your yes.</h2>
               <p>
-                I am starting a company at the intersection of AI, product, and systems.
-                The details stay private for now. The work does not.
+                I am building <a href="https://athren.nl">Athren</a>. It reads a product&apos;s
+                funnel, finds the step where the most people fall out, writes the experiment,
+                builds the variant inside the team&apos;s own codebase, and ships it once someone
+                approves it. Twenty experiments a month, and nothing goes live without a yes.
               </p>
-            </div>
-            <div className="antler-note" data-reveal>
-              <p className="note-title">Antler ONE / September 2026</p>
               <p>
-                Selected for Antler&apos;s September residency to build alongside a
-                hand-picked cohort of founders.
+                The rule underneath it has not changed across two products and a pivot: an agent
+                proposes, a person approves, and everything it does is reversible and on the
+                record. That is the part I am sure about. The rest is being tested one funnel at
+                a time, in the Antler ONE cohort that started this September.
               </p>
-              <a href="https://www.antler.co/continental-europe">
-                About the program <span aria-hidden="true">↗</span>
-              </a>
+              <div className="now-links">
+                <a href="https://athren.nl">athren.nl <span aria-hidden="true">↗</span></a>
+                <a href="https://www.antler.co/continental-europe">Antler ONE <span aria-hidden="true">↗</span></a>
+              </div>
             </div>
+
+            {/* The loop, numbered in reading order so the eye knows where to start. */}
+            <ol className="loop" aria-label="How Athren works">
+              <li>
+                <span className="loop-n" aria-hidden="true">1</span>
+                <h3>Observe</h3>
+                <p>Read-only at first. It reads the whole journey and finds the step losing the most people.</p>
+              </li>
+              <li>
+                <span className="loop-n" aria-hidden="true">2</span>
+                <h3>Propose</h3>
+                <p>It writes the experiment and builds the variant in the team&apos;s own components, behind a flag they already have.</p>
+              </li>
+              <li>
+                <span className="loop-n" aria-hidden="true">3</span>
+                <h3>Ship on approval</h3>
+                <p>Nothing goes live until a person says yes. Every change is reversible and attributed.</p>
+              </li>
+            </ol>
           </div>
         </section>
 
@@ -89,12 +108,10 @@ export default function Home() {
             headlines, so no entry repeats them. */}
         <section className="experience" id="experience" aria-labelledby="record-title">
           <div className="frame">
-            <header className="section-heading" data-reveal>
-              <p id="record-title">The record</p>
-            </header>
+            <h2 id="record-title" className="section-title">The record</h2>
 
             <ol className="experience-list">
-              <li data-reveal>
+              <li>
                 <p className="period">2026</p>
                 <div className="role">
                   <h3>AI engineering intern</h3>
@@ -102,10 +119,16 @@ export default function Home() {
                 </div>
                 <div className="role-detail">
                   <p className="impact-statement">Rebuilt agent pipelines around measurable speed, cost, accuracy, and permission boundaries.</p>
-                  <div className="evidence-pair" aria-label="Cape engineering outcomes">
-                    <p><strong>190k <span aria-hidden="true">→</span> 1.2k</strong><span>tokens per run, more than 99% less</span></p>
-                    <p><strong>20 <span aria-hidden="true">→</span> 10,000</strong><span>inputs, from 55s to about 8s at 98% accuracy</span></p>
-                  </div>
+                  <dl className="figures" aria-label="Cape engineering outcomes">
+                    <div>
+                      <dt>190k <span aria-hidden="true">→</span> 1.2k</dt>
+                      <dd>tokens per run, more than 99 percent less</dd>
+                    </div>
+                    <div>
+                      <dt>20 <span aria-hidden="true">→</span> 10,000</dt>
+                      <dd>inputs per run, from 55 seconds to about 8, at 98 percent accuracy</dd>
+                    </div>
+                  </dl>
                   <div className="entry-media">
                     <Image
                       src="/images/projects/cape-live.jpg"
@@ -115,11 +138,11 @@ export default function Home() {
                       sizes="(max-width: 880px) 100vw, 55vw"
                     />
                   </div>
-                  <p className="working-set">Python / TypeScript / Agents / LangSmith</p>
+                  <p className="working-set">Python, TypeScript, agents, LangSmith</p>
                 </div>
               </li>
 
-              <li data-reveal>
+              <li>
                 <p className="period">2026</p>
                 <div className="role">
                   <h3>Co-founder</h3>
@@ -128,22 +151,16 @@ export default function Home() {
                 <div className="role-detail">
                   <p className="impact-statement">Built an EU-sovereign, permission-aware knowledge layer for governed AI agents.</p>
                   <p className="role-context">Designed for customer-owned infrastructure and air-gapped deployment.</p>
-                  <ul className="proof-list">
-                    <li>
-                      <strong>€3,000</strong>
-                      <span>
-                        First Runner-Up at the{' '}
-                        <a href="https://tuecontest.nl/">TU/e Contest</a>
-                      </span>
-                    </li>
-                    <li>
-                      <strong>€2,500</strong>
-                      <span>
-                        <a href="https://thegate.tech/">The Gate</a>{' '}
-                        grant at <a href="https://www.kickoffehv.nl/">Kickoff EHV</a>
-                      </span>
-                    </li>
-                  </ul>
+                  <dl className="figures" aria-label="Stacklink awards">
+                    <div>
+                      <dt>€3,000</dt>
+                      <dd>First Runner-Up at the <a href="https://tuecontest.nl/">TU/e Contest</a></dd>
+                    </div>
+                    <div>
+                      <dt>€2,500</dt>
+                      <dd><a href="https://thegate.tech/">The Gate</a> grant at <a href="https://www.kickoffehv.nl/">Kickoff EHV</a></dd>
+                    </div>
+                  </dl>
                   <div className="entry-media">
                     <Image
                       src="/images/projects/sl-hero.png"
@@ -159,18 +176,18 @@ export default function Home() {
                       <Image src="/images/projects/sl-watch.png" alt="Stacklink agent activity view" width={1600} height={889} sizes="(max-width: 880px) 50vw, 27vw" />
                     </div>
                   </div>
-                  <p className="working-set">TypeScript / Go / Postgres / RAG / ACLs</p>
+                  <p className="working-set">TypeScript, Go, Postgres, RAG, ACLs</p>
                 </div>
               </li>
 
-              <li data-reveal>
+              <li>
                 <p className="period">2026</p>
                 <div className="role">
                   <h3>Hackathon builder</h3>
-                  <p>Paris / Amsterdam</p>
+                  <p>Paris and Amsterdam</p>
                 </div>
                 <div className="role-detail">
-                  <p className="impact-statement">Two working AI products, built in 24 hours and 6 hours.</p>
+                  <p className="impact-statement">Two working AI products, built in 24 hours and in 6.</p>
                   <div className="entry-pair">
                     <article>
                       <Image
@@ -180,10 +197,8 @@ export default function Home() {
                         height={784}
                         sizes="(max-width: 880px) 100vw, 27vw"
                       />
-                      <p className="work-type">24 hour build / Paris</p>
                       <h4>Pitchr.live</h4>
-                      <p>Rubric scoring, rewritten scripts, and mock investor Q&amp;A in one AI pitch coach.</p>
-                      <p className="work-impact">Built from zero in 24 hours at Station F.</p>
+                      <p>Rubric scoring, rewritten scripts, and mock investor Q&amp;A in one AI pitch coach. Built from zero in 24 hours at Station F, Paris.</p>
                       <a href="https://pitchr.live">Visit Pitchr.live <span aria-hidden="true">↗</span></a>
                     </article>
                     <article>
@@ -194,18 +209,16 @@ export default function Home() {
                         height={1080}
                         sizes="(max-width: 880px) 100vw, 27vw"
                       />
-                      <p className="work-type">6 hour build / Amsterdam</p>
                       <h4>Weekly Shop Agent</h4>
-                      <p>Five agents negotiate meals, dietary needs, and budget to assemble a weekly grocery order.</p>
-                      <p className="work-impact">Selected to pitch from 80 builders.</p>
+                      <p>Five agents negotiate meals, dietary needs, and budget into a weekly grocery order. Six hours in Amsterdam, selected to pitch from 80 builders.</p>
                       <a href="https://github.com/LucasDuys/hackaway-grocery-agent">View the code <span aria-hidden="true">↗</span></a>
                     </article>
                   </div>
-                  <p className="working-set">Next.js / Claude / ElevenLabs / Multi-agent systems</p>
+                  <p className="working-set">Next.js, Claude, ElevenLabs, multi-agent systems</p>
                 </div>
               </li>
 
-              <li data-reveal>
+              <li>
                 <p className="period">2024 to now</p>
                 <div className="role">
                   <h3>BSc Computer Science &amp; Engineering</h3>
@@ -213,15 +226,14 @@ export default function Home() {
                 </div>
                 <div className="role-detail">
                   <p className="impact-statement">Building production AI systems alongside a full-time computer science degree.</p>
-                  <p className="working-set">Computer science / AI / Systems</p>
                 </div>
               </li>
             </ol>
           </div>
         </section>
 
-        <section className="photo-proof" aria-label="TU/e Contest award photography">
-          <figure data-reveal>
+        <section className="photo-band" aria-label="TU/e Contest award photography">
+          <figure>
             <Image
               src="/images/me/award.jpg"
               alt="Lucas receiving the TU/e Contest First Runner-Up award"
@@ -229,96 +241,41 @@ export default function Home() {
               height={1152}
               sizes="100vw"
             />
-            <figcaption className="frame">
-              <span>Receiving the First Runner-Up award, TU/e Contest 2026</span>
-            </figcaption>
+            <figcaption className="frame">Receiving the First Runner-Up award, TU/e Contest 2026</figcaption>
           </figure>
         </section>
 
-        <section className="capabilities" aria-labelledby="capabilities-title">
-          <div className="frame capabilities-grid" data-reveal>
-            <header>
-              <p>Working set</p>
-              <h2 id="capabilities-title">What I build with.</h2>
-            </header>
-            <dl>
-              <div><dt>AI systems</dt><dd>Agents, RAG, evaluations, permissions, tool use</dd></div>
-              <div><dt>Engineering</dt><dd>TypeScript, Python, Go, React, Next.js, Postgres</dd></div>
-              <div><dt>Product</dt><dd>Rapid prototyping, interaction design, testing, shipping</dd></div>
-            </dl>
-          </div>
-        </section>
-
-        {/* A breath of the world the palette comes from, before the ask. */}
-        <section className="shore-band" aria-label="Coastal photography">
-          <figure data-reveal>
-            <Image
-              src="/images/shore.jpg"
-              alt="A mountain ridge above the sea"
-              width={1400}
-              height={350}
-              sizes="100vw"
-            />
-            <figcaption className="frame">
-              <span>Off stage.</span>
-            </figcaption>
-          </figure>
-        </section>
-
-        <section className="book" id="book" aria-labelledby="book-title">
-          <div className="frame book-grid">
-            <div className="book-copy" data-reveal>
-              <p className="section-label">Book a call</p>
-              <h2 id="book-title">Thirty minutes.</h2>
-              <p className="book-lede">
-                For hiring conversations, founder chats, and hard technical
-                problems. Pick a time that suits you — a video link arrives
-                with the confirmation.
-              </p>
-              <ul className="book-meta">
-                <li><span>Duration</span><strong>30 min</strong></li>
-                <li><span>Where</span><strong>Video call</strong></li>
-                <li><span>Timezone</span><strong>Detected automatically</strong></li>
-              </ul>
-              <a className="book-direct" href="https://cal.com/lucas-duys/30min?overlayCalendar=true">
-                Open on Cal.com <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-            <div className="book-cal" data-reveal>
-              <p className="cal-loading" aria-hidden="true">Loading the calendar…</p>
-              <BookCal />
-            </div>
-          </div>
-        </section>
-
+        {/* The ask, once the record has made its case: the person, the address,
+            and the calendar in one place. */}
         <section className="contact" id="contact" aria-labelledby="contact-title">
           <div className="frame contact-grid">
-            <figure className="contact-portrait" data-reveal>
-              {/* The person behind the record, once the record has made its case. */}
-              <Image
-                src="/images/me/portrait.jpg"
-                alt="Lucas Duys"
-                width={800}
-                height={800}
-                sizes="(max-width: 760px) 40vw, 20vw"
-              />
-            </figure>
-            <div className="contact-copy" data-reveal>
-              <p>Good people, hard problems.</p>
+            <div className="contact-copy">
+              <figure className="contact-portrait">
+                <Image
+                  src="/images/me/portrait.jpg"
+                  alt="Lucas Duys"
+                  width={800}
+                  height={800}
+                  sizes="(max-width: 880px) 40vw, 16vw"
+                />
+              </figure>
               <h2 id="contact-title">Let&apos;s talk.</h2>
+              <p className="contact-lede">
+                Thirty minutes on a video call, for hiring conversations, founder questions,
+                and hard technical problems. Pick a time, or write.
+              </p>
               <a className="contact-email" href="mailto:lucas.duys@gmail.com">
                 lucas.duys@gmail.com <span aria-hidden="true">↗</span>
               </a>
-              <p className="contact-book">
-                Prefer to pick a time?{' '}
-                <a href="#book">
-                  Book 30 minutes <span aria-hidden="true">→</span>
-                </a>
-              </p>
-              <nav aria-label="Social links">
+              <nav aria-label="Profiles">
                 <a href="https://www.linkedin.com/in/lucas-duys/">LinkedIn <span aria-hidden="true">↗</span></a>
                 <a href="https://github.com/LucasDuys">GitHub <span aria-hidden="true">↗</span></a>
+                <a href="https://cal.com/lucas-duys/30min?overlayCalendar=true">Cal.com <span aria-hidden="true">↗</span></a>
               </nav>
+            </div>
+            <div className="book-cal">
+              <p className="cal-loading" aria-hidden="true">Loading the calendar…</p>
+              <BookCal />
             </div>
           </div>
         </section>

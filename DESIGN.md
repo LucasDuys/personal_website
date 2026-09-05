@@ -1,6 +1,6 @@
 ---
 name: Lucas Duys Black Cut
-description: A cinematic visual CV on a pure black stage: warm-white dust, Geist with mono figures, one cobalt signal, figures that part around the words.
+description: A cinematic visual CV on a pure black stage: warm-white dust, Geist with mono figures, one cobalt signal, figures that part around the words, and a page below that reads in order without reveals.
 ---
 
 <!-- SEED: established with the user before implementation; re-run $impeccable document once there's code to capture the actual tokens and components. -->
@@ -62,9 +62,9 @@ The palette is pure black with one accent used only where something must be noti
 
 The page opens on the film: a 300svh section whose sticky stage holds a WebGL point field of stage dust. Scroll is the only clock. The dust gathers into three figures in sequence, the spotlight ring, the rising trajectory with cobalt milestone knots, and the LD mark. Each figure forms crisp, then its caption takes the centre of the frame, crowned by the organisation's mark and wordmark as the beat's one live link, and the field PARTS AROUND the words: every point inside an ellipse the size of the text block slides out to its rim, so the figure visibly re-forms around the caption instead of fading behind it. Captions fall in from above and depart downward. 2nd of 70, 500×, 1 of ~100. At rest the field neither plays nor freezes: each point drifts toward the light on its own phase and fades before it arrives. The film releases into the real stage photograph, and the film never restates below itself.
 
-Below the film, one record carries every venture exactly once: a three-column ledger of period, role, and evidence, with each entry's product imagery embedded in its evidence column (Stacklink carries a dominant product image and a four-image contact sheet, the hackathons a two-build pair). Nothing on the page is said twice: the film owns the headline figures, the record owns the detail, and the photo bands carry only their moment. The contact close pairs the portrait photograph with the address. Mobile collapses to a strict single column; the film keeps a smaller point count, and the text-exclusion ellipse narrows with the aspect ratio.
+Below the film the page reads in order, and nothing hides behind a scroll reveal. Now: what I am building (Athren) and the rule underneath it, with the loop as three numbered stations so the eye knows where to start. The record: one three-column ledger of period, role, and evidence, every venture exactly once, each entry's product imagery embedded in its evidence column (Stacklink carries a dominant product image and a four-image contact sheet, the hackathons a two-build pair at one aspect ratio), each figure set in mono with its meaning on the same line. The award photograph. The contact close: portrait, address, profiles, and the calendar inline. Nothing on the page is said twice: the film owns the headline figures, the record owns the detail, the photo bands carry only their moment. Mobile collapses to a strict single column in the same order; the film keeps a smaller point count, and the text-exclusion ellipse narrows with the aspect ratio.
 
-Native browser scrolling is the base; the sticky stage is honest and a flick passes it. One scroll listener writes CSS custom properties and shader uniforms; React renders nothing per frame. Section reveals use one IntersectionObserver whose hiding style engages only after an inline script confirms JavaScript. Reduced motion and no-JS both receive the complete static composition in pure CSS: the film flattens to the name and the three proof rows, and the canvas never draws.
+Native browser scrolling is the base; the sticky stage is honest and a flick passes it. One scroll listener writes CSS custom properties and shader uniforms; React renders nothing per frame. Below the film there is no motion at all: a visitor without JavaScript reads the same CV. Reduced motion and no-JS both receive the complete static composition in pure CSS: the film flattens to the name and the three proof rows, and the canvas never draws.
 
 Film engine rules: raw WebGL points with additive blending (light on black), no scene-graph dependency; pixel ratio capped at 1.25; no idle clock once the visitor stops, frames drawn on demand; the canvas carries only light and dust, never words. Motion vocabulary: `--ease-stage` (0.16, 1, 0.3, 1) for arrivals, `--ease-exit` (0.4, 0, 1, 1) for departures; exits faster than entrances.
 
@@ -93,4 +93,4 @@ The base language is sharp and cut, with near-square corners. Large photographs 
 - **Don't** hide ordinary content behind scroll reveals.
 - **Don't** use generic project cards for every chapter.
 - **Don't** use gradients, neon glows, fake terminals, decorative status dots, or a custom cursor.
-- **Don't** publish unverified stealth-startup details, invented metrics, or unsupported claims.
+- **Don't** publish unverified startup details, invented metrics, or unsupported claims.

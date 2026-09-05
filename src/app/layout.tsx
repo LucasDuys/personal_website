@@ -5,15 +5,15 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://lucasduys.com'),
-  title: 'Lucas Duys | Founder and AI Engineer',
-  description: 'Lucas Duys is a founder and AI engineer in Eindhoven, building a stealth startup and joining Antler ONE in September 2026.',
-  keywords: ['Lucas Duys', 'founder', 'AI engineer', 'Antler ONE', 'TU Eindhoven', 'Stacklink', 'Cape.io'],
+  title: 'Lucas Duys | Founder of Athren, AI engineer',
+  description: 'Lucas Duys is the founder of Athren, autonomous conversion experimentation for growth teams, and an AI engineer in Eindhoven in the Antler ONE September 2026 cohort.',
+  keywords: ['Lucas Duys', 'Athren', 'founder', 'AI engineer', 'Antler ONE', 'TU Eindhoven', 'Stacklink', 'Cape.io'],
   authors: [{ name: 'Lucas Duys', url: 'https://lucasduys.com' }],
   creator: 'Lucas Duys',
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Lucas Duys | Founder and AI Engineer',
-    description: 'A visual CV of products, systems, and proof.',
+    title: 'Lucas Duys | Founder of Athren, AI engineer',
+    description: 'What I am building, and the record behind it.',
     type: 'profile',
     url: 'https://lucasduys.com',
     locale: 'en_US',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lucas Duys | Founder and AI Engineer',
-    description: 'A visual CV of products, systems, and proof.',
+    title: 'Lucas Duys | Founder of Athren, AI engineer',
+    description: 'What I am building, and the record behind it.',
   },
   robots: { index: true, follow: true },
 };
@@ -32,7 +32,8 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Lucas Duys',
   url: 'https://lucasduys.com',
-  jobTitle: 'Founder and AI Engineer',
+  jobTitle: 'Founder, Athren',
+  worksFor: { '@type': 'Organization', name: 'Athren', url: 'https://athren.nl' },
   affiliation: {
     '@type': 'CollegeOrUniversity',
     name: 'Eindhoven University of Technology',
@@ -48,12 +49,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
-        {/* Reveal styles only engage once JS is confirmed, so a visitor
-            without it sees every section, immediately. */}
         {/* The booking calendar loads its embed from Cal's CDN on demand. */}
         <link rel="preconnect" href="https://app.cal.com" />
         <link rel="preconnect" href="https://cal.com" />
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('rv')" }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
